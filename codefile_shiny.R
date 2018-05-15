@@ -991,6 +991,16 @@ la_l2_rate2 <- function(la2, refyear) {
 
 }
 
+#Rates for LA summary text - SEN to evaluate NA's across all years to bring error message
+la_l2_rate3 <- function(la2, refyear) {
+  
+  d <- filter(la_ud,la_name == la2)
+  
+  return(filter(d, gender == 'a.ALL', fsm=='a.ALL', sen=='a.ALL') %>%
+           dplyr::select(l2_by19_rate))
+  
+}
+
 la_l2_rate2_sen_with <- function(la2, refyear) {
   
   d <- filter(la_ud, cohort_19_in == refyear,la_name == la2)

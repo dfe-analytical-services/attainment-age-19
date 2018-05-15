@@ -68,7 +68,8 @@ server <- function(input, output) {
   output$la_title <- renderText({paste(input$select2," summary")})
 
   output$la_sum_fsm <- renderText({
-    if (TRUE %in% is.na(as.numeric(la_l2_rate(input$select2,2005:2017)))){
+    if (TRUE %in% (any(la_table_num_fsm(input$select2, input$select_cat)[,2:max(ncol(la_table_num_fsm(input$select2, input$select_cat)))] == 'x') | 
+                   la_table_num_fsm(input$select2, input$select_cat)[,2:max(ncol(la_table_num_fsm(input$select2, input$select_cat)))] == 'x')){
       paste("Some data for the ", input$select2, " contains small numbers and is supressed. This is represented by an 'x' in the table below. Please refer to the graph and the table for data about this local authority.")
     }else {
     if (input$select_cat == "l2") {
@@ -125,7 +126,8 @@ server <- function(input, output) {
   
   output$la_sum_sen <- renderText({
     
-    if (TRUE %in% is.na(as.numeric(la_l2_rate2(input$select3,2005:2017)))){
+    if (TRUE %in% (any(la_table_num_sen(input$select2, input$select_cat)[,2:max(ncol(la_table_num_sen(input$select2, input$select_cat)))] == 'x') | 
+                   la_table_rate_sen(input$select2, input$select_cat)[,2:max(ncol(la_table_num_sen(input$select2, input$select_cat)))] == 'x')){
       paste("Some data for the ", input$select3, " contains small numbers and is supressed. This is represented by an 'x' in the table below. Please refer to the graph and the table for data about this local authority.")
     }else {
     if (input$select_cat2 == "l2") {
