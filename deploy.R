@@ -1,3 +1,5 @@
+library(rsconnect)
+
 rsconnect::setAccountInfo(
   name="department-for-education",
   token=Sys.getenv("SHINYAPPS_TOKEN"),
