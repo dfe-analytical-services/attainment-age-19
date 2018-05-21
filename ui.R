@@ -31,13 +31,13 @@ shinyUI(
                             ), width = 5),
                           mainPanel(
                             br(),
-                            strong("Level 2 attainment by age 19, 2005 to 2017"), 
+                            strong("Level 2 attainment by age 19, ", paste(first_year),  " to " , paste(latest_year)), 
                             br(),
                             em("Young people in state sector at 15"),
                             radioButtons("bars_type", label=NULL, c("rate", "number"), inline = TRUE),
                             plotOutput("l2_bar", height ="8cm"),
                             hr(),
-                            strong("Level 3 attainment by age 19, 2005 to 2017"), 
+                            strong("Level 3 attainment by age 19, " , paste(first_year),  " to " , paste(latest_year)), 
                             br(),
                             em("Young people in state sector at 15"),
                             radioButtons("bars_type2", label=NULL, c("rate", "number"), inline = TRUE),
@@ -189,7 +189,7 @@ shinyUI(
                       sidebarLayout(
                       sidebarPanel(
                       h4(strong("Mapping level 2 and level 3 attainment by 19 rates")),
-                        em("Young people in state sector at 15, 2017"),
+                        em("Young people in state sector at 15, ", paste(latest_year)),
                         h5(strong("Pick a measure")),
                       selectInput(
                       "select_map",
@@ -232,7 +232,7 @@ shinyUI(
 
 tabPanel("Data and methods",
          h4(strong("Data sources")),
-         "This tool uses open data published alongside the 'Level 2 and 3 attainment by young people aged 19 in 2017'
+         "This tool uses open data published alongside the 'Level 2 and 3 attainment by young people aged 19 in ", paste(latest_year) , " 
          National Statistics release, available ",
          tags$a(href="https://www.gov.uk/government/collections/statistics-attainment-at-19-years", "here."),
          br(),

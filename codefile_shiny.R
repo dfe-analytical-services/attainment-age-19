@@ -42,8 +42,8 @@ change_ed <- function(numA, numB) {
 ## Set year references:
 #***Action update the latest year reference below when we have new data.
 
-#latest_year <- 2016
-latest_year <- 2017
+#latest_year <- 2017
+latest_year <- 2016
 last_year   <- latest_year - 1
 first_year  <- 2005
 
