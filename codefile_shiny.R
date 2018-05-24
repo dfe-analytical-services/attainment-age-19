@@ -43,7 +43,7 @@ change_ed <- function(numA, numB) {
 #***Action update the latest year reference below when we have new data.
 
 #latest_year <- 2017
-latest_year <- 2016
+latest_year <- 2017
 last_year   <- latest_year - 1
 first_year  <- 2005
 
@@ -53,7 +53,7 @@ first_year  <- 2005
 
 #la_ud <- read_csv('data/LA_UD_v3_supp.csv', col_types = cols(.default = "c"))
 #la_ud <- read_csv('data/LA_UD_draft_mockup_v4_SM.csv', col_types = cols(.default = "c"))
-la_ud <- read_csv('data/LA_UD_testdata.csv', col_types = cols(.default = "c"))
+la_ud <- read_csv('data/UD_L2_3attainment_DASHBOARD.csv', col_types = cols(.default = "c"))
 
 
 
