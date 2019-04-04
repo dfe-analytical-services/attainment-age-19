@@ -68,9 +68,9 @@ server <- function(input, output) {
   output$la_title <- renderText({paste(input$select2," summary")})
 
   output$la_sum_fsm <- renderText({
-    if (TRUE %in% (any(la_table_num_fsm(input$select2, input$select_cat)[,2:max(ncol(la_table_num_fsm(input$select2, input$select_cat)))] == 'x') | 
-                   la_table_num_fsm(input$select2, input$select_cat)[,2:max(ncol(la_table_num_fsm(input$select2, input$select_cat)))] == 'x')){
-      paste("Some data for the ", input$select2, " contains small numbers and is supressed. This is represented by an 'x' in the table below. Please refer to the graph and the table for data about this local authority.")
+    if (TRUE %in% (any(la_table_num_fsm(input$select2, input$select_cat)[,2:max(ncol(la_table_num_fsm(input$select2, input$select_cat)))] == 'c') | 
+                   la_table_num_fsm(input$select2, input$select_cat)[,2:max(ncol(la_table_num_fsm(input$select2, input$select_cat)))] == 'c')){
+      paste("Data for the ", input$select2, " has been supressed due to risk of disclosure due to small cohorts.")
     }else {
     if (input$select_cat == "l2") {
 
@@ -126,16 +126,16 @@ server <- function(input, output) {
   
   output$la_sum_sen <- renderText({
     
-    if (TRUE %in% (any(la_table_num_sen(input$select3, input$select_cat2)[,2:max(ncol(la_table_num_sen(input$select3, input$select_cat2)))] == 'x') | 
-                   la_table_rate_sen(input$select3, input$select_cat2)[,2:max(ncol(la_table_num_sen(input$select3, input$select_cat2)))] == 'x')){
-      paste("Some data for the ", input$select3, " contains small numbers and is supressed. This is represented by an 'x' in the table below. Please refer to the graph and the table for data about this local authority.")
+    if (TRUE %in% (any(la_table_num_sen(input$select3, input$select_cat2)[,2:max(ncol(la_table_num_sen(input$select3, input$select_cat2)))] == 'c') | 
+                   la_table_rate_sen(input$select3, input$select_cat2)[,2:max(ncol(la_table_num_sen(input$select3, input$select_cat2)))] == 'c')){
+      paste("Data for the ", input$select3, " has been supressed due to risk of disclosure due to small cohorts.")
     }else {
     if (input$select_cat2 == "l2") {
       paste("The percentage achieving level 2 by 19 in ",input$select3," ",change_ed(round(as.numeric(la_l2_rate2(input$select3,last_year)),1),round(as.numeric(la_l2_rate2(input$select3,latest_year)),1)), 
             " ",round(as.numeric(la_l2_rate2(input$select3,last_year)),1),
             " per cent in ",last_year, " to ",round(as.numeric(la_l2_rate2(input$select3,latest_year)),1), " per cent in ",latest_year,".
             
-            The percentage of pupils with a statement of SEN or EHC plan achieving level 2 by 19 ",change_ed(round(as.numeric(la_l2_rate2_sen_with(input$select3,last_year)),1),round(as.numeric(la_l2_rate2_sen_with(input$select3,latest_year)),1)), 
+            The percentage of pupils with a statement of SEN or Education Health Care (EHC) plan achieving level 2 by 19 ",change_ed(round(as.numeric(la_l2_rate2_sen_with(input$select3,last_year)),1),round(as.numeric(la_l2_rate2_sen_with(input$select3,latest_year)),1)), 
             " ",round(as.numeric(la_l2_rate2_sen_with(input$select3,last_year)),1),
             " per cent in ",last_year, " to ",round(as.numeric(la_l2_rate2_sen_with(input$select3,latest_year)),1), " per cent in ",latest_year,".
             
@@ -149,7 +149,7 @@ server <- function(input, output) {
             "  ",round(as.numeric(la_l2em_rate2(input$select3,last_year)),1),
             " per cent in ",last_year, " to ",round(as.numeric(la_l2em_rate2(input$select3,latest_year)),1), " per cent in ",latest_year,".
             
-            The percentage of pupils with a statement of SEN or EHC plan achieving level 2 with English and maths by 19 ",change_ed(round(as.numeric(la_l2em_rate2_sen_with(input$select3,last_year)),1),round(as.numeric(la_l2em_rate2_sen_with(input$select3,latest_year)),1)),
+            The percentage of pupils with a statement of SEN or Education Health Care (EHC) plan achieving level 2 with English and maths by 19 ",change_ed(round(as.numeric(la_l2em_rate2_sen_with(input$select3,last_year)),1),round(as.numeric(la_l2em_rate2_sen_with(input$select3,latest_year)),1)),
             "  ",round(as.numeric(la_l2em_rate2_sen_with(input$select3,last_year)),1),
             " per cent in ",last_year, " to ",round(as.numeric(la_l2em_rate2_sen_with(input$select3,latest_year)),1), " per cent in ",latest_year,".
             
@@ -163,7 +163,7 @@ server <- function(input, output) {
             " ",round(as.numeric(la_l3_rate2(input$select3,last_year)),1),
             " per cent in ",last_year, " to ",round(as.numeric(la_l3_rate2(input$select3,latest_year)),1), " per cent in ",latest_year,".
             
-            The percentage of pupils with a statement of SEN or EHC plan achieving level 3 by 19 ",change_ed(round(as.numeric(la_l3_rate2_sen_with(input$select3,last_year)),1),round(as.numeric(la_l3_rate2_sen_with(input$select3,latest_year)),1)),
+            The percentage of pupils with a statement of SEN or Education Health Care (EHC) plan achieving level 3 by 19 ",change_ed(round(as.numeric(la_l3_rate2_sen_with(input$select3,last_year)),1),round(as.numeric(la_l3_rate2_sen_with(input$select3,latest_year)),1)),
             " ",round(as.numeric(la_l3_rate2_sen_with(input$select3,last_year)),1),
             " per cent in ",last_year, " to ",round(as.numeric(la_l3_rate2_sen_with(input$select3,latest_year)),1), " per cent in ",latest_year,".
             
@@ -225,7 +225,7 @@ server <- function(input, output) {
                                           change_ed(reg_l2_rate2(input$select3,last_year),reg_l2_rate2(input$select3,latest_year)),
                                           round(as.numeric(reg_l2_rate2(input$select3, last_year)),1)," per cent in ",last_year, " to ", round(as.numeric(reg_l2_rate2(input$select3,latest_year)),1), " per cent in ",latest_year,".
                                           
-                                          The percentage of pupils with a statement of SEN or EHC plan achieving level 2 by 19 ",
+                                          The percentage of pupils with a statement of SEN or Education Health Care (EHC) plan achieving level 2 by 19 ",
                                           change_ed(reg_l2_rate2_sen_with(input$select3,last_year),reg_l2_rate2_sen_with(input$select3,latest_year)),
                                           round(as.numeric(reg_l2_rate2_sen_with(input$select3, last_year)),1)," per cent in ",last_year, " to ", round(as.numeric(reg_l2_rate2_sen_with(input$select3,latest_year)),1), " per cent in ",latest_year,".
                                           
@@ -237,7 +237,7 @@ server <- function(input, output) {
                                                  change_ed(reg_l2em_rate2(input$select3,last_year),reg_l2em_rate2(input$select3,latest_year)),
                                                  round(as.numeric(reg_l2em_rate2(input$select3, last_year)),1)," per cent in ",last_year, " to ", round(as.numeric(reg_l2em_rate2(input$select3,latest_year)),1), " per cent in ",latest_year,".
                                                  
-                                                 The percentage of pupils with a statement of SEN or EHC plan achieving level 2 with English and maths by 19 ",
+                                                 The percentage of pupils with a statement of SEN or Education Health Care (EHC) plan achieving level 2 with English and maths by 19 ",
                                                  change_ed(reg_l2em_rate2_sen_with(input$select3,last_year),reg_l2em_rate2_sen_with(input$select3,latest_year)),
                                                  round(as.numeric(reg_l2em_rate2_sen_with(input$select3, last_year)),1)," per cent in ",last_year, " to ", round(as.numeric(reg_l2em_rate2_sen_with(input$select3,latest_year)),1), " per cent in ",latest_year,".
                                                  
@@ -250,7 +250,7 @@ server <- function(input, output) {
                                                change_ed(reg_l3_rate2(input$select3,last_year),reg_l3_rate2(input$select3,latest_year)),
                                                round(as.numeric(reg_l3_rate2(input$select3, last_year)),1)," per cent in ",last_year, " to ", round(as.numeric(reg_l3_rate2(input$select3,latest_year)),1), " per cent in ",latest_year,".
                                                
-                                               The percentage of pupils with a statement of SEN or EHC plan achieving level 3 by 19 ",
+                                               The percentage of pupils with a statement of SEN or Education Health Care (EHC) plan achieving level 3 by 19 ",
                                                change_ed(reg_l3_rate2_sen_with(input$select3,last_year),reg_l3_rate2_sen_with(input$select3,latest_year)),
                                                round(as.numeric(reg_l3_rate2_sen_with(input$select3, last_year)),1)," per cent in ",last_year, " to ", round(as.numeric(reg_l3_rate2_sen_with(input$select3,latest_year)),1), " per cent in ",latest_year,".
                                                
@@ -316,7 +316,7 @@ server <- function(input, output) {
             " ",round(as.numeric(nat_l2_rate2(last_year)),1),
             " per cent in ",last_year, " to ",round(as.numeric(nat_l2_rate2(latest_year)),1), " per cent in ",latest_year,".
             
-            The percentage of pupils with a statement of SEN or EHC plan achieving level 2 by 19 in England ",change_ed(round(as.numeric(nat_l2_rate2_sen_with(last_year)),1),round(as.numeric(nat_l2_rate2_sen_with(latest_year)),1)), 
+            The percentage of pupils with a statement of SEN or Education Health Care (EHC) plan achieving level 2 by 19 in England ",change_ed(round(as.numeric(nat_l2_rate2_sen_with(last_year)),1),round(as.numeric(nat_l2_rate2_sen_with(latest_year)),1)), 
             " ",round(as.numeric(nat_l2_rate2_sen_with(last_year)),1),
             " per cent in ",last_year, " to ",round(as.numeric(nat_l2_rate2_sen_with(latest_year)),1), " per cent in ",latest_year,".
             
@@ -330,7 +330,7 @@ server <- function(input, output) {
             "  ",round(as.numeric(nat_l2em_rate2(last_year)),1),
             " per cent in ",last_year, " to ",round(as.numeric(nat_l2em_rate2(latest_year)),1), " per cent in ",latest_year,".
             
-            The percentage of pupils with a statement of SEN or EHC plan achieving level 2 with English and maths by 19 in England ",change_ed(round(as.numeric(nat_l2em_rate2_sen_with(last_year)),1),round(as.numeric(nat_l2em_rate2_sen_with(latest_year)),1)),
+            The percentage of pupils with a statement of SEN or Education Health Care (EHC) plan achieving level 2 with English and maths by 19 in England ",change_ed(round(as.numeric(nat_l2em_rate2_sen_with(last_year)),1),round(as.numeric(nat_l2em_rate2_sen_with(latest_year)),1)),
             "  ",round(as.numeric(nat_l2em_rate2_sen_with(last_year)),1),
             " per cent in ",last_year, " to ",round(as.numeric(nat_l2em_rate2_sen_with(latest_year)),1), " per cent in ",latest_year,".
             
@@ -344,7 +344,7 @@ server <- function(input, output) {
             " ",round(as.numeric(nat_l3_rate2(last_year)),1),
             " per cent in ",last_year, " to ",round(as.numeric(nat_l3_rate2(latest_year)),1), " per cent in ",latest_year,".
             
-            The percentage of pupils with a statement of SEN or EHC plan achieving level 3 by 19 in England ",change_ed(round(as.numeric(nat_l3_rate2_sen_with(last_year)),1),round(as.numeric(nat_l3_rate2_sen_with(latest_year)),1)),
+            The percentage of pupils with a statement of SEN or Education Health Care (EHC) plan achieving level 3 by 19 in England ",change_ed(round(as.numeric(nat_l3_rate2_sen_with(last_year)),1),round(as.numeric(nat_l3_rate2_sen_with(latest_year)),1)),
             " ",round(as.numeric(nat_l3_rate2_sen_with(last_year)),1),
             " per cent in ",last_year, " to ",round(as.numeric(nat_l3_rate2_sen_with(latest_year)),1), " per cent in ",latest_year,".
             
