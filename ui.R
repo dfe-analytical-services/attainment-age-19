@@ -1,3 +1,4 @@
+#SW 04.04.2019
 #When updating, just need to go through and update any of the hardcoded text in each tab below and any hyperlinks.
 
 source("codefile_shiny.R")
@@ -11,21 +12,21 @@ shinyUI(
                tabPanel("Overview",
                         sidebarLayout(
                           sidebarPanel(verticalLayout(
-                            h3(strong("Understanding level 2 and 3 attainment by age 19 statistics (Pilot)")),
-                            br("This tool is aimed at enabling users to further understand attainment by age 19 data and is currently under development."), 
+                            h3(strong("Understanding level 2 and 3 attainment by age 19 statistics")),
+                            br("This tool is aimed at enabling users to further understand attainment by age 19 data."), 
                             hr(),
                             strong("Background"),
-                            br("The purpose of this dashboard is to provide insight to lower level breakdowns included within our National Statistics release. 
-                               It reports on attainment by 19 of level 2, level 2 with English and maths and level 3 at 19 by pupil characteristics at age 15. 
-                               They cover pupils in the state sector at age 15."),
+                            br("The purpose of this dashboard is to provide further insight into breakdowns included within our National Statistics release using data visualisation. 
+                               It reports on attainment at level 2, level 2 with English and maths and level 3 by age 19 by pupil characteristics as collected at age 15. 
+                               The data covers pupils in state sector schools at age 15."),
                             br(strong("Latest National Statistics")),
-                            br("All of the data used within this dashboard, including additional breakdowns, has been published in the series",
+                            br("All of the data used within this dashboard has been published in the National Statistics release",
                                a("Statistics: 16 to 19 attainment", 
                                  href = "https://www.gov.uk/government/collections/statistics-attainment-at-19-years",
-                                 target="_blank"), "National Statistics release's underlying data section and is also available for download via the data and methods tab."),
+                                 target="_blank"), "underlying data section and is also available for download via the data and methods tab."),
                             br(strong("Guidance and methodology")),
-                            br("This dashboard shows breakdowns for the number and rate of level 2 and 3 attainment by age 19 at local authority level.  
-                               Further info, including definitions, is available in the data and methods tab and the technical document found on the publication page."),
+                            br("This dashboard shows breakdowns for the number and rate of level 2 and 3 attainment by age 19 at local authority level, including by free school meal (FSM) eligibility and special educational need (SEN).  
+                               Further information, including definitions, is available in the data and methods tab in this dashboard and also in the technical document found on the main publication page."),
                             br(strong("Definitons")),
                             br("Key defintions relating to statistics used in this application can be found in the data and methods tab.")
                             ), width = 5),
@@ -46,7 +47,7 @@ shinyUI(
                         hr(),
                         HTML('<div><img src="Department_for_Education.png" alt="Logo", width="120", height = "71"></div>
                     <br>
-                    <div><b>This is a new service - if you would like to provide feedback on this tool please contact Post16.STATISTICS@education.gov.uk</b></div>
+                    <div><b>If you would like to provide feedback on this tool please contact Post16.STATISTICS@education.gov.uk</b></div>
                     <br>
                     </br>')
                ),
@@ -111,7 +112,7 @@ shinyUI(
                     hr(),
                     HTML('<div><img src="Department_for_Education.png" alt="Logo", width="120", height = "71"></div>
                          <br>
-                         <div><b>This is a new service - if you would like to provide feedback on this tool please contact Post16.STATISTICS@education.gov.uk</b></div>
+                         <div><b>If you would like to provide feedback on this tool please contact Post16.STATISTICS@education.gov.uk</b></div>
                          <br>
                          </br>')),
 
@@ -123,7 +124,7 @@ shinyUI(
                       tabPanel("LA trends - SEN",
                       sidebarLayout(
                       sidebarPanel(
-                      h4(strong("Local Authority (LA) level attainment by 19 - SEN")),
+                      h4(strong("Local Authority (LA) level attainment by 19 - Special Educational Need (SEN)")),
                       br(),
                       h5(strong("Pick a local authority")),
                       selectInput(
@@ -177,7 +178,7 @@ shinyUI(
                       hr(),
                       HTML('<div><img src="Department_for_Education.png" alt="Logo", width="120", height = "71"></div>
                            <br>
-                           <div><b>This is a new service - if you would like to provide feedback on this tool please contact Post16.STATISTICS@education.gov.uk</b></div>
+                           <div><b>If you would like to provide feedback on this tool please contact Post16.STATISTICS@education.gov.uk</b></div>
                            <br>
                            </br>')),
 
@@ -221,7 +222,7 @@ shinyUI(
                       hr(),
                       HTML('<div><img src="Department_for_Education.png" alt="Logo", width="120", height = "71"></div>
                            <br>
-                           <div><b>This is a new service - if you would like to provide feedback on this tool please contact Post16.STATISTICS@education.gov.uk</b></div>
+                           <div><b>If you would like to provide feedback on this tool please contact Post16.STATISTICS@education.gov.uk</b></div>
                            <br>
                            </br>')
                       ),
@@ -232,13 +233,13 @@ shinyUI(
 
 tabPanel("Data and methods",
          h4(strong("Data sources")),
-         "This tool uses open data published alongside the 'Level 2 and 3 attainment by young people aged 19 in ", paste(latest_year) , " 
+         "This tool uses open data published alongside the 'Level 2 and 3 attainment by young people aged 19 in '", paste(latest_year) , " 
          National Statistics release, available ",
          tags$a(href="https://www.gov.uk/government/collections/statistics-attainment-at-19-years", "here."),
          br(),
          br(),
-         "The local authority figures in this tool show attainment by 19 of level 2, level 2 with English and maths and level 3 
-         by pupil characteristics at age 15. They cover pupils in the state sector at age 15.",
+         "The local authority figures in this tool show attainment at level 2, level 2 with English and maths and level 3 by age 19 
+         by pupil characteristics collected at age 15. They cover pupils in state sector schools at age 15.",
          "Figures are also included on progression rates in level 2 English and maths, that is the proportion of those not achieving level 2 by age 16 
          who go on to achieve level 2 by age 19.",
          br(),
@@ -253,7 +254,7 @@ tabPanel("Data and methods",
          br(),
          br(),
          h4(strong("Methodology")),
-         "i) Numerators are based upon the number of young people in the state sector at academic age 15 who reached level 2/3 or level 2 with English and Maths by 19.",
+         "i) Numerators are based upon the number of young people in the state sector at academic age 15 who reached level 2/3 or level 2 with English and maths by 19.",
          br(),
          "ii) Denominators are based upon the number that were in the mainstream state sector at academic age 15.",
          br(),
@@ -277,16 +278,18 @@ tabPanel("Data and methods",
          br(),
          "f) Attainment by FSM and SEN can also be variable from year to year, particularly for small local authorities, where the size of the FSM/SEN groups may be relatively small.",
          br(),
-         "g) A young person aged 19 at the end of academic year 2016/17 is referred to as '19 in 17' in these figures.",
+         "g) A young person aged 19 at the end of academic year 2017/18 is referred to as '19 in 18' in these figures.",
          br(),
          "h) These are final figures but historical figures are subject to minor alterations each year.",	
          hr(),
          HTML('<div><img src="Department_for_Education.png" alt="Logo", width="120", height = "71"></div>
               <br>
-              <div><b>This is a new service - if you would like to provide feedback on this tool please contact Post16.STATISTICS@education.gov.uk</b></div>
+              <div><b>If you would like to provide feedback on this tool please contact Post16.STATISTICS@education.gov.uk</b></div>
               <br>
               </br>')
            )
+
+         )
 
          )
 
