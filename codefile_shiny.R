@@ -1,8 +1,15 @@
-#Anneka Jan 2018 - using Laura's code as a basis.
-#First need to install the packages below that haven't been installed yet.
-#Go to tools then install packages.Type the following packages in the box:
-#leaflet geojsonio rgdal sp data.table RColorBrewer raster pander tidyverse shinycssloaders plotly DT ggalt
-#You'll only need to do this once.
+#Sue Wallace
+#15.02.2019
+# Using Anneka's code to run the app with the aim of updating with 2019 data. 
+
+
+#install packages ----
+
+# If you don't already have the libraries below installed then you will need to 
+#install them first
+
+#This project is using packrat. Meaning that any installed libraries will
+#appear in attainment-age-19-master>packrat>lib>x86...> 3.5.1
 
 #### 
 # 1. Load packages ----
@@ -24,6 +31,9 @@ library(DT)
 library(ggalt)
 library(magrittr)
 
+library(readr)
+library(dplyr)
+
 ####
 # 2. Creating useful functions
 # Here we create a function to say increased/decreased for yearly changes which we need in the text on the app. 
@@ -42,8 +52,8 @@ change_ed <- function(numA, numB) {
 ## Set year references:
 #***Action update the latest year reference below when we have new data.
 
-#latest_year <- 2017
-latest_year <- 2017
+#latest_year <- 2018
+latest_year <- 2018
 last_year   <- latest_year - 1
 first_year  <- 2005
 
@@ -53,7 +63,7 @@ first_year  <- 2005
 
 #la_ud <- read_csv('data/LA_UD_v3_supp.csv', col_types = cols(.default = "c"))
 #la_ud <- read_csv('data/LA_UD_draft_mockup_v4_SM.csv', col_types = cols(.default = "c"))
-la_ud <- read_csv('data/UD_L2_3attainment_DASHBOARD.csv', col_types = cols(.default = "c"))
+la_ud <- read_csv('data/UD_L2_3attainment_DASHBOARD_1819.csv', col_types = cols(.default = "c"))
 
 
 
@@ -97,7 +107,7 @@ national_bars_rate <- function(category) {
     )
   
   return(plot)
-}
+} 
 
 
 national_bars_num <- function(category) {
@@ -1406,11 +1416,12 @@ underlying_data$l2_em_by19_belowat16_rate <- round(as.numeric(underlying_data$l2
 ukLocalAuthoritises <- spTransform(ukLocalAuthoritises, CRS("+proj=longlat +ellps=GRS80"))
 englishLocalAuthorities = subset(ukLocalAuthoritises, LA15CD %like% "E") # Code begins with E
 
-englishLocalAuthorityData <- merge(englishLocalAuthorities, 
+englishLocalAuthorityData <- sp::merge(englishLocalAuthorities, 
                                    underlying_data, 
                                    by.x = 'LA_Code', 
                                    by.y = 'la_code_3',
-                                   all.y = TRUE)
+                                   all.y = TRUE,
+                                   duplicateGeoms = TRUE)
 
 #level 2
 
@@ -1586,3 +1597,4 @@ excmap <- function(measure) {
 
 
 ####
+
