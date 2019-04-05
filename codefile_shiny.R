@@ -1,3 +1,4 @@
+
 #Sue Wallace
 #15.02.2019
 # Using Anneka's code to run the app with the aim of updating with 2019 data. 
@@ -221,17 +222,17 @@ la_plot_num_fsm <- function(la, category) {
   
   if (category == 'l2') {
     ylabtitle <- "Level 2 by 19"
-    d <- d %>% mutate(y_var = l2_by19) %>% filter(y_var != 'x') 
+    d <- d %>% mutate(y_var = l2_by19) %>% filter(y_var != 'c') 
   }
   
   if (category == 'l2em') {
     ylabtitle <- "Level 2 with English and maths by 19"
-    d <- d %>% mutate(y_var = l2_with_em_by19) %>% filter(y_var != 'x') 
+    d <- d %>% mutate(y_var = l2_with_em_by19) %>% filter(y_var != 'c') 
   }
   
   if (category == 'l3') {
     ylabtitle <- "Level 3 by 19"
-    d <- d %>% mutate(y_var = l3_by19) %>% filter(y_var != 'x') 
+    d <- d %>% mutate(y_var = l3_by19) %>% filter(y_var != 'c') 
   }
   
   return(
@@ -287,9 +288,9 @@ la_table_num_fsm <- function(la, category) {
     
     row.names(table) <- NULL
     
-    table[is.na(table)] <- 0
+    table[is.na(table)] <- "c"
     
-    table[table == "NA"] <- "x"
+    table[table == "NA"] <- "c"
     
     return(table)
     
@@ -321,9 +322,9 @@ la_table_rate_fsm <- function(la, category) {
   
   row.names(table) <- NULL
   
-  table[is.na(table)] <- 0
+  table[is.na(table)] <- "c"
   
-  table[table == "NA"] <- "x"
+  table[table == "NA"] <- "c"
   
   return(table)
   
@@ -751,17 +752,17 @@ la_plot_num_sen <- function(la2, category2) {
   
   if (category2 == 'l2') {
     ylabtitle <- "Level 2 by 19"
-    d <- d %>% mutate(y_var = l2_by19) %>% filter(y_var != 'x') 
+    d <- d %>% mutate(y_var = l2_by19) %>% filter(y_var != 'c') 
   }
   
   if (category2 == 'l2em') {
     ylabtitle <- "Level 2 with English and maths by 19"
-    d <- d %>% mutate(y_var = l2_with_em_by19) %>% filter(y_var != 'x') 
+    d <- d %>% mutate(y_var = l2_with_em_by19) %>% filter(y_var != 'c') 
   }
   
   if (category2 == 'l3') {
     ylabtitle <- "Level 3 by 19"
-    d <- d %>% mutate(y_var = l3_by19) %>% filter(y_var != 'x') 
+    d <- d %>% mutate(y_var = l3_by19) %>% filter(y_var != 'c') 
   }
   
   return(
@@ -838,9 +839,9 @@ la_table_num_sen <- function(la2, category2) {
   
   row.names(table) <- NULL
   
-  table[is.na(table)] <- 0
+  table[is.na(table)] <- "c"
   
-  table[table == "NA"] <- "x"
+  table[table == "NA"] <- "c"
   
   return(table)
   
@@ -872,9 +873,9 @@ la_table_rate_sen <- function(la2, category2) {
   
   row.names(table) <- NULL
   
-  table[is.na(table)] <- 0
+  table[is.na(table)] <- "c"
   
-  table[table == "NA"] <- "x"
+  table[table == "NA"] <- "c"
   
   return(table)
   
