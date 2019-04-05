@@ -1,6 +1,4 @@
 #SW 04.04.2019
-#When updating, just need to go through and update any of the hardcoded text in each tab below and any hyperlinks.
-
 source("codefile_shiny.R")
 
 shinyUI(
@@ -288,8 +286,6 @@ tabPanel("Data and methods",
               <br>
               </br>')
            )
-
-         )
 
          )
 
