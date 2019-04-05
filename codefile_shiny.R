@@ -1,8 +1,16 @@
-#Anneka Jan 2018 - using Laura's code as a basis.
-#First need to install the packages below that haven't been installed yet.
-#Go to tools then install packages.Type the following packages in the box:
-#leaflet geojsonio rgdal sp data.table RColorBrewer raster pander tidyverse shinycssloaders plotly DT ggalt
-#You'll only need to do this once.
+
+#Sue Wallace
+#15.02.2019
+# Using Anneka's code to run the app with the aim of updating with 2019 data. 
+
+
+#install packages ----
+
+# If you don't already have the libraries below installed then you will need to 
+#install them first
+
+#This project is using packrat. Meaning that any installed libraries will
+#appear in attainment-age-19-master>packrat>lib>x86...> 3.5.1
 
 #### 
 # 1. Load packages ----
@@ -24,6 +32,9 @@ library(DT)
 library(ggalt)
 library(magrittr)
 
+library(readr)
+library(dplyr)
+
 ####
 # 2. Creating useful functions
 # Here we create a function to say increased/decreased for yearly changes which we need in the text on the app. 
@@ -42,8 +53,8 @@ change_ed <- function(numA, numB) {
 ## Set year references:
 #***Action update the latest year reference below when we have new data.
 
-#latest_year <- 2017
-latest_year <- 2017
+#latest_year <- 2018
+latest_year <- 2018
 last_year   <- latest_year - 1
 first_year  <- 2005
 
@@ -53,7 +64,7 @@ first_year  <- 2005
 
 #la_ud <- read_csv('data/LA_UD_v3_supp.csv', col_types = cols(.default = "c"))
 #la_ud <- read_csv('data/LA_UD_draft_mockup_v4_SM.csv', col_types = cols(.default = "c"))
-la_ud <- read_csv('data/UD_L2_3attainment_DASHBOARD.csv', col_types = cols(.default = "c"))
+la_ud <- read_csv('data/UD_L2_3attainment_DASHBOARD_1819.csv', col_types = cols(.default = "c"))
 
 
 
@@ -97,7 +108,7 @@ national_bars_rate <- function(category) {
     )
   
   return(plot)
-}
+} 
 
 
 national_bars_num <- function(category) {
@@ -211,17 +222,17 @@ la_plot_num_fsm <- function(la, category) {
   
   if (category == 'l2') {
     ylabtitle <- "Level 2 by 19"
-    d <- d %>% mutate(y_var = l2_by19) %>% filter(y_var != 'x') 
+    d <- d %>% mutate(y_var = l2_by19) %>% filter(y_var != 'c') 
   }
   
   if (category == 'l2em') {
     ylabtitle <- "Level 2 with English and maths by 19"
-    d <- d %>% mutate(y_var = l2_with_em_by19) %>% filter(y_var != 'x') 
+    d <- d %>% mutate(y_var = l2_with_em_by19) %>% filter(y_var != 'c') 
   }
   
   if (category == 'l3') {
     ylabtitle <- "Level 3 by 19"
-    d <- d %>% mutate(y_var = l3_by19) %>% filter(y_var != 'x') 
+    d <- d %>% mutate(y_var = l3_by19) %>% filter(y_var != 'c') 
   }
   
   return(
@@ -277,9 +288,9 @@ la_table_num_fsm <- function(la, category) {
     
     row.names(table) <- NULL
     
-    table[is.na(table)] <- 0
+    table[is.na(table)] <- "c"
     
-    table[table == "NA"] <- "x"
+    table[table == "NA"] <- "c"
     
     return(table)
     
@@ -311,9 +322,9 @@ la_table_rate_fsm <- function(la, category) {
   
   row.names(table) <- NULL
   
-  table[is.na(table)] <- 0
+  table[is.na(table)] <- "c"
   
-  table[table == "NA"] <- "x"
+  table[table == "NA"] <- "c"
   
   return(table)
   
@@ -741,17 +752,17 @@ la_plot_num_sen <- function(la2, category2) {
   
   if (category2 == 'l2') {
     ylabtitle <- "Level 2 by 19"
-    d <- d %>% mutate(y_var = l2_by19) %>% filter(y_var != 'x') 
+    d <- d %>% mutate(y_var = l2_by19) %>% filter(y_var != 'c') 
   }
   
   if (category2 == 'l2em') {
     ylabtitle <- "Level 2 with English and maths by 19"
-    d <- d %>% mutate(y_var = l2_with_em_by19) %>% filter(y_var != 'x') 
+    d <- d %>% mutate(y_var = l2_with_em_by19) %>% filter(y_var != 'c') 
   }
   
   if (category2 == 'l3') {
     ylabtitle <- "Level 3 by 19"
-    d <- d %>% mutate(y_var = l3_by19) %>% filter(y_var != 'x') 
+    d <- d %>% mutate(y_var = l3_by19) %>% filter(y_var != 'c') 
   }
   
   return(
@@ -828,9 +839,9 @@ la_table_num_sen <- function(la2, category2) {
   
   row.names(table) <- NULL
   
-  table[is.na(table)] <- 0
+  table[is.na(table)] <- "c"
   
-  table[table == "NA"] <- "x"
+  table[table == "NA"] <- "c"
   
   return(table)
   
@@ -862,9 +873,9 @@ la_table_rate_sen <- function(la2, category2) {
   
   row.names(table) <- NULL
   
-  table[is.na(table)] <- 0
+  table[is.na(table)] <- "c"
   
-  table[table == "NA"] <- "x"
+  table[table == "NA"] <- "c"
   
   return(table)
   
@@ -1406,11 +1417,12 @@ underlying_data$l2_em_by19_belowat16_rate <- round(as.numeric(underlying_data$l2
 ukLocalAuthoritises <- spTransform(ukLocalAuthoritises, CRS("+proj=longlat +ellps=GRS80"))
 englishLocalAuthorities = subset(ukLocalAuthoritises, LA15CD %like% "E") # Code begins with E
 
-englishLocalAuthorityData <- merge(englishLocalAuthorities, 
+englishLocalAuthorityData <- sp::merge(englishLocalAuthorities, 
                                    underlying_data, 
                                    by.x = 'LA_Code', 
                                    by.y = 'la_code_3',
-                                   all.y = TRUE)
+                                   all.y = TRUE,
+                                   duplicateGeoms = TRUE)
 
 #level 2
 
@@ -1586,3 +1598,4 @@ excmap <- function(measure) {
 
 
 ####
+
