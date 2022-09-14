@@ -65,7 +65,7 @@ ui <- function(input, output, session) {
       widths = c(2, 8),
       well = FALSE,
       homepage_panel(),
-      overall_panel(),
+      #overall_panel(),
       fsm_panel(),
       sen_panel(),
       a11y_panel(),

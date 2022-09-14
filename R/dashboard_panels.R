@@ -99,52 +99,52 @@ homepage_panel <- function() {
   
 }
 
-overall_panel <- function() {
-  tabPanel(
-    value = "dashboard",
-    "Overall attainment",
-    
-    # Define UI for application that draws a histogram
-    
-    # Sidebar with a slider input for number of bins
-    gov_main_layout(
-      gov_row(
-        column(
-          width=12,
-          h1("Level 2 and 3 attainment by age 19"),
-        ),
-        column(
-          width=12,
-          tabsetPanel(#id = "tabsetpanels",
-                      tabPanel(
-                        "Level 2",
-                        fluidRow(
-                          column(
-                            width=12,
-                            #h2("Level 2 attainment by age 19"),
-                            h2("Level 2 attainment by age 19, ", paste(first_year),  " to " , paste(latest_year)),
-                            br(),
-                            br(),
-                            radioButtons("bars_type", label=NULL, c("percentage", "number"), inline = TRUE),
-                            plotOutput("l2_bar", height ="8cm"),
-                            hr()
-                            # p("Level 3 attainment by age 19, " , paste(first_year),  " to " , paste(latest_year)),
-                            # br()
-                            # radioButtons("bars_type2", label=NULL, c("percentage", "number"), inline = TRUE),
-                            # plotOutput("l3_bar", height ="8cm")
-                      ))),
-                      tabPanel(
-                        "Level 3",
-                        fluidRow(
-                          column(
-                            width=12,
-                            #h2("Level 2 attainment by age 19"),
-                            h2("Level 3 attainment by age 19, ", paste(first_year),  " to " , paste(latest_year)),
-                            radioButtons("bars_type2", label=NULL, c("percentage", "number"), inline = TRUE),
-                            plotOutput("l3_bar", height ="8cm")
-                          ))),
-                      )))))
-}
+# overall_panel <- function() {
+#   tabPanel(
+#     value = "dashboard",
+#     "Overall attainment",
+#     
+#     # Define UI for application that draws a histogram
+#     
+#     # Sidebar with a slider input for number of bins
+#     gov_main_layout(
+#       gov_row(
+#         column(
+#           width=12,
+#           h1("Level 2 and 3 attainment by age 19"),
+#         ),
+#         column(
+#           width=12,
+#           tabsetPanel(#id = "tabsetpanels",
+#                       tabPanel(
+#                         "Level 2",
+#                         fluidRow(
+#                           column(
+#                             width=12,
+#                             #h2("Level 2 attainment by age 19"),
+#                             h2("Level 2 attainment by age 19, ", paste(first_year),  " to " , paste(latest_year)),
+#                             br(),
+#                             br(),
+#                             radioButtons("bars_type", label=NULL, c("percentage", "number"), inline = TRUE),
+#                             plotOutput("l2_bar", height ="8cm"),
+#                             hr()
+#                             # p("Level 3 attainment by age 19, " , paste(first_year),  " to " , paste(latest_year)),
+#                             # br()
+#                             # radioButtons("bars_type2", label=NULL, c("percentage", "number"), inline = TRUE),
+#                             # plotOutput("l3_bar", height ="8cm")
+#                       ))),
+#                       tabPanel(
+#                         "Level 3",
+#                         fluidRow(
+#                           column(
+#                             width=12,
+#                             #h2("Level 2 attainment by age 19"),
+#                             h2("Level 3 attainment by age 19, ", paste(first_year),  " to " , paste(latest_year)),
+#                             radioButtons("bars_type2", label=NULL, c("percentage", "number"), inline = TRUE),
+#                             plotOutput("l3_bar", height ="8cm")
+#                           ))),
+#                       )))))
+# }
 
 
 fsm_panel <- function() {
