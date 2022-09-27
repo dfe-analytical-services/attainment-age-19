@@ -1,7 +1,7 @@
 # ---------------------------------------------------------
 # This is the ui file. 
 # Use it to call elements created in your server file into the app, and define where they are placed.
-# Also use this file to define inputs.
+# Also use this file to define inputs.   
 #
 # Every UI file should contain:
 # - A title for the app

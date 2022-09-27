@@ -31,23 +31,27 @@ homepage_panel <- function() {
                   #p("You might want to add some brief introductory text here alongside some links to different tabs within your dashboard. Here's an example of a link working:"),
                   #p(actionLink("link_to_app_content_tab", "Dashboard panel")),
                   #p("You need to add an observeEvent() function to the server.R script for any link that navigates within your App.")
-                  p("The purpose of this dashboard is to provide further insight into breakdowns included within our National Statistics release using data visualisation. It reports on attainment at level 2, level 2 with English and maths and level 3 by age 19 by pupil characteristics as collected at age 15. The data covers pupils in state sector schools at age 15."),
+                  p("The purpose of this dashboard is to provide further insight into breakdowns included within our National Statistics release using data visualisation. It reports on attainment at level 2, level 2 with English and maths and level 3 by age 19 by pupil characteristics. The data covers pupils in state sector schools at age 15."),
                     br(),
                     p(strong("Latest National Statistics")),
                     br(),
                     p("All of the data used within this dashboard has been published in the National Statistics release",
-                    a("Statistics: 16 to 19 attainment",
-                    href = "https://www.gov.uk/government/collections/statistics-attainment-at-19-years",
+                    a("Level 2 and 3 attainment age 16 to 25",
+                    href = "https://explore-education-statistics.service.gov.uk/find-statistics/level-2-and-3-attainment-by-young-people-aged-19",
                     target="_blank"), "underlying data section and is also available for download via the data and methods tab."),
                     br(),
                     p(strong("Guidance and methodology")),
                     br(),
-                    p("This dashboard shows breakdowns for the number and rate of level 2 and 3 attainment by age 19 at local authority level, including by free school meal (FSM) eligibility and special educational need (SEN).
-                                               Further information, including definitions, is available in the data and methods tab in this dashboard and also in the technical document found on the main publication page."),
+                    p("Further information about coverage, data sources etc. is available in the",
+                    a("Level 2 and 3 attainment methodology",
+                      href = "https://explore-education-statistics.service.gov.uk/methodology/level-2-and-3-attainment-by-young-people-aged-19-methodology",
+                      target = "_blank"), "found on the main publication page."),
                     br(),
                     p(strong("Definitons")),
                     br(),
-                    p("Key defintions relating to statistics used in this application can be found in the data and methods tab.")
+                    p(strong("Level 2:"), "5 GCSEs 9-4 or equivalent"),
+                    p(strong("Level 2 with English and maths:"), "5 GCSEs 9-4 or equivalent including English and maths"),
+                    p(strong("Level 3:"), "2 A levels or equivalent")
                     )
                   ),
                 )
@@ -150,7 +154,7 @@ homepage_panel <- function() {
 fsm_panel <- function() {
   tabPanel(
     value = "LA-FSM",
-    "Local authority - FSM",
+    "LA & FSM",
 
     # Define UI for application that draws a histogram
 
@@ -160,6 +164,20 @@ fsm_panel <- function() {
         column(
           width=12,
         h1("Level 2 and 3 attainment by local authority and Free School Meal (FSM) status"),
+        ),
+        #new
+        column(
+          width=12,
+          h5(strong(textOutput("la_title"))),
+             textOutput("la_sum_fsm"),
+             br(),
+             #h5(strong(textOutput("region_title"))),
+             textOutput("reg_sum_fsm"),
+             br(),
+             #h5(strong("National summary")),
+             textOutput("nat_sum_fsm"),
+             hr()
+
         ),
         column(
           width=12,
@@ -194,29 +212,30 @@ fsm_panel <- function() {
                      column(
                        width=12,
           h2("Attainment by Local authority and FSM by age 19"),
+          #valueBoxOutput("box", width = 6),
             br(),
             column(5,
             radioButtons("plot_type", "Which measure?", c("percentage", "number"), inline = TRUE)
              )),
-             plotOutput("t1_chart"#, width = '23cm'
+             plotlyOutput("t1_chart"#, width = '23cm'
                         ),
              br(),
           
-        column(width=12,
-              tableOutput("t1_table"),
+        #column(width=12,
+              #tableOutput("t1_table"),
               br()
         )
-          #valueBoxOutput("boxavgRevBal", width = 6),
+          
           #valueBoxOutput("boxpcRevBal", width = 6),
           # box(
           #   width=12,
           # plotlyOutput("lineRevBal")))
-        )),
+        ),
         tabPanel("Data download",
          br(),
          downloadButton("downloadFSM", "Download"),
          br(),
-         #DT::dataTableOutput("fsm_la_data")
+         DT::dataTableOutput("fsm_la_data")
         )))),
         hr(),
         HTML('<div><b>If you would like to provide feedback on this tool please contact Post16.STATISTICS@education.gov.uk</b></div>
@@ -258,7 +277,7 @@ fsm_panel <- function() {
 sen_panel <- function() {
   tabPanel(
     value = "LA-SEN",
-    "Local authority - SEN",
+    "LA & SEN",
     
     # Define UI for application that draws a histogram
     
@@ -268,6 +287,20 @@ sen_panel <- function() {
         column(
           width=12,
           h1("Level 2 and 3 attainment by local authority and Special Educational Need (SEN) status"),
+        ),
+        #new
+        column(
+          width=12,
+          h5(strong(textOutput("la_title2"))),
+          textOutput("la_sum_sen"),
+          br(),
+          #h5(strong(textOutput("region_title2"))),
+          textOutput("reg_sum_sen"),
+          br(),
+          #h5(strong("National summary")),
+          textOutput("nat_sum_sen"),
+          hr()
+          
         ),
         column(
           width=12,
@@ -311,16 +344,16 @@ sen_panel <- function() {
                           plotOutput("t2_chart"#, width = '23cm'
                                      ),
                           br(),
-                          column(width=12,
-                                 tableOutput("t2_table"),
-                                 br()
+                          # column(width=12,
+                          #        tableOutput("t2_table"),
+                                  br()
                           )
                           #valueBoxOutput("boxavgRevBal", width = 6),
                           #valueBoxOutput("boxpcRevBal", width = 6),
                           # box(
                           #   width=12,
                           # plotlyOutput("lineRevBal")))
-                        )),
+                        ),
                         tabPanel("Data download",
                                  br(),
                                  downloadButton("downloadSEN", "Download"),

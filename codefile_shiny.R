@@ -80,9 +80,11 @@ first_year  <- 2005
 
 #la_ud <- read_csv('data/LA_UD_v3_supp.csv', col_types = cols(.default = "c"))
 #la_ud <- read_csv('data/LA_UD_draft_mockup_v4_SM.csv', col_types = cols(.default = "c"))
-la_ud <- read_csv('C:\\Users\\eduddle\\OneDrive - Department for Education\\Desktop\\Gov Template\\data\\L23_Attainment_2021.csv', col_types = cols(.default = "c"))
+la_ud <- read_csv('C:\\Users\\eduddle\\Repos\\l23-attainment-age-19\\data\\L23_Attainment_2021.csv', col_types = cols(.default = "c"))
 
 #4. Overview tab
+
+
 
 # National bar charts (front page)
 
@@ -222,7 +224,8 @@ la_plot_rate_fsm <- function(la, category) {
           aes(label = fsm),
           size = 5,
           hjust = 0,
-          vjust = -0.5) +
+          vjust = -0.5,
+          check_overlap = TRUE) +
         theme(legend.position = "none") +
         scale_color_manual(values = c("black", "red3", "steelblue3"))+
         theme(axis.text=element_text(size=12),
@@ -265,7 +268,8 @@ la_plot_num_fsm <- function(la, category) {
         aes(label = fsm),
         size = 5,
         hjust = 0,
-        vjust = -0.5) +
+        vjust = -0.5,
+        check_overlap = TRUE) +
       theme(legend.position = "none") +
       scale_color_manual(values = c("black", "red3", "steelblue3"))+
       theme(axis.text=element_text(size=12),
