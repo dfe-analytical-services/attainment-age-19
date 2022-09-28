@@ -208,15 +208,15 @@ fsm_panel <- function() {
                tabsetPanel(id = "tabsetpanels",
                  tabPanel(
                    "Chart",
-                   fluidRow(
-                     column(
-                       width=12,
+                   gov_row(
+                     #column(
+                       #width=12,
           h2("Attainment by Local authority and FSM by age 19"),
           #valueBoxOutput("box", width = 6),
             br(),
-            column(5,
-            radioButtons("plot_type", "Which measure?", c("percentage", "number"), inline = TRUE)
-             )),
+            #column(5,
+            radioButtons("plot_type", "Which measure?", c("percentage", "number"), inline = TRUE),
+             #),
              plotlyOutput("t1_chart"#, width = '23cm'
                         ),
              br(),
@@ -332,16 +332,17 @@ sen_panel <- function() {
             tabsetPanel(id = "tabsetpanels",
                         tabPanel(
                           "Chart",
-                          fluidRow(
-                            column(
-                              width=12,
+                          gov_row(
+                            #column(
+                              #width=12,
                               h2("Attainment by Local authority and SEN by age 19"),
                               
                               br(),
-                              column(5,
-                                     radioButtons("plot_type2", "Which measure?", c("percentage", "number"), inline = TRUE)
-                              )),
-                          plotOutput("t2_chart"#, width = '23cm'
+                              #column(5,
+                                     radioButtons("plot_type2", "Which measure?", c("percentage", "number"), inline = TRUE),
+                             # )
+                              
+                          plotlyOutput("t2_chart"#, width = '23cm'
                                      ),
                           br(),
                           # column(width=12,

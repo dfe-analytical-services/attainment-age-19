@@ -123,7 +123,7 @@ server <- function(input, output, session) {
   
   # LA trends ---- SEN
   #number and rate plot depending on what option is selected.
-  output$t2_chart <- renderPlot({
+  output$t2_chart <- renderPlotly({
     if (input$plot_type2 == "number") {
       la_plot_num_sen(input$select3, input$select_cat2)
     } else if (input$plot_type2 == "percentage") {
