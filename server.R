@@ -80,7 +80,7 @@ server <- function(input, output, session) {
   # LA trends ---- FSM
   #number and rate plot depending on what option is selected.
   output$t1_chart <- renderPlotly({
-    if (input$plot_type == "number") {
+      if (input$plot_type == "number") {
       la_plot_num_fsm(input$select2, input$select_cat)
     } else if (input$plot_type == "percentage") {
       la_plot_rate_fsm(input$select2, input$select_cat)
@@ -100,25 +100,91 @@ server <- function(input, output, session) {
   #new
   # Define server logic to create a box
   
-  # output$box <- renderValueBox({
-  #   
-  #   # Put value into box to plug into app
-  #   valueBox(
-  #     
-  #     # take input number
-  #     paste0(format((national_bars_rate() %>% 
-  #                     
-  #           filter(
-  #       year == max(year),
-  #       category == input$select_cat,
-  #       la_name == input$select2
-  #     ))
-  #     )),
-  #     # add subtitle to explain what it's showing
-  #     paste0("This is the latest value for the selected inputs"),
-  #     color = "blue"
-  #   )
-  # })
+
+  
+  #select_cat is attainment level
+  #select2 is the area
+  
+  reactiveFSM_All <- reactive({
+    la_ud_VB %>% filter(la_name == input$select2, category == input$select_cat, 
+                        fsm == "ALL")
+  })
+  
+  output$boxFSM_All <- renderValueBox({
+    
+    # Put value into box to plug into app
+      valueBox(
+        # take input number
+        paste0((format((reactiveFSM_All() %>% filter(
+          la_name == input$select2,
+          category == input$select_cat
+        ))$value, #"%",
+        big.mark = ","
+        )),"%"),
+        # add subtitle to explain what it's showing
+        HTML(paste0("of all pupils achieved ", input$select_cat, " by age 19", br(), br())),
+        color = "blue"
+      )
+    })
+  
+  
+  reactiveFSM_El <- reactive({
+    la_ud_VB %>% filter(la_name == input$select2, category == input$select_cat, 
+                        fsm == "Eligible for FSM")
+  })
+  
+  output$boxFSM_El <- renderValueBox({
+    
+    # Put value into box to plug into app
+    valueBox(
+      # take input number
+      paste0((format((reactiveFSM_El() %>% filter(
+        la_name == input$select2,
+        category == input$select_cat
+      ))$value, #"%",
+      big.mark = ","
+      )),"%"),
+      # add subtitle to explain what it's showing
+      paste0("of pupils eligible for FSM achieved ", input$select_cat, " by age 19"),
+      color = "blue"
+    )
+  })
+  
+  reactiveFSM_NotEl <- reactive({
+    la_ud_VB %>% filter(la_name == input$select2, category == input$select_cat, 
+                        fsm == "Not eligible for FSM")
+  })
+  
+  output$boxFSM_NotEl <- renderValueBox({
+    
+    # Put value into box to plug into app
+    valueBox(
+      # take input number
+      paste0((format((reactiveFSM_NotEl() %>% filter(
+        la_name == input$select2,
+        category == input$select_cat
+      ))$value, #"%",
+      big.mark = ","
+      )),"%"),
+      # add subtitle to explain what it's showing
+      paste0("of pupils not eligible for FSM achieved ", input$select_cat, " by age 19"),
+      color = "blue"
+    )
+  })
+  
+#   valueBox(
+#     # take input number
+#     paste0(format((reactiveFSM_All() %>% filter(
+#       la_name == input$select2,
+#       category == input$select_cat
+#     ))$value, #"%",
+#     big.mark = ","
+#     )),
+#     # add subtitle to explain what it's showing
+#     paste0("achieved ", input$select_cat, " by age 19"),
+#     color = "blue"
+#   )
+# })
   #end of new
   
   # LA trends ---- SEN

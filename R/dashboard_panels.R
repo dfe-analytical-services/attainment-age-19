@@ -153,7 +153,7 @@ homepage_panel <- function() {
 
 fsm_panel <- function() {
   tabPanel(
-    value = "LA-FSM",
+    value = "LA & FSM",
     "LA & FSM",
 
     # Define UI for application that draws a histogram
@@ -200,7 +200,10 @@ fsm_panel <- function() {
             choices = sort(unique(la_plot_data_fsm$la_name))
         )
         ))
-          )
+          ),
+        valueBoxOutput("boxFSM_All"),
+        valueBoxOutput("boxFSM_El"),
+        valueBoxOutput("boxFSM_NotEl")
         ),
 
         column(

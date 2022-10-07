@@ -81,7 +81,9 @@ first_year  <- 2005
 #la_ud <- read_csv('data/LA_UD_v3_supp.csv', col_types = cols(.default = "c"))
 #la_ud <- read_csv('data/LA_UD_draft_mockup_v4_SM.csv', col_types = cols(.default = "c"))
 la_ud <- read_csv('C:\\Users\\eduddle\\Repos\\l23-attainment-age-19\\data\\L23_Attainment_2021.csv', col_types = cols(.default = "c"))
+la_ud_VB <- read_csv('C:\\Users\\eduddle\\Repos\\l23-attainment-age-19\\data\\L23_Attainment_2021_VB.csv', col_types = cols(.default = "c"))
 
+la_ud_VB$value <- round((as.numeric(la_ud_VB$value)), digits = 1)
 #4. Overview tab
 
 
@@ -219,16 +221,20 @@ la_plot_rate_fsm <- function(la, category) {
         ylab(ylabtitle) +
         scale_y_continuous(limits = c(0, max(as.numeric(d$y_var))*1.1), breaks=seq(0,100,10)) +
         theme_classic() +
-        geom_text(
-          d = d %>% filter(cohort_19_in == min(as.numeric(cohort_19_in))+1),
-          aes(label = fsm),
-          size = 5,
-          hjust = 0,
-          vjust = -0.5,
-          check_overlap = TRUE) +
-        theme(legend.position = "none") +
+        # geom_text(
+        #   d = d %>% filter(cohort_19_in == min(as.numeric(cohort_19_in))+1),
+        #   aes(label = fsm),
+        #   size = 5,
+        #   hjust = 0,
+        #   vjust = -0.5,
+        #   check_overlap = TRUE) +
+        #theme(legend.position = "none") +
+        #scale_fill_discrete(name="") +
+        #guides(fill=guide_legend(title=NULL)) +
+        labs(colour = NULL) +
         scale_color_manual(values = c("black", "red3", "steelblue3"))+
-        theme(axis.text=element_text(size=12),
+        theme(legend.title=element_blank(),
+              axis.text=element_text(size=12),
               axis.title=element_text(size=14,face="bold")))
   }
   
@@ -263,15 +269,20 @@ la_plot_num_fsm <- function(la, category) {
       ylab(ylabtitle) +
       scale_y_continuous(limits = c(0, max(as.numeric(d$y_var))*1.1)) +
       theme_classic() +
-      geom_text(
-        d = d %>% filter(cohort_19_in == min(as.numeric(cohort_19_in))+1),
-        aes(label = fsm),
-        size = 5,
-        hjust = 0,
-        vjust = -0.5,
-        check_overlap = TRUE) +
-      theme(legend.position = "none") +
+      # geom_text(
+      #   d = d %>% filter(cohort_19_in == min(as.numeric(cohort_19_in))+1),
+      #   aes(label = fsm),
+      #   size = 5,
+      #   hjust = 0,
+      #   vjust = -0.5,
+      #   check_overlap = TRUE) +
+      #theme(legend.position = "none") +
+      #labs(fill = "FSM Eligibility") +
+      #scale_color_discrete(name = "New Legend Title") +
+      #guides(fill=guide_legend(title="New Legend Title")) +
+      labs(colour = NULL) +
       scale_color_manual(values = c("black", "red3", "steelblue3"))+
+      theme(legend.title=element_blank())+
       theme(axis.text=element_text(size=12),
             axis.title=element_text(size=14,face="bold")))
 }
@@ -751,13 +762,14 @@ la_plot_rate_sen <- function(la2, category2) {
       ylab(ylabtitle) +
       scale_y_continuous(limits = c(0, max(as.numeric(d$y_var))*1.1), breaks=seq(0,100,10)) +
       theme_classic() +
-      geom_text(
-        d = d %>% filter(cohort_19_in == min(as.numeric(cohort_19_in))+1),
-        aes(label = sen),
-        size = 5,
-        hjust = 0,
-        vjust = -0.5) +
-      theme(legend.position = "none") +
+      # geom_text(
+      #   d = d %>% filter(cohort_19_in == min(as.numeric(cohort_19_in))+1),
+      #   aes(label = sen),
+      #   size = 5,
+      #   hjust = 0,
+      #   vjust = -0.5) +
+      labs(colour = NULL) +
+      #theme(legend.position = "none") +
       scale_color_manual(values = c("black", "steelblue3", "red4",  "red3", "firebrick1"))+
       theme(axis.text=element_text(size=12),
             axis.title=element_text(size=14,face="bold")))
@@ -794,13 +806,14 @@ la_plot_num_sen <- function(la2, category2) {
       ylab(ylabtitle) +
       scale_y_continuous(limits = c(0, max(as.numeric(d$y_var))*1.1)) +
       theme_classic() +
-      geom_text(
-        d = d %>% filter(cohort_19_in == min(as.numeric(cohort_19_in))+1),
-        aes(label = sen),
-        size = 5,
-        hjust = 0,
-        vjust = -0.5) +
-      theme(legend.position = "none") +
+      # geom_text(
+      #   d = d %>% filter(cohort_19_in == min(as.numeric(cohort_19_in))+1),
+      #   aes(label = sen),
+      #   size = 5,
+      #   hjust = 0,
+      #   vjust = -0.5) +
+      #theme(legend.position = "none") +
+      labs(colour = NULL) +
       scale_color_manual(values = c("black", "red4", "steelblue3", "red3", "firebrick1"))+
       theme(axis.text=element_text(size=12),
             axis.title=element_text(size=14,face="bold")))
