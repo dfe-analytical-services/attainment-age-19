@@ -1,3 +1,6 @@
+#Elisha Duddle
+#11.08.2022
+#Using Sue and Anneka's code to run the app with 2020/21 data.
 
 #Sue Wallace
 #15.02.2019
@@ -14,7 +17,20 @@
 
 #### 
 # 1. Load packages ----
-
+# install.packages('leaflet')
+# install.packages('geojsonio')
+# install.packages('rgdal')
+# install.packages('sp')
+# install.packages('data.table')
+# install.packages('RColorBrewer')
+# install.packages('raster')
+# install.packages('pander')
+# install.packages('DT')
+# install.packages('ggalt')
+# install.packages('magrittr')
+# install.packages('tidyverse')
+# install.packages('shinycssloaders')
+# install.packages('dplyr')
 library(leaflet)
 library(geojsonio)
 library(rgdal)
@@ -34,6 +50,7 @@ library(magrittr)
 
 library(readr)
 library(dplyr)
+library(styler)
 
 ####
 # 2. Creating useful functions
@@ -53,8 +70,7 @@ change_ed <- function(numA, numB) {
 ## Set year references:
 #***Action update the latest year reference below when we have new data.
 
-#latest_year <- 2018
-latest_year <- 2018
+latest_year <- 2021
 last_year   <- latest_year - 1
 first_year  <- 2005
 
@@ -64,35 +80,37 @@ first_year  <- 2005
 
 #la_ud <- read_csv('data/LA_UD_v3_supp.csv', col_types = cols(.default = "c"))
 #la_ud <- read_csv('data/LA_UD_draft_mockup_v4_SM.csv', col_types = cols(.default = "c"))
-la_ud <- read_csv('data/UD_L2_3attainment_DASHBOARD_1819.csv', col_types = cols(.default = "c"))
+la_ud <- read_csv('C:\\Users\\eduddle\\Repos\\l23-attainment-age-19\\data\\L23_Attainment_2021.csv', col_types = cols(.default = "c"))
+la_ud_VB <- read_csv('C:\\Users\\eduddle\\Repos\\l23-attainment-age-19\\data\\L23_Attainment_2021_VB.csv', col_types = cols(.default = "c"))
 
-
-
+la_ud_VB$value <- round((as.numeric(la_ud_VB$value)), digits = 1)
 #4. Overview tab
+
+
 
 # National bar charts (front page)
 
 national_bars_rate <- function(category) {
   if (category == 'l2') {
-    data <- filter(la_ud, gender == 'a.ALL', fsm=='a.ALL', sen=='a.ALL', la_name=='ALL', region=='j.England',cohort_19_in<=latest_year) %>%
+    data <- filter(la_ud, gender == 'ALL', fsm=='ALL', sen=='ALL', la_name=='ALL', region=='ALL',cohort_19_in<=latest_year) %>%
       mutate(year = as.factor(cohort_19_in),
              value = as.numeric(l2_by19_rate))
     
     plot <- data %>%
       ggplot(aes(x = year, y = value)) +
       geom_bar(fill = 'dodgerblue4', stat = "identity") +
-      ylab("Level 2 by age 19 rate")
+      ylab("Level 2 by age 19 percentage")
   }
   
   if (category == 'l3') {
-    data <- filter(la_ud, gender == 'a.ALL', fsm=='a.ALL', sen=='a.ALL', la_name=='ALL', region=='j.England', cohort_19_in<=latest_year) %>%
+    data <- filter(la_ud, gender == 'ALL', fsm=='ALL', sen=='ALL', la_name=='ALL', region=='ALL', cohort_19_in<=latest_year) %>%
       mutate(year = as.factor(cohort_19_in),
              value = as.numeric(l3_by19_rate))
     
     plot <- data %>%
       ggplot(aes(x = year, y = value)) +
       geom_bar(fill = 'dodgerblue3', stat = "identity") +
-      ylab("Level 3 by age 19 rate")
+      ylab("Level 3 by age 19 percentage")
   }
   
   plot <- plot +
@@ -113,7 +131,7 @@ national_bars_rate <- function(category) {
 
 national_bars_num <- function(category) {
   if (category == 'l2') {
-    data <- filter(la_ud, gender == 'a.ALL', fsm=='a.ALL', sen=='a.ALL', la_name=='ALL', region=='j.England', cohort_19_in<=latest_year) %>%
+    data <- filter(la_ud, gender == 'ALL', fsm=='ALL', sen=='ALL', la_name=='ALL', region=='ALL', cohort_19_in<=latest_year) %>%
       mutate(year = as.factor(cohort_19_in),
              value = as.numeric(l2_by19))
     
@@ -124,7 +142,7 @@ national_bars_num <- function(category) {
   }
   
   if (category == 'l3') {
-    data <- filter(la_ud, gender == 'a.ALL', fsm=='a.ALL', sen=='a.ALL', la_name=='ALL', region=='j.England', cohort_19_in<=latest_year) %>%
+    data <- filter(la_ud, gender == 'ALL', fsm=='ALL', sen=='ALL', la_name=='ALL', region=='ALL', cohort_19_in<=latest_year) %>%
       mutate(year = as.factor(cohort_19_in),
              value = as.numeric(l3_by19))
     
@@ -155,7 +173,7 @@ national_bars_num <- function(category) {
 
 la_plot_data_fsm <-
   dplyr::select(
-    filter(la_ud, la_name!='ALL', gender=='a.ALL', sen=='a.ALL', cohort_19_in<=latest_year),
+    filter(la_ud, la_name!='ALL', gender=='ALL', sen=='ALL', cohort_19_in<=latest_year),
     cohort_19_in,
     number_in_ss_cohort,
     la_name,
@@ -167,9 +185,9 @@ la_plot_data_fsm <-
     l2_with_em_by19_rate,
     l3_by19_rate) %>%
   mutate(fsm = ifelse(
-    fsm == "a.ALL","All",
-    ifelse(fsm == "b.Not eligible for FSM","Not eligible for FSM",
-           ifelse(fsm == "c.Eligible for FSM", "Eligible for FSM", "NA")))) 
+    fsm == "ALL","All",
+    ifelse(fsm == "Not eligible for FSM","Not eligible for FSM",
+           ifelse(fsm == "Eligible for FSM", "Eligible for FSM", "NA")))) 
                
 
 #Now we define the FSM rate plot.
@@ -203,15 +221,20 @@ la_plot_rate_fsm <- function(la, category) {
         ylab(ylabtitle) +
         scale_y_continuous(limits = c(0, max(as.numeric(d$y_var))*1.1), breaks=seq(0,100,10)) +
         theme_classic() +
-        geom_text(
-          d = d %>% filter(cohort_19_in == min(as.numeric(cohort_19_in))+1),
-          aes(label = fsm),
-          size = 5,
-          hjust = 0,
-          vjust = -0.5) +
-        theme(legend.position = "none") +
+        # geom_text(
+        #   d = d %>% filter(cohort_19_in == min(as.numeric(cohort_19_in))+1),
+        #   aes(label = fsm),
+        #   size = 5,
+        #   hjust = 0,
+        #   vjust = -0.5,
+        #   check_overlap = TRUE) +
+        #theme(legend.position = "none") +
+        #scale_fill_discrete(name="") +
+        #guides(fill=guide_legend(title=NULL)) +
+        labs(colour = NULL) +
         scale_color_manual(values = c("black", "red3", "steelblue3"))+
-        theme(axis.text=element_text(size=12),
+        theme(legend.title=element_blank(),
+              axis.text=element_text(size=12),
               axis.title=element_text(size=14,face="bold")))
   }
   
@@ -246,14 +269,20 @@ la_plot_num_fsm <- function(la, category) {
       ylab(ylabtitle) +
       scale_y_continuous(limits = c(0, max(as.numeric(d$y_var))*1.1)) +
       theme_classic() +
-      geom_text(
-        d = d %>% filter(cohort_19_in == min(as.numeric(cohort_19_in))+1),
-        aes(label = fsm),
-        size = 5,
-        hjust = 0,
-        vjust = -0.5) +
-      theme(legend.position = "none") +
+      # geom_text(
+      #   d = d %>% filter(cohort_19_in == min(as.numeric(cohort_19_in))+1),
+      #   aes(label = fsm),
+      #   size = 5,
+      #   hjust = 0,
+      #   vjust = -0.5,
+      #   check_overlap = TRUE) +
+      #theme(legend.position = "none") +
+      #labs(fill = "FSM Eligibility") +
+      #scale_color_discrete(name = "New Legend Title") +
+      #guides(fill=guide_legend(title="New Legend Title")) +
+      labs(colour = NULL) +
       scale_color_manual(values = c("black", "red3", "steelblue3"))+
+      theme(legend.title=element_blank())+
       theme(axis.text=element_text(size=12),
             axis.title=element_text(size=14,face="bold")))
 }
@@ -336,7 +365,7 @@ la_l2_num <- function(la, refyear) {
   
   d <- filter(la_ud, cohort_19_in == refyear,la_name == la)
   
-  return(filter(d, gender == 'a.ALL', fsm=='a.ALL', sen=='a.ALL') %>%
+  return(filter(d, gender == 'ALL', fsm=='ALL', sen=='ALL') %>%
            dplyr::select(l2_by19))
   
 }
@@ -345,7 +374,7 @@ la_l2_num_fsm <- function(la, refyear) {
   
   d <- filter(la_ud, cohort_19_in == refyear,la_name == la)
   
-  return(filter(d, gender == 'a.ALL', fsm=='c.Eligible for FSM', sen=='a.ALL') %>%
+  return(filter(d, gender == 'ALL', fsm=='Eligible for FSM', sen=='ALL') %>%
            dplyr::select(l2_by19))
   
 }
@@ -354,7 +383,7 @@ la_l2_num_nonfsm <- function(la, refyear) {
   
   d <- filter(la_ud, cohort_19_in == refyear,la_name == la)
   
-  return(filter(d, gender == 'a.ALL', fsm=='b.Not eligible for FSM', sen=='a.ALL') %>%
+  return(filter(d, gender == 'ALL', fsm=='Not eligible for FSM', sen=='ALL') %>%
            dplyr::select(l2_by19))
   
 }
@@ -363,7 +392,7 @@ la_l2em_num <- function(la, refyear) {
   
   d <- filter(la_ud, cohort_19_in == refyear,la_name == la)
   
-  return(filter(d, gender == 'a.ALL', fsm=='a.ALL', sen=='a.ALL') %>%
+  return(filter(d, gender == 'ALL', fsm=='ALL', sen=='ALL') %>%
            dplyr::select(l2_with_em_by19))
   
 }
@@ -372,7 +401,7 @@ la_l2em_num_fsm <- function(la, refyear) {
   
   d <- filter(la_ud, cohort_19_in == refyear,la_name == la)
   
-  return(filter(d, gender == 'a.ALL', fsm=='c.Eligible for FSM', sen=='a.ALL') %>%
+  return(filter(d, gender == 'ALL', fsm=='Eligible for FSM', sen=='ALL') %>%
            dplyr::select(l2_with_em_by19))
   
 }
@@ -381,7 +410,7 @@ la_l2em_num_nonfsm <- function(la, refyear) {
   
   d <- filter(la_ud, cohort_19_in == refyear,la_name == la)
   
-  return(filter(d, gender == 'a.ALL', fsm=='b.Not eligible for FSM', sen=='a.ALL') %>%
+  return(filter(d, gender == 'ALL', fsm=='Not eligible for FSM', sen=='ALL') %>%
            dplyr::select(l2_with_em_by19))
   
 }
@@ -390,7 +419,7 @@ la_l3_num <- function(la, refyear) {
   
   d <- filter(la_ud, cohort_19_in == refyear,la_name == la)
   
-  return(filter(d, gender == 'a.ALL', fsm=='a.ALL', sen=='a.ALL') %>%
+  return(filter(d, gender == 'ALL', fsm=='ALL', sen=='ALL') %>%
            dplyr::select(l3_by19))
   
 }
@@ -399,7 +428,7 @@ la_l3_num_fsm <- function(la, refyear) {
   
   d <- filter(la_ud, cohort_19_in == refyear,la_name == la)
   
-  return(filter(d, gender == 'a.ALL', fsm=='c.Eligible for FSM', sen=='a.ALL') %>%
+  return(filter(d, gender == 'ALL', fsm=='Eligible for FSM', sen=='ALL') %>%
            dplyr::select(l3_by19))
   
 }
@@ -408,7 +437,7 @@ la_l3_num_nonfsm <- function(la, refyear) {
   
   d <- filter(la_ud, cohort_19_in == refyear,la_name == la)
   
-  return(filter(d, gender == 'a.ALL', fsm=='b.Not eligible for FSM', sen=='a.ALL') %>%
+  return(filter(d, gender == 'ALL', fsm=='Not eligible for FSM', sen=='ALL') %>%
            dplyr::select(l3_by19))
   
 }
@@ -419,7 +448,7 @@ la_l2_rate <- function(la, refyear) {
   
   d <- filter(la_ud, cohort_19_in == refyear,la_name == la)
   
-  return(filter(d, gender == 'a.ALL', fsm=='a.ALL', sen=='a.ALL') %>%
+  return(filter(d, gender == 'ALL', fsm=='ALL', sen=='ALL') %>%
            dplyr::select(l2_by19_rate))
   
 }
@@ -428,7 +457,7 @@ la_l2_rate_fsm <- function(la, refyear) {
   
   d <- filter(la_ud, cohort_19_in == refyear,la_name == la)
   
-  return(filter(d, gender == 'a.ALL', fsm=='c.Eligible for FSM', sen=='a.ALL') %>%
+  return(filter(d, gender == 'ALL', fsm=='Eligible for FSM', sen=='ALL') %>%
            dplyr::select(l2_by19_rate))
   
 }
@@ -437,7 +466,7 @@ la_l2_rate_nonfsm <- function(la, refyear) {
   
   d <- filter(la_ud, cohort_19_in == refyear,la_name == la)
   
-  return(filter(d, gender == 'a.ALL', fsm=='b.Not eligible for FSM', sen=='a.ALL') %>%
+  return(filter(d, gender == 'ALL', fsm=='Not eligible for FSM', sen=='ALL') %>%
            dplyr::select(l2_by19_rate))
   
 }
@@ -446,7 +475,7 @@ la_l2em_rate <- function(la, refyear) {
   
   d <- filter(la_ud, cohort_19_in == refyear,la_name == la)
   
-  return(filter(d, gender == 'a.ALL', fsm=='a.ALL', sen=='a.ALL') %>%
+  return(filter(d, gender == 'ALL', fsm=='ALL', sen=='ALL') %>%
            dplyr::select(l2_with_em_by19_rate))
   
 }
@@ -455,7 +484,7 @@ la_l2em_rate_fsm <- function(la, refyear) {
   
   d <- filter(la_ud, cohort_19_in == refyear,la_name == la)
   
-  return(filter(d, gender == 'a.ALL', fsm=='c.Eligible for FSM', sen=='a.ALL') %>%
+  return(filter(d, gender == 'ALL', fsm=='Eligible for FSM', sen=='ALL') %>%
            dplyr::select(l2_with_em_by19_rate))
   
 }
@@ -464,7 +493,7 @@ la_l2em_rate_nonfsm <- function(la, refyear) {
   
   d <- filter(la_ud, cohort_19_in == refyear,la_name == la)
   
-  return(filter(d, gender == 'a.ALL', fsm=='b.Not eligible for FSM', sen=='a.ALL') %>%
+  return(filter(d, gender == 'ALL', fsm=='Not eligible for FSM', sen=='ALL') %>%
            dplyr::select(l2_with_em_by19_rate))
   
 }
@@ -473,7 +502,7 @@ la_l3_rate <- function(la, refyear) {
   
   d <- filter(la_ud, cohort_19_in == refyear,la_name == la)
   
-  return(filter(d, gender == 'a.ALL', fsm=='a.ALL', sen=='a.ALL') %>%
+  return(filter(d, gender == 'ALL', fsm=='ALL', sen=='ALL') %>%
            dplyr::select(l3_by19_rate))
   
 }
@@ -482,7 +511,7 @@ la_l3_rate_fsm <- function(la, refyear) {
   
   d <- filter(la_ud, cohort_19_in == refyear,la_name == la)
   
-  return(filter(d, gender == 'a.ALL', fsm=='c.Eligible for FSM', sen=='a.ALL') %>%
+  return(filter(d, gender == 'ALL', fsm=='Eligible for FSM', sen=='ALL') %>%
            dplyr::select(l3_by19_rate))
   
 }
@@ -491,7 +520,7 @@ la_l3_rate_nonfsm <- function(la, refyear) {
   
   d <- filter(la_ud, cohort_19_in == refyear,la_name == la)
   
-  return(filter(d, gender == 'a.ALL', fsm=='b.Not eligible for FSM', sen=='a.ALL') %>%
+  return(filter(d, gender == 'ALL', fsm=='Not eligible for FSM', sen=='ALL') %>%
            dplyr::select(l3_by19_rate))
   
 }
@@ -502,7 +531,7 @@ la_l3_rate_nonfsm <- function(la, refyear) {
 region_name <- function (la) {
   d <- filter(la_ud, la_name == la)
   
-  return(filter(d, gender == 'a.ALL', fsm=='a.ALL', sen=='a.ALL', cohort_19_in==latest_year) %>%
+  return(filter(d, gender == 'ALL', fsm=='ALL', sen=='ALL', cohort_19_in==latest_year) %>%
            dplyr::select(region))
   
 }
@@ -513,7 +542,7 @@ reg_l2_rate <- function(la, refyear) {
   
   d <- dplyr::filter(la_ud, cohort_19_in == refyear, region == reg)
   
-  return(dplyr::filter(d, gender == 'a.ALL', fsm=='a.ALL', sen=='a.ALL', la_name=='ALL') %>%
+  return(dplyr::filter(d, gender == 'ALL', fsm=='ALL', sen=='ALL', la_name=='ALL') %>%
            dplyr::select(l2_by19_rate))
   
 }
@@ -523,7 +552,7 @@ reg_l2_rate_fsm <- function(la, refyear) {
   
   d <- dplyr::filter(la_ud, cohort_19_in == refyear, region == reg)
   
-  return(dplyr::filter(d, gender == 'a.ALL', fsm=='c.Eligible for FSM', sen=='a.ALL', la_name=='ALL') %>%
+  return(dplyr::filter(d, gender == 'ALL', fsm=='Eligible for FSM', sen=='ALL', la_name=='ALL') %>%
            dplyr::select(l2_by19_rate))
   
 }
@@ -533,7 +562,7 @@ reg_l2_rate_nonfsm <- function(la, refyear) {
   
   d <- dplyr::filter(la_ud, cohort_19_in == refyear, region == reg)
   
-  return(dplyr::filter(d, gender == 'a.ALL', fsm=='b.Not eligible for FSM', sen=='a.ALL', la_name=='ALL') %>%
+  return(dplyr::filter(d, gender == 'ALL', fsm=='Not eligible for FSM', sen=='ALL', la_name=='ALL') %>%
            dplyr::select(l2_by19_rate))
   
 }
@@ -543,7 +572,7 @@ reg_l2em_rate <- function(la, refyear) {
   
   d <- dplyr::filter(la_ud, cohort_19_in == refyear, region == reg)
   
-  return(dplyr::filter(d, gender == 'a.ALL', fsm=='a.ALL', sen=='a.ALL', la_name=='ALL') %>%
+  return(dplyr::filter(d, gender == 'ALL', fsm=='ALL', sen=='ALL', la_name=='ALL') %>%
            dplyr::select(l2_with_em_by19_rate))
   
 }
@@ -553,7 +582,7 @@ reg_l2em_rate_fsm <- function(la, refyear) {
   
   d <- dplyr::filter(la_ud, cohort_19_in == refyear, region == reg)
   
-  return(dplyr::filter(d, gender == 'a.ALL', fsm=='c.Eligible for FSM', sen=='a.ALL', la_name=='ALL') %>%
+  return(dplyr::filter(d, gender == 'ALL', fsm=='Eligible for FSM', sen=='ALL', la_name=='ALL') %>%
            dplyr::select(l2_with_em_by19_rate))
   
 }
@@ -563,7 +592,7 @@ reg_l2em_rate_nonfsm <- function(la, refyear) {
   
   d <- dplyr::filter(la_ud, cohort_19_in == refyear, region == reg)
   
-  return(dplyr::filter(d, gender == 'a.ALL', fsm=='b.Not eligible for FSM', sen=='a.ALL', la_name=='ALL') %>%
+  return(dplyr::filter(d, gender == 'ALL', fsm=='Not eligible for FSM', sen=='ALL', la_name=='ALL') %>%
            dplyr::select(l2_with_em_by19_rate))
   
 }
@@ -572,7 +601,7 @@ reg_l3_rate <- function(la, refyear) {
   reg<- as.character(region_name(la))
   d <- dplyr::filter(la_ud, cohort_19_in == refyear, region == reg)
   
-  return(dplyr::filter(d, gender == 'a.ALL', fsm=='a.ALL', sen=='a.ALL', la_name=='ALL') %>%
+  return(dplyr::filter(d, gender == 'ALL', fsm=='ALL', sen=='ALL', la_name=='ALL') %>%
            dplyr::select(l3_by19_rate))
   
 }
@@ -581,7 +610,7 @@ reg_l3_rate_fsm <- function(la, refyear) {
   reg<- as.character(region_name(la))
   d <- dplyr::filter(la_ud, cohort_19_in == refyear, region == reg)
   
-  return(dplyr::filter(d, gender == 'a.ALL', fsm=='c.Eligible for FSM', sen=='a.ALL', la_name=='ALL') %>%
+  return(dplyr::filter(d, gender == 'ALL', fsm=='Eligible for FSM', sen=='ALL', la_name=='ALL') %>%
            dplyr::select(l3_by19_rate))
   
 }
@@ -590,7 +619,7 @@ reg_l3_rate_nonfsm <- function(la, refyear) {
   reg<- as.character(region_name(la))
   d <- dplyr::filter(la_ud, cohort_19_in == refyear, region == reg)
   
-  return(dplyr::filter(d, gender == 'a.ALL', fsm=='b.Not eligible for FSM', sen=='a.ALL', la_name=='ALL') %>%
+  return(dplyr::filter(d, gender == 'ALL', fsm=='Not eligible for FSM', sen=='ALL', la_name=='ALL') %>%
            dplyr::select(l3_by19_rate))
   
 }
@@ -601,7 +630,7 @@ nat_l2_rate <- function(refyear) {
   
   d <- filter(la_ud, cohort_19_in == refyear)
   
-  return(filter(d, gender == 'a.ALL', fsm=='a.ALL', sen=='a.ALL', la_name=='ALL', region=='j.England') %>%
+  return(filter(d, gender == 'ALL', fsm=='ALL', sen=='ALL', la_name=='ALL', region=='ALL') %>%
            dplyr::select(l2_by19_rate))
   
 }
@@ -610,7 +639,7 @@ nat_l2_rate_fsm <- function(refyear) {
 
   d <- filter(la_ud, cohort_19_in == refyear)
 
-  return(filter(d, gender == 'a.ALL', fsm=='c.Eligible for FSM', sen=='a.ALL', la_name=='ALL', region=='j.England') %>%
+  return(filter(d, gender == 'ALL', fsm=='Eligible for FSM', sen=='ALL', la_name=='ALL', region=='ALL') %>%
            dplyr::select(l2_by19_rate))
 
 }
@@ -619,7 +648,7 @@ nat_l2_rate_nonfsm <- function(refyear) {
 
   d <- filter(la_ud, cohort_19_in == refyear)
 
-  return(filter(d, gender == 'a.ALL', fsm=='b.Not eligible for FSM', sen=='a.ALL', la_name=='ALL', region=='j.England') %>%
+  return(filter(d, gender == 'ALL', fsm=='Not eligible for FSM', sen=='ALL', la_name=='ALL', region=='ALL') %>%
            dplyr::select(l2_by19_rate))
 
 }
@@ -628,7 +657,7 @@ nat_l2em_rate <- function(refyear) {
   
   d <- filter(la_ud, cohort_19_in == refyear)
    
-   return(filter(d, gender == 'a.ALL', fsm=='a.ALL', sen=='a.ALL',la_name=='ALL', region=='j.England') %>%
+   return(filter(d, gender == 'ALL', fsm=='ALL', sen=='ALL',la_name=='ALL', region=='ALL') %>%
             dplyr::select(l2_with_em_by19_rate))
    
  }
@@ -637,7 +666,7 @@ nat_l2em_rate_fsm <- function(refyear) {
   
    d <- filter(la_ud, cohort_19_in == refyear)
    
-   return(filter(d, gender == 'a.ALL', fsm=='c.Eligible for FSM', sen=='a.ALL', la_name=='ALL', region=='j.England') %>%
+   return(filter(d, gender == 'ALL', fsm=='Eligible for FSM', sen=='ALL', la_name=='ALL', region=='ALL') %>%
             dplyr::select(l2_with_em_by19_rate))
    
  }
@@ -646,7 +675,7 @@ nat_l2em_rate_nonfsm <- function(refyear) {
    
    d <- filter(la_ud, cohort_19_in == refyear)
   
-   return(filter(d, gender == 'a.ALL', fsm=='b.Not eligible for FSM', sen=='a.ALL', la_name=='ALL', region=='j.England') %>%
+   return(filter(d, gender == 'ALL', fsm=='Not eligible for FSM', sen=='ALL', la_name=='ALL', region=='ALL') %>%
             dplyr::select(l2_with_em_by19_rate))
    
  }
@@ -655,7 +684,7 @@ nat_l3_rate <- function(refyear) {
    
    d <- filter(la_ud, cohort_19_in == refyear)
    
-   return(filter(d, gender == 'a.ALL', fsm=='a.ALL', sen=='a.ALL', la_name=='ALL', region=='j.England') %>%
+   return(filter(d, gender == 'ALL', fsm=='ALL', sen=='ALL', la_name=='ALL', region=='ALL') %>%
             dplyr::select(l3_by19_rate))
    
  }
@@ -664,7 +693,7 @@ nat_l3_rate_fsm <- function(refyear) {
    
    d <- filter(la_ud, cohort_19_in == refyear)
    
-   return(filter(d, gender == 'a.ALL', fsm=='c.Eligible for FSM', sen=='a.ALL', la_name=='ALL', region=='j.England') %>%
+   return(filter(d, gender == 'ALL', fsm=='Eligible for FSM', sen=='ALL', la_name=='ALL', region=='ALL') %>%
             dplyr::select(l3_by19_rate))
    
  }
@@ -673,7 +702,7 @@ nat_l3_rate_nonfsm <- function(refyear) {
    
    d <- filter(la_ud, cohort_19_in == refyear)
    
-   return(filter(d, gender == 'a.ALL', fsm=='b.Not eligible for FSM', sen=='a.ALL', la_name=='ALL', region=='j.England') %>%
+   return(filter(d, gender == 'ALL', fsm=='Not eligible for FSM', sen=='ALL', la_name=='ALL', region=='ALL') %>%
             dplyr::select(l3_by19_rate))
    
  }
@@ -683,8 +712,8 @@ nat_l3_rate_nonfsm <- function(refyear) {
 
 la_plot_data_sen <-
   dplyr::select(
-    filter(la_ud, la_name!='ALL', gender=='a.ALL', fsm=='a.ALL', cohort_19_in!=first_year, cohort_19_in<=latest_year, 
-           sen %in% c('a.ALL', 'b.No SEN','c.SEN with statements or EHC plans','d.SEN without statements or EHC plans')),
+    filter(la_ud, la_name!='ALL', gender=='ALL', fsm=='ALL', cohort_19_in!=first_year, cohort_19_in<=latest_year, 
+           sen %in% c('ALL', 'No SEN','SEN with statements or EHC plans','SEN without statements or EHC plans')),
     cohort_19_in,
     number_in_ss_cohort,
     la_name,
@@ -696,10 +725,10 @@ la_plot_data_sen <-
     l2_with_em_by19_rate,
     l3_by19_rate) %>%
   mutate(sen = ifelse(
-    sen == "a.ALL","All",
-    ifelse(sen == "b.No SEN","No identified SEN",
-           ifelse(sen == "c.SEN with statements or EHC plans", "SEN with statements or EHC plan",
-                  ifelse(sen == "d.SEN without statements or EHC plans", "SEN without statements or EHC plans","NA")))))
+    sen == "ALL","All",
+    ifelse(sen == "No SEN","No identified SEN",
+           ifelse(sen == "SEN with statements or EHC plans", "SEN with statements or EHC plan",
+                  ifelse(sen == "SEN without statements or EHC plans", "SEN without statements or EHC plans","NA")))))
 
 
 #Defining the SEN rate plot.
@@ -733,13 +762,14 @@ la_plot_rate_sen <- function(la2, category2) {
       ylab(ylabtitle) +
       scale_y_continuous(limits = c(0, max(as.numeric(d$y_var))*1.1), breaks=seq(0,100,10)) +
       theme_classic() +
-      geom_text(
-        d = d %>% filter(cohort_19_in == min(as.numeric(cohort_19_in))+1),
-        aes(label = sen),
-        size = 5,
-        hjust = 0,
-        vjust = -0.5) +
-      theme(legend.position = "none") +
+      # geom_text(
+      #   d = d %>% filter(cohort_19_in == min(as.numeric(cohort_19_in))+1),
+      #   aes(label = sen),
+      #   size = 5,
+      #   hjust = 0,
+      #   vjust = -0.5) +
+      labs(colour = NULL) +
+      #theme(legend.position = "none") +
       scale_color_manual(values = c("black", "steelblue3", "red4",  "red3", "firebrick1"))+
       theme(axis.text=element_text(size=12),
             axis.title=element_text(size=14,face="bold")))
@@ -776,13 +806,14 @@ la_plot_num_sen <- function(la2, category2) {
       ylab(ylabtitle) +
       scale_y_continuous(limits = c(0, max(as.numeric(d$y_var))*1.1)) +
       theme_classic() +
-      geom_text(
-        d = d %>% filter(cohort_19_in == min(as.numeric(cohort_19_in))+1),
-        aes(label = sen),
-        size = 5,
-        hjust = 0,
-        vjust = -0.5) +
-      theme(legend.position = "none") +
+      # geom_text(
+      #   d = d %>% filter(cohort_19_in == min(as.numeric(cohort_19_in))+1),
+      #   aes(label = sen),
+      #   size = 5,
+      #   hjust = 0,
+      #   vjust = -0.5) +
+      #theme(legend.position = "none") +
+      labs(colour = NULL) +
       scale_color_manual(values = c("black", "red4", "steelblue3", "red3", "firebrick1"))+
       theme(axis.text=element_text(size=12),
             axis.title=element_text(size=14,face="bold")))
@@ -796,7 +827,7 @@ la_plot_num_sen <- function(la2, category2) {
  
 la_table_data_sen <-
   dplyr::select(
-    filter(la_ud, la_name!='ALL', gender=='a.ALL', fsm=='a.ALL', cohort_19_in!=first_year, cohort_19_in<=latest_year), 
+    filter(la_ud, la_name!='ALL', gender=='ALL', fsm=='ALL', cohort_19_in!=first_year, cohort_19_in<=latest_year), 
     cohort_19_in,
     number_in_ss_cohort,
     la_name,
@@ -808,10 +839,10 @@ la_table_data_sen <-
     l2_with_em_by19_rate,
     l3_by19_rate) %>%
   mutate(sen = ifelse(
-    sen == "a.ALL","All",
-    ifelse(sen == "b.No SEN","No identified SEN",
-           ifelse(sen == "c.SEN with statements or EHC plans", "SEN with statements or EHC plan",
-                  ifelse(sen == "d.SEN without statements or EHC plans", "SEN without statements or EHC plans","NA")))))
+    sen == "ALL","All",
+    ifelse(sen == "No SEN","No identified SEN",
+           ifelse(sen == "SEN with statements or EHC plans", "SEN with statements or EHC plan",
+                  ifelse(sen == "SEN without statements or EHC plans", "SEN without statements or EHC plans","NA")))))
 
 #SEN numbers table.
 la_table_num_sen <- function(la2, category2) {
@@ -887,7 +918,7 @@ la_l2_num2 <- function(la2, refyear) {
 
   d <- filter(la_ud, cohort_19_in == refyear,la_name == la2)
 
-  return(filter(d, gender == 'a.ALL', fsm=='a.ALL', sen=='a.ALL') %>%
+  return(filter(d, gender == 'ALL', fsm=='ALL', sen=='ALL') %>%
            dplyr::select(l2_by19))
 
 }
@@ -896,7 +927,7 @@ la_l2_num2_sen_with <- function(la2, refyear) {
   
   d <- filter(la_ud, cohort_19_in == refyear,la_name == la2)
   
-  return(filter(d, gender == 'a.ALL', fsm=='a.ALL', sen=='c.SEN with statements or EHC plans') %>%
+  return(filter(d, gender == 'ALL', fsm=='ALL', sen=='SEN with statements or EHC plans') %>%
            dplyr::select(l2_by19))
   
 }
@@ -905,7 +936,7 @@ la_l2_num2_sen_without <- function(la2, refyear) {
   
   d <- filter(la_ud, cohort_19_in == refyear,la_name == la2)
   
-  return(filter(d, gender == 'a.ALL', fsm=='a.ALL', sen=='d.SEN without statements or EHC plans') %>%
+  return(filter(d, gender == 'ALL', fsm=='ALL', sen=='SEN without statements or EHC plans') %>%
            dplyr::select(l2_by19))
   
 }
@@ -914,7 +945,7 @@ la_l2_num2_nosen <- function(la2, refyear) {
   
   d <- filter(la_ud, cohort_19_in == refyear,la_name == la2)
   
-  return(filter(d, gender == 'a.ALL', fsm=='a.ALL', sen=='b.No SEN') %>%
+  return(filter(d, gender == 'ALL', fsm=='ALL', sen=='No SEN') %>%
            dplyr::select(l2_by19))
   
 }
@@ -923,7 +954,7 @@ la_l2em_num2 <- function(la2, refyear) {
 
   d <- filter(la_ud, cohort_19_in == refyear,la_name == la2)
 
-  return(filter(d, gender == 'a.ALL', fsm=='a.ALL', sen=='a.ALL') %>%
+  return(filter(d, gender == 'ALL', fsm=='ALL', sen=='ALL') %>%
            dplyr::select(l2_with_em_by19))
 
 }
@@ -932,7 +963,7 @@ la_l2em_num2_sen_with <- function(la2, refyear) {
   
   d <- filter(la_ud, cohort_19_in == refyear,la_name == la2)
   
-  return(filter(d, gender == 'a.ALL', fsm=='a.ALL', sen=='c.SEN with statements or EHC plans') %>%
+  return(filter(d, gender == 'ALL', fsm=='ALL', sen=='SEN with statements or EHC plans') %>%
            dplyr::select(l2_with_em_by19))
   
 }
@@ -941,7 +972,7 @@ la_l2em_num2_sen_without <- function(la2, refyear) {
   
   d <- filter(la_ud, cohort_19_in == refyear,la_name == la2)
   
-  return(filter(d, gender == 'a.ALL', fsm=='a.ALL', sen=='d.SEN without statements or EHC plans') %>%
+  return(filter(d, gender == 'ALL', fsm=='ALL', sen=='SEN without statements or EHC plans') %>%
            dplyr::select(l2_with_em_by19))
   
 }
@@ -950,7 +981,7 @@ la_l2em_num2_nosen <- function(la2, refyear) {
   
   d <- filter(la_ud, cohort_19_in == refyear,la_name == la2)
   
-  return(filter(d, gender == 'a.ALL', fsm=='a.ALL', sen=='b.No SEN') %>%
+  return(filter(d, gender == 'ALL', fsm=='ALL', sen=='No SEN') %>%
            dplyr::select(l2_with_em_by19))
   
 }
@@ -959,7 +990,7 @@ la_l3_num2 <- function(la2, refyear) {
 
   d <- filter(la_ud, cohort_19_in == refyear,la_name == la2)
 
-  return(filter(d, gender == 'a.ALL', fsm=='a.ALL', sen=='a.ALL') %>%
+  return(filter(d, gender == 'ALL', fsm=='ALL', sen=='ALL') %>%
            dplyr::select(l3_by19))
 
 }
@@ -968,7 +999,7 @@ la_l3_num2_sen_with <- function(la2, refyear) {
   
   d <- filter(la_ud, cohort_19_in == refyear,la_name == la2)
   
-  return(filter(d, gender == 'a.ALL', fsm=='a.ALL', sen=='c.SEN with statements or EHC plans') %>%
+  return(filter(d, gender == 'ALL', fsm=='ALL', sen=='SEN with statements or EHC plans') %>%
            dplyr::select(l3_by19))
   
 }
@@ -977,7 +1008,7 @@ la_l3_num2_sen_without <- function(la2, refyear) {
   
   d <- filter(la_ud, cohort_19_in == refyear,la_name == la2)
   
-  return(filter(d, gender == 'a.ALL', fsm=='a.ALL', sen=='d.SEN without statements or EHC plans') %>%
+  return(filter(d, gender == 'ALL', fsm=='ALL', sen=='SEN without statements or EHC plans') %>%
            dplyr::select(l3_by19))
   
 }
@@ -986,7 +1017,7 @@ la_l3_num2_nosen <- function(la2, refyear) {
   
   d <- filter(la_ud, cohort_19_in == refyear,la_name == la2)
   
-  return(filter(d, gender == 'a.ALL', fsm=='a.ALL', sen=='b.No SEN') %>%
+  return(filter(d, gender == 'ALL', fsm=='ALL', sen=='No SEN') %>%
            dplyr::select(l3_by19))
   
 }
@@ -997,7 +1028,7 @@ la_l2_rate2 <- function(la2, refyear) {
 
   d <- filter(la_ud, cohort_19_in == refyear,la_name == la2)
 
-  return(filter(d, gender == 'a.ALL', fsm=='a.ALL', sen=='a.ALL') %>%
+  return(filter(d, gender == 'ALL', fsm=='ALL', sen=='ALL') %>%
            dplyr::select(l2_by19_rate))
 
 }
@@ -1007,7 +1038,7 @@ la_l2_rate3 <- function(la2, refyear) {
   
   d <- filter(la_ud,la_name == la2)
   
-  return(filter(d, gender == 'a.ALL', fsm=='a.ALL', sen=='a.ALL') %>%
+  return(filter(d, gender == 'ALL', fsm=='ALL', sen=='ALL') %>%
            dplyr::select(l2_by19_rate))
   
 }
@@ -1016,7 +1047,7 @@ la_l2_rate2_sen_with <- function(la2, refyear) {
   
   d <- filter(la_ud, cohort_19_in == refyear,la_name == la2)
   
-  return(filter(d, gender == 'a.ALL', fsm=='a.ALL', sen=='c.SEN with statements or EHC plans') %>%
+  return(filter(d, gender == 'ALL', fsm=='ALL', sen=='SEN with statements or EHC plans') %>%
            dplyr::select(l2_by19_rate))
   
 }
@@ -1025,7 +1056,7 @@ la_l2_rate2_sen_without <- function(la2, refyear) {
   
   d <- filter(la_ud, cohort_19_in == refyear,la_name == la2)
   
-  return(filter(d, gender == 'a.ALL', fsm=='a.ALL', sen=='d.SEN without statements or EHC plans') %>%
+  return(filter(d, gender == 'ALL', fsm=='ALL', sen=='SEN without statements or EHC plans') %>%
            dplyr::select(l2_by19_rate))
   
 }
@@ -1034,7 +1065,7 @@ la_l2_rate2_nosen <- function(la2, refyear) {
   
   d <- filter(la_ud, cohort_19_in == refyear,la_name == la2)
   
-  return(filter(d, gender == 'a.ALL', fsm=='a.ALL', sen=='b.No SEN') %>%
+  return(filter(d, gender == 'ALL', fsm=='ALL', sen=='No SEN') %>%
            dplyr::select(l2_by19_rate))
   
 }
@@ -1043,7 +1074,7 @@ la_l2em_rate2 <- function(la2, refyear) {
 
   d <- filter(la_ud, cohort_19_in == refyear,la_name == la2)
 
-  return(filter(d, gender == 'a.ALL', fsm=='a.ALL', sen=='a.ALL') %>%
+  return(filter(d, gender == 'ALL', fsm=='ALL', sen=='ALL') %>%
            dplyr::select(l2_with_em_by19_rate))
 
 }
@@ -1052,7 +1083,7 @@ la_l2em_rate2_sen_with <- function(la2, refyear) {
   
   d <- filter(la_ud, cohort_19_in == refyear,la_name == la2)
   
-  return(filter(d, gender == 'a.ALL', fsm=='a.ALL', sen=='c.SEN with statements or EHC plans') %>%
+  return(filter(d, gender == 'ALL', fsm=='ALL', sen=='SEN with statements or EHC plans') %>%
            dplyr::select(l2_with_em_by19_rate))
   
 }
@@ -1061,7 +1092,7 @@ la_l2em_rate2_sen_without <- function(la2, refyear) {
   
   d <- filter(la_ud, cohort_19_in == refyear,la_name == la2)
   
-  return(filter(d, gender == 'a.ALL', fsm=='a.ALL', sen=='d.SEN without statements or EHC plans') %>%
+  return(filter(d, gender == 'ALL', fsm=='ALL', sen=='SEN without statements or EHC plans') %>%
            dplyr::select(l2_with_em_by19_rate))
   
 }
@@ -1070,7 +1101,7 @@ la_l2em_rate2_nosen <- function(la2, refyear) {
   
   d <- filter(la_ud, cohort_19_in == refyear,la_name == la2)
   
-  return(filter(d, gender == 'a.ALL', fsm=='a.ALL', sen=='b.No SEN') %>%
+  return(filter(d, gender == 'ALL', fsm=='ALL', sen=='No SEN') %>%
            dplyr::select(l2_with_em_by19_rate))
   
 }
@@ -1080,7 +1111,7 @@ la_l3_rate2 <- function(la2, refyear) {
 
  d <- filter(la_ud, cohort_19_in == refyear,la_name == la2)
 
-  return(filter(d, gender == 'a.ALL', fsm=='a.ALL', sen=='a.ALL') %>%
+  return(filter(d, gender == 'ALL', fsm=='ALL', sen=='ALL') %>%
            dplyr::select(l3_by19_rate))
 
 }
@@ -1089,7 +1120,7 @@ la_l3_rate2_sen_with <- function(la2, refyear) {
   
   d <- filter(la_ud, cohort_19_in == refyear,la_name == la2)
   
-  return(filter(d, gender == 'a.ALL', fsm=='a.ALL', sen=='c.SEN with statements or EHC plans') %>%
+  return(filter(d, gender == 'ALL', fsm=='ALL', sen=='SEN with statements or EHC plans') %>%
            dplyr::select(l3_by19_rate))
   
 }
@@ -1098,7 +1129,7 @@ la_l3_rate2_sen_without <- function(la2, refyear) {
   
   d <- filter(la_ud, cohort_19_in == refyear,la_name == la2)
   
-  return(filter(d, gender == 'a.ALL', fsm=='a.ALL', sen=='d.SEN without statements or EHC plans') %>%
+  return(filter(d, gender == 'ALL', fsm=='ALL', sen=='SEN without statements or EHC plans') %>%
            dplyr::select(l3_by19_rate))
   
 }
@@ -1107,7 +1138,7 @@ la_l3_rate2_nosen <- function(la2, refyear) {
   
   d <- filter(la_ud, cohort_19_in == refyear,la_name == la2)
   
-  return(filter(d, gender == 'a.ALL', fsm=='a.ALL', sen=='b.No SEN') %>%
+  return(filter(d, gender == 'ALL', fsm=='ALL', sen=='No SEN') %>%
            dplyr::select(l3_by19_rate))
   
 }
@@ -1118,7 +1149,7 @@ la_l3_rate2_nosen <- function(la2, refyear) {
 region_name2 <- function (la) {
   d <- filter(la_ud, la_name == la)
   
-  return(filter(d, gender == 'a.ALL', fsm=='a.ALL', sen=='a.ALL', cohort_19_in==latest_year) %>%
+  return(filter(d, gender == 'ALL', fsm=='ALL', sen=='ALL', cohort_19_in==latest_year) %>%
            dplyr::select(region))
   
 }
@@ -1129,7 +1160,7 @@ reg_l2_rate2 <- function(la, refyear) {
   
   d <- dplyr::filter(la_ud, cohort_19_in == refyear, region == reg)
   
-  return(dplyr::filter(d, gender == 'a.ALL', fsm=='a.ALL', sen=='a.ALL', la_name=='ALL') %>%
+  return(dplyr::filter(d, gender == 'ALL', fsm=='ALL', sen=='ALL', la_name=='ALL') %>%
            dplyr::select(l2_by19_rate))
   
 }
@@ -1139,7 +1170,7 @@ reg_l2_rate2_sen_with <- function(la, refyear) {
   
   d <- dplyr::filter(la_ud, cohort_19_in == refyear, region == reg)
   
-  return(dplyr::filter(d, gender == 'a.ALL', fsm=='a.ALL', sen=='c.SEN with statements or EHC plans', la_name=='ALL') %>%
+  return(dplyr::filter(d, gender == 'ALL', fsm=='ALL', sen=='SEN with statements or EHC plans', la_name=='ALL') %>%
            dplyr::select(l2_by19_rate))
   
 }
@@ -1149,7 +1180,7 @@ reg_l2_rate2_sen_without <- function(la, refyear) {
   
   d <- dplyr::filter(la_ud, cohort_19_in == refyear, region == reg)
   
-  return(dplyr::filter(d, gender == 'a.ALL', fsm=='a.ALL', sen=='d.SEN without statements or EHC plans', la_name=='ALL') %>%
+  return(dplyr::filter(d, gender == 'ALL', fsm=='ALL', sen=='SEN without statements or EHC plans', la_name=='ALL') %>%
            dplyr::select(l2_by19_rate))
   
 }
@@ -1159,7 +1190,7 @@ reg_l2_rate2_nosen <- function(la, refyear) {
   
   d <- dplyr::filter(la_ud, cohort_19_in == refyear, region == reg)
   
-  return(dplyr::filter(d, gender == 'a.ALL', fsm=='a.ALL', sen=='b.No SEN', la_name=='ALL') %>%
+  return(dplyr::filter(d, gender == 'ALL', fsm=='ALL', sen=='No SEN', la_name=='ALL') %>%
            dplyr::select(l2_by19_rate))
   
 }
@@ -1169,7 +1200,7 @@ reg_l2em_rate2 <- function(la, refyear) {
   
   d <- dplyr::filter(la_ud, cohort_19_in == refyear, region == reg)
   
-  return(dplyr::filter(d, gender == 'a.ALL', fsm=='a.ALL', sen=='a.ALL', la_name=='ALL') %>%
+  return(dplyr::filter(d, gender == 'ALL', fsm=='ALL', sen=='ALL', la_name=='ALL') %>%
            dplyr::select(l2_with_em_by19_rate))
   
 }
@@ -1179,7 +1210,7 @@ reg_l2em_rate2_sen_with <- function(la, refyear) {
   
   d <- dplyr::filter(la_ud, cohort_19_in == refyear, region == reg)
   
-  return(dplyr::filter(d, gender == 'a.ALL', fsm=='a.ALL', sen=='c.SEN with statements or EHC plans', la_name=='ALL') %>%
+  return(dplyr::filter(d, gender == 'ALL', fsm=='ALL', sen=='SEN with statements or EHC plans', la_name=='ALL') %>%
            dplyr::select(l2_with_em_by19_rate))
   
 }
@@ -1189,7 +1220,7 @@ reg_l2em_rate2_sen_without <- function(la, refyear) {
   
   d <- dplyr::filter(la_ud, cohort_19_in == refyear, region == reg)
   
-  return(dplyr::filter(d, gender == 'a.ALL', fsm=='a.ALL', sen=='d.SEN without statements or EHC plans', la_name=='ALL') %>%
+  return(dplyr::filter(d, gender == 'ALL', fsm=='ALL', sen=='SEN without statements or EHC plans', la_name=='ALL') %>%
            dplyr::select(l2_with_em_by19_rate))
   
 }
@@ -1199,7 +1230,7 @@ reg_l2em_rate2_nosen <- function(la, refyear) {
   
   d <- dplyr::filter(la_ud, cohort_19_in == refyear, region == reg)
   
-  return(dplyr::filter(d, gender == 'a.ALL', fsm=='a.ALL', sen=='b.No SEN', la_name=='ALL') %>%
+  return(dplyr::filter(d, gender == 'ALL', fsm=='ALL', sen=='No SEN', la_name=='ALL') %>%
            dplyr::select(l2_with_em_by19_rate))
   
 }
@@ -1208,7 +1239,7 @@ reg_l3_rate2 <- function(la, refyear) {
   reg<- as.character(region_name2(la))
   d <- dplyr::filter(la_ud, cohort_19_in == refyear, region == reg)
   
-  return(dplyr::filter(d, gender == 'a.ALL', fsm=='a.ALL', sen=='a.ALL', la_name=='ALL') %>%
+  return(dplyr::filter(d, gender == 'ALL', fsm=='ALL', sen=='ALL', la_name=='ALL') %>%
            dplyr::select(l3_by19_rate))
   
 }
@@ -1217,7 +1248,7 @@ reg_l3_rate2_sen_with <- function(la, refyear) {
   reg<- as.character(region_name2(la))
   d <- dplyr::filter(la_ud, cohort_19_in == refyear, region == reg)
   
-  return(dplyr::filter(d, gender == 'a.ALL', fsm=='a.ALL', sen=='c.SEN with statements or EHC plans', la_name=='ALL') %>%
+  return(dplyr::filter(d, gender == 'ALL', fsm=='ALL', sen=='SEN with statements or EHC plans', la_name=='ALL') %>%
            dplyr::select(l3_by19_rate))
   
 }
@@ -1226,7 +1257,7 @@ reg_l3_rate2_sen_without <- function(la, refyear) {
   reg<- as.character(region_name2(la))
   d <- dplyr::filter(la_ud, cohort_19_in == refyear, region == reg)
   
-  return(dplyr::filter(d, gender == 'a.ALL', fsm=='a.ALL', sen=='d.SEN without statements or EHC plans', la_name=='ALL') %>%
+  return(dplyr::filter(d, gender == 'ALL', fsm=='ALL', sen=='SEN without statements or EHC plans', la_name=='ALL') %>%
            dplyr::select(l3_by19_rate))
   
 }
@@ -1235,7 +1266,7 @@ reg_l3_rate2_nosen <- function(la, refyear) {
   reg<- as.character(region_name2(la))
   d <- dplyr::filter(la_ud, cohort_19_in == refyear, region == reg)
   
-  return(dplyr::filter(d, gender == 'a.ALL', fsm=='a.ALL', sen=='b.No SEN', la_name=='ALL') %>%
+  return(dplyr::filter(d, gender == 'ALL', fsm=='ALL', sen=='No SEN', la_name=='ALL') %>%
            dplyr::select(l3_by19_rate))
   
 }
@@ -1245,9 +1276,9 @@ reg_l3_rate2_nosen <- function(la, refyear) {
 
 nat_l2_rate2 <- function(refyear) {
   
-  d <- filter(la_ud, cohort_19_in == refyear, la_name=='ALL', region=='j.England')
+  d <- filter(la_ud, cohort_19_in == refyear, la_name=='ALL', region=='ALL')
   
-  return(filter(d, gender == 'a.ALL', fsm=='a.ALL', sen=='a.ALL') %>%
+  return(filter(d, gender == 'ALL', fsm=='ALL', sen=='ALL') %>%
            dplyr::select(l2_by19_rate))
   
 }
@@ -1256,7 +1287,7 @@ nat_l2_rate2_sen_with <- function(refyear) {
   
   d <- filter(la_ud, cohort_19_in == refyear)
   
-  return(filter(d, gender == 'a.ALL', fsm=='a.ALL', sen=='c.SEN with statements or EHC plans', la_name=='ALL', region=='j.England') %>%
+  return(filter(d, gender == 'ALL', fsm=='ALL', sen=='SEN with statements or EHC plans', la_name=='ALL', region=='ALL') %>%
            dplyr::select(l2_by19_rate))
   
 }
@@ -1265,7 +1296,7 @@ nat_l2_rate2_sen_without <- function(refyear) {
   
   d <- filter(la_ud, cohort_19_in == refyear)
   
-  return(filter(d, gender == 'a.ALL', fsm=='a.ALL', sen=='d.SEN without statements or EHC plans', la_name=='ALL', region=='j.England') %>%
+  return(filter(d, gender == 'ALL', fsm=='ALL', sen=='SEN without statements or EHC plans', la_name=='ALL', region=='ALL') %>%
            dplyr::select(l2_by19_rate))
   
 }
@@ -1274,7 +1305,7 @@ nat_l2_rate2_nosen <- function(refyear) {
   
   d <- filter(la_ud, cohort_19_in == refyear)
   
-  return(filter(d, gender == 'a.ALL', fsm=='a.ALL', sen=='b.No SEN', la_name=='ALL', region=='j.England') %>%
+  return(filter(d, gender == 'ALL', fsm=='ALL', sen=='No SEN', la_name=='ALL', region=='ALL') %>%
            dplyr::select(l2_by19_rate))
   
 }
@@ -1283,7 +1314,7 @@ nat_l2em_rate2 <- function(refyear) {
   
   d <- filter(la_ud, cohort_19_in == refyear)
   
-  return(filter(d, gender == 'a.ALL', fsm=='a.ALL', sen=='a.ALL',la_name=='ALL', region=='j.England') %>%
+  return(filter(d, gender == 'ALL', fsm=='ALL', sen=='ALL',la_name=='ALL', region=='ALL') %>%
            dplyr::select(l2_with_em_by19_rate))
   
 }
@@ -1292,7 +1323,7 @@ nat_l2em_rate2_sen_with <- function(refyear) {
   
   d <- filter(la_ud, cohort_19_in == refyear)
   
-  return(filter(d, gender == 'a.ALL', fsm=='a.ALL', sen=='c.SEN with statements or EHC plans',la_name=='ALL', region=='j.England') %>%
+  return(filter(d, gender == 'ALL', fsm=='ALL', sen=='SEN with statements or EHC plans',la_name=='ALL', region=='ALL') %>%
            dplyr::select(l2_with_em_by19_rate))
   
 }
@@ -1301,7 +1332,7 @@ nat_l2em_rate2_sen_without <- function(refyear) {
   
   d <- filter(la_ud, cohort_19_in == refyear)
   
-  return(filter(d, gender == 'a.ALL', fsm=='a.ALL', sen=='d.SEN without statements or EHC plans',la_name=='ALL', region=='j.England') %>%
+  return(filter(d, gender == 'ALL', fsm=='ALL', sen=='SEN without statements or EHC plans',la_name=='ALL', region=='ALL') %>%
            dplyr::select(l2_with_em_by19_rate))
   
 }
@@ -1310,7 +1341,7 @@ nat_l2em_rate2_nosen <- function(refyear) {
   
   d <- filter(la_ud, cohort_19_in == refyear)
   
-  return(filter(d, gender == 'a.ALL', fsm=='a.ALL', sen=='b.No SEN', la_name=='ALL', region=='j.England') %>%
+  return(filter(d, gender == 'ALL', fsm=='ALL', sen=='No SEN', la_name=='ALL', region=='ALL') %>%
            dplyr::select(l2_with_em_by19_rate))
   
 }
@@ -1320,7 +1351,7 @@ nat_l3_rate2 <- function(refyear) {
   
   d <- filter(la_ud, cohort_19_in == refyear)
   
-  return(filter(d, gender == 'a.ALL', fsm=='a.ALL', sen=='a.ALL', la_name=='ALL', region=='j.England') %>%
+  return(filter(d, gender == 'ALL', fsm=='ALL', sen=='ALL', la_name=='ALL', region=='ALL') %>%
            dplyr::select(l3_by19_rate))
   
 }
@@ -1329,7 +1360,7 @@ nat_l3_rate2_sen_with <- function(refyear) {
   
   d <- filter(la_ud, cohort_19_in == refyear)
   
-  return(filter(d, gender == 'a.ALL', fsm=='a.ALL', sen=='c.SEN with statements or EHC plans', la_name=='ALL', region=='j.England') %>%
+  return(filter(d, gender == 'ALL', fsm=='ALL', sen=='SEN with statements or EHC plans', la_name=='ALL', region=='ALL') %>%
            dplyr::select(l3_by19_rate))
   
 }
@@ -1338,7 +1369,7 @@ nat_l3_rate2_sen_without <- function(refyear) {
   
   d <- filter(la_ud, cohort_19_in == refyear)
   
-  return(filter(d, gender == 'a.ALL', fsm=='a.ALL', sen=='d.SEN without statements or EHC plans', la_name=='ALL', region=='j.England') %>%
+  return(filter(d, gender == 'ALL', fsm=='ALL', sen=='SEN without statements or EHC plans', la_name=='ALL', region=='ALL') %>%
            dplyr::select(l3_by19_rate))
   
 }
@@ -1347,7 +1378,7 @@ nat_l3_rate2_nosen <- function(refyear) {
   
   d <- filter(la_ud, cohort_19_in == refyear)
   
-  return(filter(d, gender == 'a.ALL', fsm=='a.ALL', sen=='b.No SEN', la_name=='ALL', region=='j.England') %>%
+  return(filter(d, gender == 'ALL', fsm=='ALL', sen=='No SEN', la_name=='ALL', region=='ALL') %>%
            dplyr::select(l3_by19_rate))
   
 }
@@ -1359,7 +1390,7 @@ nat_l3_rate2_nosen <- function(refyear) {
 
 fsm_la_table <- function(la) {
   
-  d <- filter(la_ud, la_name == la, gender=='a.ALL', sen=='a.ALL', cohort_19_in<=latest_year) %>%
+  d <- filter(la_ud, la_name == la, gender=='ALL', sen=='ALL', cohort_19_in<=latest_year) %>%
     select(
       cohort_19_in,
       number_in_ss_cohort,
@@ -1381,8 +1412,8 @@ fsm_la_table <- function(la) {
 
 sen_la_table <- function(la) {
   
-  d <- filter(la_ud, la_name == la, gender=='a.ALL', fsm=='a.ALL', cohort_19_in!=first_year, cohort_19_in<=latest_year) %>%
-    select(
+  d <- filter(la_ud, la_name == la, gender=='ALL', fsm=='ALL', cohort_19_in!=first_year, cohort_19_in<=latest_year) %>%
+    dplyr::select(
       cohort_19_in,
       number_in_ss_cohort,
       region,
@@ -1406,8 +1437,8 @@ sen_la_table <- function(la) {
 
 ukLocalAuthoritises <- shapefile("data/England_LA_2016.shp")
 
-underlying_data <- filter(la_ud, gender=='a.ALL', fsm=='a.ALL', sen=='a.ALL', cohort_19_in ==latest_year) %>%
-  select(la_code_3,l2_by19_rate, l2_with_em_by19_rate, l3_by19_rate, l2_em_by19_belowat16_rate)
+underlying_data <- filter(la_ud, gender=='ALL', fsm=='ALL', sen=='ALL', cohort_19_in ==latest_year) %>%
+  dplyr::select(la_code_3,l2_by19_rate, l2_with_em_by19_rate, l3_by19_rate, l2_em_by19_belowat16_rate)
 
 underlying_data$l2_by19_rate <- round(as.numeric(underlying_data$l2_by19_rate),1)
 underlying_data$l2_with_em_by19_rate <- round(as.numeric(underlying_data$l2_with_em_by19_rate),1)
