@@ -327,7 +327,11 @@ sen_panel <- function() {
                     choices = sort(unique(la_plot_data_sen$la_name))
                   )
                 ))
-            )
+            ),
+          valueBoxOutput("boxSEN_All", width = 3),
+          valueBoxOutput("boxSEN_No", width = 3),
+          valueBoxOutput("boxSEN_with", width = 3),
+          valueBoxOutput("boxSEN_without", width = 3)
           ),
           
           column(

@@ -107,7 +107,7 @@ server <- function(input, output, session) {
   
   reactiveFSM_All <- reactive({
     la_ud_VB %>% filter(la_name == input$select2, category == input$select_cat, 
-                        fsm == "ALL")
+                        fsm == "ALL", sen =='ALL')
   })
   
   output$boxFSM_All <- renderValueBox({
@@ -130,7 +130,7 @@ server <- function(input, output, session) {
   
   reactiveFSM_El <- reactive({
     la_ud_VB %>% filter(la_name == input$select2, category == input$select_cat, 
-                        fsm == "Eligible for FSM")
+                        fsm == "Eligible for FSM", sen =='ALL')
   })
   
   output$boxFSM_El <- renderValueBox({
@@ -152,7 +152,7 @@ server <- function(input, output, session) {
   
   reactiveFSM_NotEl <- reactive({
     la_ud_VB %>% filter(la_name == input$select2, category == input$select_cat, 
-                        fsm == "Not eligible for FSM")
+                        fsm == "Not eligible for FSM", sen =='ALL')
   })
   
   output$boxFSM_NotEl <- renderValueBox({
@@ -171,20 +171,95 @@ server <- function(input, output, session) {
       color = "blue"
     )
   })
+
+  reactiveSEN_All <- reactive({
+    la_ud_VB %>% filter(la_name == input$select2, category == input$select_cat, 
+                        fsm == "ALL", sen =='ALL')
+  })
   
-#   valueBox(
-#     # take input number
-#     paste0(format((reactiveFSM_All() %>% filter(
-#       la_name == input$select2,
-#       category == input$select_cat
-#     ))$value, #"%",
-#     big.mark = ","
-#     )),
-#     # add subtitle to explain what it's showing
-#     paste0("achieved ", input$select_cat, " by age 19"),
-#     color = "blue"
-#   )
-# })
+  output$boxSEN_All <- renderValueBox({
+    
+    # Put value into box to plug into app
+    valueBox(
+      # take input number
+      paste0((format((reactiveSEN_All() %>% filter(
+        la_name == input$select2,
+        category == input$select_cat
+      ))$value, #"%",
+      big.mark = ","
+      )),"%"),
+      # add subtitle to explain what it's showing
+      HTML(paste0("of all pupils achieved ", input$select_cat, " by age 19", br(), br())),
+      color = "blue"
+    )
+  })
+ 
+  reactiveSEN_No <- reactive({
+    la_ud_VB %>% filter(la_name == input$select2, category == input$select_cat, 
+                        fsm == "ALL", sen =='No SEN')
+  })
+  
+  output$boxSEN_No <- renderValueBox({
+    
+    # Put value into box to plug into app
+    valueBox(
+      # take input number
+      paste0((format((reactiveSEN_No() %>% filter(
+        la_name == input$select2,
+        category == input$select_cat
+      ))$value, #"%",
+      big.mark = ","
+      )),"%"),
+      # add subtitle to explain what it's showing
+      HTML(paste0("of pupils with no identified SEN achieved ", input$select_cat, " by age 19", br(), br())),
+      color = "blue"
+    )
+  }) 
+  
+  reactiveSEN_with <- reactive({
+    la_ud_VB %>% filter(la_name == input$select2, category == input$select_cat, 
+                        fsm == "ALL", sen =='SEN with statements or EHC plans')
+  })
+  
+  output$boxSEN_with <- renderValueBox({
+    
+    # Put value into box to plug into app
+    valueBox(
+      # take input number
+      paste0((format((reactiveSEN_with() %>% filter(
+        la_name == input$select2,
+        category == input$select_cat
+      ))$value, #"%",
+      big.mark = ","
+      )),"%"),
+      # add subtitle to explain what it's showing
+      paste0("of pupils with SEN with statements or EHC plans achieved ", input$select_cat, " by age 19"),
+      color = "blue"
+    )
+  }) 
+  
+  reactiveSEN_without <- reactive({
+    la_ud_VB %>% filter(la_name == input$select2, category == input$select_cat, 
+                        fsm == "ALL", sen =='SEN without statements or EHC plans')
+  })
+  
+  output$boxSEN_without <- renderValueBox({
+    
+    # Put value into box to plug into app
+    valueBox(
+      # take input number
+      paste0((format((reactiveSEN_without() %>% filter(
+        la_name == input$select2,
+        category == input$select_cat
+      ))$value, #"%",
+      big.mark = ","
+      )),"%"),
+      # add subtitle to explain what it's showing
+      paste0("of pupils with SEN without statements or EHC plans achieved ", input$select_cat, " by age 19"),
+      color = "blue"
+    )
+  }) 
+
   #end of new
   
   # LA trends ---- SEN
