@@ -6,7 +6,7 @@ data/some_unpublished_data.csv,unpublished
 data/L23_Attainment_2021.csv,published
 data/L23_Attainment_2021_VB.csv,published
 data/L23_Attainment_2021_VB_V2.csv,published
-data/LA_UD_testdata.csv,published
+data/LA_UD_testdata.csv,dummy
 data/UD_L2_3attainment_DASHBOARD.csv,published
 data/UD_L2_3attainment_DASHBOARD_1819.csv,published
 data/L23_Attainment_2021.xlsx,published
