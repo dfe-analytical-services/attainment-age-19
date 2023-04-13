@@ -11,18 +11,33 @@
 # Library calls ---------------------------------------------------------------------------------
 
 shhh <- suppressPackageStartupMessages # It's a library, so shhh!
-shhh(library(shiny))
-shhh(library(shinyjs))
+shhh(library(leaflet))
+shhh(library(geojsonio))
+shhh(library(rgdal))
+shhh(library(sp))
+shhh(library(data.table))
+shhh(library(RColorBrewer))
+#library(raster)
+#library(pander)
+shhh(library(tidyverse))
+shhh(library(shinycssloaders))
+shhh(library(DT))
+shhh(library(ggalt))
+shhh(library(magrittr))
+shhh(library(readr))
+shhh(library(styler))
 shhh(library(tools))
 shhh(library(testthat))
 shhh(library(shinytest))
 shhh(library(shinydashboard))
 shhh(library(shinyWidgets))
 shhh(library(shinyGovstyle))
-shhh(library(dplyr))
 shhh(library(ggplot2))
 shhh(library(plotly))
 shhh(library(DT))
+shhh(library(shiny))
+shhh(library(shinyjs))
+shhh(library(dplyr))
 
 # Functions ---------------------------------------------------------------------------------
 
