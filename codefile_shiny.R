@@ -69,8 +69,8 @@ first_year  <- 2005
 
 #la_ud <- read_csv('data/LA_UD_v3_supp.csv', col_types = cols(.default = "c"))
 #la_ud <- read_csv('data/LA_UD_draft_mockup_v4_SM.csv', col_types = cols(.default = "c"))
-la_ud <- read_csv('C:\\Users\\eduddle\\Repos\\Copy\\l23-attainment-age-19\\data\\L23_Attainment_2021.csv', col_types = cols(.default = "c"))
-la_ud_VB <- read_csv('C:\\Users\\eduddle\\Repos\\Copy\\l23-attainment-age-19\\data\\L23_Attainment_2021_VB_V2.csv', col_types = cols(.default = "c"))
+la_ud <- read_csv('data\\L23_Attainment_2021.csv', col_types = cols(.default = "c"))
+la_ud_VB <- read_csv('data\\L23_Attainment_2021_VB_V2.csv', col_types = cols(.default = "c"))
 
 la_ud_VB$value <- round((as.numeric(la_ud_VB$value)), digits = 1)
 #4. Overview tab
@@ -198,35 +198,30 @@ la_plot_rate_fsm <- function(la, category) {
     ylabtitle <- "Level 3 by 19 percentage"
     d <- d %>% mutate(y_var = l3_by19_rate) %>% filter(y_var != 'x') 
   }
-  
+  d <- d %>% rename(`Cohort 19 in`=cohort_19_in, Percentage=y_var, FSM=fsm) %>% 
+    mutate(
+      Percentage=round(as.numeric(Percentage),1),
+      FSM=as.factor(FSM)
+      )
   return(
-    d %>%
-      ggplot +
-       aes(x = cohort_19_in, 
-           y = round(as.numeric(y_var),1), 
-           group = fsm, colour = as.factor(fsm)) +
+      (ggplot(d,
+       aes(x = `Cohort 19 in`, 
+           y = Percentage, 
+           group = FSM, colour = FSM,
+           text=paste("x = ",`Cohort 19 in`,"<br>y=",Percentage))) +
       geom_path(size = 1) +
       xlab("Cohort 19 in") +
       ylab(ylabtitle) +
-      scale_y_continuous(limits = c(0, max(as.numeric(d$y_var))*1.1), breaks=seq(0,100,10)) +
+      scale_y_continuous(limits = c(0, max(d$Percentage)*1.1), breaks=seq(0,100,10)) +
       theme_classic() +
-      # geom_text(
-      #   d = d %>% filter(cohort_19_in == min(as.numeric(cohort_19_in))+1),
-      #   aes(label = fsm),
-      #   size = 5,
-      #   hjust = 0,
-      #   vjust = -0.5,
-      #   check_overlap = TRUE) +
-      #theme(legend.position = "none") +
-      #scale_fill_discrete(name="") +
-      #guides(fill=guide_legend(title=NULL)) +
       labs(colour = NULL) +
-      #scale_x_discrete(guide = guide_axis(check.overlap = TRUE))+
       scale_color_manual(values = c("#28A197","#801650","#12436D"))+
       theme(legend.title=element_blank(),
             axis.text=element_text(size=12),
             axis.title=element_text(size=12,face="bold"),
-            axis.text.x = element_text(angle = 45, vjust = 1, hjust = 1)))
+            axis.text.x = element_text(angle = 45, vjust = 1, hjust = 1))) %>%
+    ggplotly(tooltip=c("text"))
+  )
 }
 
 #Similarly we define the FSM number plot.
