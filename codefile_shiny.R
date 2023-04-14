@@ -208,7 +208,7 @@ la_plot_rate_fsm <- function(la, category) {
        aes(x = `Cohort 19 in`, 
            y = Percentage, 
            group = FSM, colour = FSM,
-           text=paste("x = ",`Cohort 19 in`,"<br>y=",Percentage))) +
+           text=paste("",`Cohort 19 in`,"<br>",Percentage,"%", "<br>",group = FSM))) +
       geom_path(size = 1) +
       xlab("Cohort 19 in") +
       ylab(ylabtitle) +
@@ -243,36 +243,61 @@ la_plot_num_fsm <- function(la, category) {
     ylabtitle <- "Level 3 by 19"
     d <- d %>% mutate(y_var = l3_by19) %>% filter(y_var != 'c') 
   }
-  
+  d <- d %>% rename(`Cohort 19 in`=cohort_19_in, Number=y_var, FSM=fsm) %>% 
+    mutate(
+      Number=round(as.numeric(Number),1),
+      FSM=as.factor(FSM)
+    )
   return(
-    d %>%
-      ggplot +
-      aes(x = cohort_19_in, 
-          y = as.numeric(y_var), 
-          group = fsm, colour = as.factor(fsm)) +
-      geom_path(size = 1) +
-      xlab("Cohort 19 in") +
-      ylab(ylabtitle) +
-      scale_y_continuous(limits = c(0, max(as.numeric(d$y_var))*1.1)) +
-      theme_classic() +
-      # geom_text(
-      #   d = d %>% filter(cohort_19_in == min(as.numeric(cohort_19_in))+1),
-      #   aes(label = fsm),
-      #   size = 5,
-      #   hjust = 0,
-      #   vjust = -0.5,
-      #   check_overlap = TRUE) +
-      #theme(legend.position = "none") +
-      #labs(fill = "FSM Eligibility") +
-      #scale_color_discrete(name = "New Legend Title") +
-      #guides(fill=guide_legend(title="New Legend Title")) +
-    labs(colour = NULL) +
-      scale_color_manual(values = c("#28A197","#801650","#12436D"))+
-      theme(legend.title=element_blank())+
-      theme(axis.text=element_text(size=12),
-            axis.title=element_text(size=12,face="bold"),
-            axis.text.x = element_text(angle = 45, vjust = 1, hjust = 1)))
+    (ggplot(d,
+            aes(x = `Cohort 19 in`, 
+                y = Number, 
+                group = FSM, colour = FSM,
+                text=paste("",`Cohort 19 in`,"<br>",Number,"<br>",group = FSM))) +
+       geom_path(size = 1) +
+       xlab("Cohort 19 in") +
+       ylab(ylabtitle) +
+       scale_y_continuous(limits = c(0, max(d$Number)*1.1)) +
+       theme_classic() +
+       labs(colour = NULL) +
+       scale_color_manual(values = c("#28A197","#801650","#12436D"))+
+       theme(legend.title=element_blank(),
+             axis.text=element_text(size=12),
+             axis.title=element_text(size=12,face="bold"),
+             axis.text.x = element_text(angle = 45, vjust = 1, hjust = 1))) %>%
+      ggplotly(tooltip=c("text"))
+  )
 }
+  
+#   return(
+#     d %>%
+#       ggplot +
+#       aes(x = cohort_19_in, 
+#           y = as.numeric(y_var), 
+#           group = fsm, colour = as.factor(fsm)) +
+#       geom_path(size = 1) +
+#       xlab("Cohort 19 in") +
+#       ylab(ylabtitle) +
+#       scale_y_continuous(limits = c(0, max(as.numeric(d$y_var))*1.1)) +
+#       theme_classic() +
+#       # geom_text(
+#       #   d = d %>% filter(cohort_19_in == min(as.numeric(cohort_19_in))+1),
+#       #   aes(label = fsm),
+#       #   size = 5,
+#       #   hjust = 0,
+#       #   vjust = -0.5,
+#       #   check_overlap = TRUE) +
+#       #theme(legend.position = "none") +
+#       #labs(fill = "FSM Eligibility") +
+#       #scale_color_discrete(name = "New Legend Title") +
+#       #guides(fill=guide_legend(title="New Legend Title")) +
+#     labs(colour = NULL) +
+#       scale_color_manual(values = c("#28A197","#801650","#12436D"))+
+#       theme(legend.title=element_blank())+
+#       theme(axis.text=element_text(size=12),
+#             axis.title=element_text(size=12,face="bold"),
+#             axis.text.x = element_text(angle = 45, vjust = 1, hjust = 1)))
+# }
 
 
 
@@ -738,30 +763,55 @@ la_plot_rate_sen <- function(la2, category2) {
     d <- d %>% mutate(y_var = l3_by19_rate) %>% filter(y_var != 'x') 
   }
   
+  d <- d %>% rename(`Cohort 19 in`=cohort_19_in, Percentage=y_var, SEN=sen) %>% 
+    mutate(
+      Percentage=round(as.numeric(Percentage),1),
+      FSM=as.factor(SEN)
+    )
   return(
-    d %>%
-      ggplot +
-      aes(x = cohort_19_in, 
-          y = round(as.numeric(y_var),1), 
-          group = sen, colour = as.factor(sen)) +
-      geom_path(size = 1) +
-      xlab("Cohort 19 in") +
-      ylab(ylabtitle) +
-      scale_y_continuous(limits = c(0, max(as.numeric(d$y_var))*1.1), breaks=seq(0,100,10)) +
-      theme_classic() +
-      # geom_text(
-      #   d = d %>% filter(cohort_19_in == min(as.numeric(cohort_19_in))+1),
-      #   aes(label = sen),
-      #   size = 5,
-      #   hjust = 0,
-      #   vjust = -0.5) +
-      labs(colour = NULL) +
-      #theme(legend.position = "none") +
-      scale_color_manual(values = c("#28A197","#801650","#12436D","#F46A25"))+
-      theme(axis.text=element_text(size=12),
-            axis.title=element_text(size=12,face="bold"),
-            axis.text.x = element_text(angle = 45, vjust = 1, hjust = 1)))
+    (ggplot(d,
+            aes(x = `Cohort 19 in`, 
+                y = Percentage, 
+                group = SEN, colour = SEN,
+                text=paste("",`Cohort 19 in`,"<br>",Percentage,"%", "<br>",group = SEN))) +
+       geom_path(size = 1) +
+       xlab("Cohort 19 in") +
+       ylab(ylabtitle) +
+       scale_y_continuous(limits = c(0, max(d$Percentage)*1.1), breaks=seq(0,100,10)) +
+       theme_classic() +
+       labs(colour = NULL) +
+       scale_color_manual(values = c("#28A197","#801650","#12436D","#F46A25"))+
+       theme(legend.title=element_blank(),
+             axis.text=element_text(size=12),
+             axis.title=element_text(size=12,face="bold"),
+             axis.text.x = element_text(angle = 45, vjust = 1, hjust = 1))) %>%
+      ggplotly(tooltip=c("text"))
+  )
 }
+#   return(
+#     d %>%
+#       ggplot +
+#       aes(x = cohort_19_in, 
+#           y = round(as.numeric(y_var),1), 
+#           group = sen, colour = as.factor(sen)) +
+#       geom_path(size = 1) +
+#       xlab("Cohort 19 in") +
+#       ylab(ylabtitle) +
+#       scale_y_continuous(limits = c(0, max(as.numeric(d$y_var))*1.1), breaks=seq(0,100,10)) +
+#       theme_classic() +
+#       # geom_text(
+#       #   d = d %>% filter(cohort_19_in == min(as.numeric(cohort_19_in))+1),
+#       #   aes(label = sen),
+#       #   size = 5,
+#       #   hjust = 0,
+#       #   vjust = -0.5) +
+#       labs(colour = NULL) +
+#       #theme(legend.position = "none") +
+#       scale_color_manual(values = c("#28A197","#801650","#12436D","#F46A25"))+
+#       theme(axis.text=element_text(size=12),
+#             axis.title=element_text(size=12,face="bold"),
+#             axis.text.x = element_text(angle = 45, vjust = 1, hjust = 1)))
+# }
 
 #Defining the SEN number plot. 
 la_plot_num_sen <- function(la2, category2) {
@@ -782,31 +832,56 @@ la_plot_num_sen <- function(la2, category2) {
     ylabtitle <- "Level 3 by 19"
     d <- d %>% mutate(y_var = l3_by19) %>% filter(y_var != 'c') 
   }
-  
+  d <- d %>% rename(`Cohort 19 in`=cohort_19_in, Number=y_var, SEN=sen) %>% 
+    mutate(
+      Number=round(as.numeric(Number),1),
+      FSM=as.factor(SEN)
+    )
   return(
-    d %>%
-      ggplot +
-      aes(x = cohort_19_in, 
-          y = as.numeric(y_var), 
-          group = sen, colour = as.factor(sen)) +
-      geom_path(size = 1) +
-      xlab("Cohort 19 in") +
-      ylab(ylabtitle) +
-      scale_y_continuous(limits = c(0, max(as.numeric(d$y_var))*1.1)) +
-      theme_classic() +
-      # geom_text(
-      #   d = d %>% filter(cohort_19_in == min(as.numeric(cohort_19_in))+1),
-      #   aes(label = sen),
-      #   size = 5,
-      #   hjust = 0,
-      #   vjust = -0.5) +
-      #theme(legend.position = "none") +
-      labs(colour = NULL) +
-      scale_color_manual(values = c("#28A197","#801650","#12436D","#F46A25"))+
-      theme(axis.text=element_text(size=12),
-            axis.title=element_text(size=12,face="bold"),
-            axis.text.x = element_text(angle = 45, vjust = 1, hjust = 1)))
+    (ggplot(d,
+            aes(x = `Cohort 19 in`, 
+                y = Number, 
+                group = SEN, colour = SEN,
+                text=paste("",`Cohort 19 in`,"<br>",Number, "<br>",group = SEN))) +
+       geom_path(size = 1) +
+       xlab("Cohort 19 in") +
+       ylab(ylabtitle) +
+       scale_y_continuous(limits = c(0, max(d$Number)*1.1)) +
+       theme_classic() +
+       labs(colour = NULL) +
+       scale_color_manual(values = c("#28A197","#801650","#12436D","#F46A25"))+
+       theme(legend.title=element_blank(),
+             axis.text=element_text(size=12),
+             axis.title=element_text(size=12,face="bold"),
+             axis.text.x = element_text(angle = 45, vjust = 1, hjust = 1))) %>%
+      ggplotly(tooltip=c("text"))
+  )
 }
+  
+#   return(
+#     d %>%
+#       ggplot +
+#       aes(x = cohort_19_in, 
+#           y = as.numeric(y_var), 
+#           group = sen, colour = as.factor(sen)) +
+#       geom_path(size = 1) +
+#       xlab("Cohort 19 in") +
+#       ylab(ylabtitle) +
+#       scale_y_continuous(limits = c(0, max(as.numeric(d$y_var))*1.1)) +
+#       theme_classic() +
+#       # geom_text(
+#       #   d = d %>% filter(cohort_19_in == min(as.numeric(cohort_19_in))+1),
+#       #   aes(label = sen),
+#       #   size = 5,
+#       #   hjust = 0,
+#       #   vjust = -0.5) +
+#       #theme(legend.position = "none") +
+#       labs(colour = NULL) +
+#       scale_color_manual(values = c("#28A197","#801650","#12436D","#F46A25"))+
+#       theme(axis.text=element_text(size=12),
+#             axis.title=element_text(size=12,face="bold"),
+#             axis.text.x = element_text(angle = 45, vjust = 1, hjust = 1)))
+# }
 
 
 
