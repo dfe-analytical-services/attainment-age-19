@@ -17,7 +17,6 @@
 #    http://shiny.rstudio.com/
 #
 # ---------------------------------------------------------
-source("codefile_shiny.R")
 
 
 server <- function(input, output, session) {

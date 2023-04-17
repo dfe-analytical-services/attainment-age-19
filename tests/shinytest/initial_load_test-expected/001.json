@@ -1,8 +1,18 @@
 {
   "input": {
-
+    "navlistPanel": "Homepage",
+    "plot_type": "percentage",
+    "plot_type2": "percentage",
+    "select_cat": "Level 2",
+    "select_cat2": "Level 2",
+    "select2": "Barking and Dagenham",
+    "select3": "Barking and Dagenham",
+    "tabsetpanels": "Local authority & Free School Meal Status"
   },
   "output": {
+
+  },
+  "export": {
 
   }
 }
