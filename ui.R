@@ -1,20 +1,20 @@
 # ---------------------------------------------------------
-# This is the ui file. 
+# This is the ui file.
 # Use it to call elements created in your server file into the app, and define where they are placed.
-# Also use this file to define inputs.   
+# Also use this file to define inputs.
 #
 # Every UI file should contain:
 # - A title for the app
 # - A call to a CSS file to define the styling
 # - An accessibility statement
-# - Contact information   
+# - Contact information
 #
 # Other elements like charts, navigation bars etc. are completely up to you to decide what goes in.
 # However, every element should meet accessibility requirements and user needs.
 #
 # This file uses a slider input, but other inputs are available like date selections, multiple choice dropdowns etc.
 # Use the shiny cheatsheet to explore more options: https://shiny.rstudio.com/images/shiny-cheatsheet.pdf
-# 
+#
 # Likewise, this template uses the navbar layout.
 # We have used this as it meets accessibility requirements, but you are free to use another layout if it does too.
 #
@@ -30,9 +30,10 @@
 
 ui <- function(input, output, session) {
   fluidPage(
-    title = tags$head(tags$link(rel="shortcut icon",
-                                href="dfefavicon.png")),
-    
+    title = tags$head(tags$link(
+      rel = "shortcut icon",
+      href = "dfefavicon.png"
+    )),
     shinyjs::useShinyjs(),
     useShinydashboard(),
     tags$head(includeHTML(("google-analytics.html"))),
@@ -65,9 +66,10 @@ ui <- function(input, output, session) {
       widths = c(2, 8),
       well = FALSE,
       homepage_panel(),
-      #overall_panel(),
-      fsm_panel(),
-      sen_panel(),
+      dashboard_panel(),
+      # overall_panel(),
+      # fsm_panel(),
+      # sen_panel(),
       a11y_panel(),
       support_links()
     ),
@@ -77,14 +79,14 @@ ui <- function(input, output, session) {
     footer(full = TRUE)
   )
 }
-    
-    
-    
+
+
+
 #     navbarPage("",
 #       id = "navbar",
-# 
+#
 #       # Homepage tab ============================================================
-# 
+#
 #       tabPanel(
 #         "Overview",
 #         fluidPage(
@@ -93,11 +95,11 @@ ui <- function(input, output, session) {
 #               12,
 #               h1("Level 2 and 3 attainment by age 19: Local authority dashboard"),
 #               br(),
-#               
+#
 #             ),
-# 
+#
 #             ## Left panel -------------------------------------------------------
-# 
+#
 #             column(
 #               5,
 #               div(
@@ -120,13 +122,13 @@ ui <- function(input, output, session) {
 #                       p(strong("Latest National Statistics")),
 #                       br(),
 #                       p("All of the data used within this dashboard has been published in the National Statistics release",
-#                          a("Statistics: 16 to 19 attainment", 
+#                          a("Statistics: 16 to 19 attainment",
 #                            href = "https://www.gov.uk/government/collections/statistics-attainment-at-19-years",
 #                            target="_blank"), "underlying data section and is also available for download via the data and methods tab."),
 #                       br(),
 #                       p(strong("Guidance and methodology")),
 #                       br(),
-#                       p("This dashboard shows breakdowns for the number and rate of level 2 and 3 attainment by age 19 at local authority level, including by free school meal (FSM) eligibility and special educational need (SEN).  
+#                       p("This dashboard shows breakdowns for the number and rate of level 2 and 3 attainment by age 19 at local authority level, including by free school meal (FSM) eligibility and special educational need (SEN).
 #                              Further information, including definitions, is available in the data and methods tab in this dashboard and also in the technical document found on the main publication page."),
 #                       br(),
 #                       p(strong("Definitons")),
@@ -138,10 +140,10 @@ ui <- function(input, output, session) {
 #                   )
 #                 )
 #               ),
-#             
-# 
+#
+#
 #             ## Right panel------------------------------------------------------
-# 
+#
 #             column(
 #               7,
 #               div(
@@ -154,14 +156,14 @@ ui <- function(input, output, session) {
 #                     br()),
 #                     div(
 #                       class = "panel-body",
-#                     strong("Level 2 attainment by age 19, ", paste(first_year),  " to " , paste(latest_year)), 
+#                     strong("Level 2 attainment by age 19, ", paste(first_year),  " to " , paste(latest_year)),
 #                     br(),
 #                     br(),
 #                     #em("Young people in state sector at 15"),
 #                     radioButtons("bars_type", label=NULL, c("percentage", "number"), inline = TRUE),
 #                     plotOutput("l2_bar", height ="8cm"),
 #                     hr(),
-#                     strong("Level 3 attainment by age 19, " , paste(first_year),  " to " , paste(latest_year)), 
+#                     strong("Level 3 attainment by age 19, " , paste(first_year),  " to " , paste(latest_year)),
 #                     br(),
 #                     #em("Young people in state sector at 15"),
 #                     radioButtons("bars_type2", label=NULL, c("percentage", "number"), inline = TRUE),
@@ -179,9 +181,9 @@ ui <- function(input, output, session) {
 #       tabPanel(
 #         #value = "la_fsm",
 #         "Local authority - FSM",
-# 
+#
 #         # Define UI for application that draws a histogram
-# 
+#
 #         # Sidebar with a slider input for number of bins
 #         sidebarLayout(
 #           sidebarPanel(
@@ -235,7 +237,7 @@ ui <- function(input, output, session) {
 #               br(),
 #               DT::dataTableOutput("fsm_la_data")
 #             )
-#             
+#
 #           ))),
 #         hr(),
 #         # HTML('<div><img src="Department_for_Education.png" alt="Logo", width="120", height = "71"></div>
@@ -247,7 +249,7 @@ ui <- function(input, output, session) {
 #                            <br>
 #                            </br>')),
 #       # 3. LA SEN Tab  ---- will need to update national reference years and figures
-#       
+#
 #       tabPanel("LA trends - SEN",
 #                sidebarLayout(
 #                  sidebarPanel(
@@ -261,7 +263,7 @@ ui <- function(input, output, session) {
 #                      selected = 'Darlington'
 #                    ),
 #                    h5(strong("Pick a measure")),
-#                    selectInput( 
+#                    selectInput(
 #                      "select_cat2",
 #                      label = NULL,
 #                      choices = list(
@@ -308,7 +310,7 @@ ui <- function(input, output, session) {
 #                            <div><b>If you would like to provide feedback on this tool please contact Post16.STATISTICS@education.gov.uk</b></div>
 #                            <br>
 #                            </br>')),
-#       
+#
 #       # 4. Map----
 #       #***Action update the year reference in line 127 below.
 #       # tabPanel("Map",
@@ -351,21 +353,21 @@ ui <- function(input, output, session) {
 #       #                      <br>
 #       #                      </br>')
 #       # ),
-#       # 
-#       
+#       #
+#
 #       # 5. Data sources and methodology tab ----
-#       # Will need to update any year references and hyperlink in the text below. 
-#       
+#       # Will need to update any year references and hyperlink in the text below.
+#
 #       tabPanel("Data and methods",
 #                h4(strong("Data sources")),
-#                "This tool uses open data published alongside the 'Level 2 and 3 attainment by young people aged 19 in '", paste(latest_year) , " 
+#                "This tool uses open data published alongside the 'Level 2 and 3 attainment by young people aged 19 in '", paste(latest_year) , "
 #                       National Statistics release, available ",
 #                tags$a(href="https://www.gov.uk/government/collections/statistics-attainment-at-19-years", "here."),
 #                br(),
 #                br(),
-#                "The local authority figures in this tool show attainment at level 2, level 2 with English and maths and level 3 by age 19 
+#                "The local authority figures in this tool show attainment at level 2, level 2 with English and maths and level 3 by age 19
 #                       by pupil characteristics collected at age 15. They cover pupils in state sector schools at age 15.",
-#                "Figures are also included on progression rates in level 2 English and maths, that is the proportion of those not achieving level 2 by age 16 
+#                "Figures are also included on progression rates in level 2 English and maths, that is the proportion of those not achieving level 2 by age 16
 #                       who go on to achieve level 2 by age 19.",
 #                br(),
 #                br(),
@@ -387,7 +389,7 @@ ui <- function(input, output, session) {
 #                br(),
 #                "iv) The figures are calculated for each local authority based on where the pupil was learning at academic age 15.",
 #                br(),
-#                "v) Regional figures are aggregated from local authority figures and are directly comparable with national estimates in tables 6-24, but not with tables 1-5.",																	
+#                "v) Regional figures are aggregated from local authority figures and are directly comparable with national estimates in tables 6-24, but not with tables 1-5.",
 #                br(),
 #                br(),
 #                h4(strong("Notes")),
@@ -405,7 +407,7 @@ ui <- function(input, output, session) {
 #                br(),
 #                "g) A young person aged 19 at the end of academic year 2020/21 is referred to as '19 in 21' in these figures.",
 #                br(),
-#                "h) These are final figures but historical figures are subject to minor alterations each year.",	
+#                "h) These are final figures but historical figures are subject to minor alterations each year.",
 #                hr(),
 #                HTML('<div><img src="Department_for_Education.png" alt="Logo", width="120", height = "71"></div>
 #                            <br>
@@ -413,7 +415,7 @@ ui <- function(input, output, session) {
 #                            <br>
 #                            </br>')
 #       ),
-#   
+#
 #       # Create the accessibility statement-----------------
 #       tabPanel(
 #         "Accessibility",
@@ -446,15 +448,15 @@ ui <- function(input, output, session) {
 #         )
 #       ), # End of accessibility tab
 #       # Support links ===========================================================
-# 
+#
 #       tabPanel(
 #         "Support and feedback",
 #         support_links() # defined in R/supporting_links.R
 #       ),
 #       # Footer ====================================================================
-# 
+#
 #       shinyGovstyle::footer(TRUE)
 #   )# End of navBarPage
 #   )# End of fluid page
 # }
-#     
+#
