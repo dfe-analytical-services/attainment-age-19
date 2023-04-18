@@ -71,8 +71,8 @@ first_year <- 2005
 
 # la_ud <- read_csv('data/LA_UD_v3_supp.csv', col_types = cols(.default = "c"))
 # la_ud <- read_csv('data/LA_UD_draft_mockup_v4_SM.csv', col_types = cols(.default = "c"))
-la_ud <- read_csv("data\\L23_Attainment_2021.csv", col_types = cols(.default = "c"))
-la_ud_VB <- read_csv("data\\L23_Attainment_2021_VB_V2.csv", col_types = cols(.default = "c"))
+la_ud <- read_csv("data/L23_Attainment_2021.csv", col_types = cols(.default = "c"))
+la_ud_VB <- read_csv("data/L23_Attainment_2021_VB_V2.csv", col_types = cols(.default = "c"))
 
 la_ud_VB$value <- round((as.numeric(la_ud_VB$value)), digits = 1)
 # 4. Overview tab
