@@ -9,9 +9,9 @@ homepage_panel <- function() {
           br(),
           br()
         ),
-        
+
         ## Left panel -------------------------------------------------------
-        
+
         column(
           12,
           div(
@@ -25,27 +25,33 @@ homepage_panel <- function() {
               div(
                 class = "panel-body",
                 tags$div(
-                  #title = "This section is useful if you want to understand how well different industries retain graduates.",
-                  #h3("Introduction (h3)"),
-                  #p("This app demonstrates the DfE Analytical Services R-Shiny data dashboard template."),
-                  #p("You might want to add some brief introductory text here alongside some links to different tabs within your dashboard. Here's an example of a link working:"),
-                  #p(actionLink("link_to_app_content_tab", "Dashboard panel")),
-                  #p("You need to add an observeEvent() function to the server.R script for any link that navigates within your App.")
+                  # title = "This section is useful if you want to understand how well different industries retain graduates.",
+                  # h3("Introduction (h3)"),
+                  # p("This app demonstrates the DfE Analytical Services R-Shiny data dashboard template."),
+                  # p("You might want to add some brief introductory text here alongside some links to different tabs within your dashboard. Here's an example of a link working:"),
+                  # p(actionLink("link_to_app_content_tab", "Dashboard panel")),
+                  # p("You need to add an observeEvent() function to the server.R script for any link that navigates within your App.")
                   p("The purpose of this dashboard is to provide further insight into breakdowns included within our National Statistics release using data visualisation. It reports on attainment at level 2, level 2 with English and maths and level 3 by age 19 by pupil characteristics. The data covers pupils in state sector schools at age 15."),
                   br(),
                   p(strong("Latest National Statistics")),
                   br(),
-                  p("All of the data used within this dashboard has been published in the National Statistics release",
+                  p(
+                    "All of the data used within this dashboard has been published in the National Statistics release",
                     a("Level 2 and 3 attainment age 16 to 25",
                       href = "https://explore-education-statistics.service.gov.uk/find-statistics/level-2-and-3-attainment-by-young-people-aged-19",
-                      target="_blank"), "underlying data section and is also available for download via the data and methods tab."),
+                      target = "_blank"
+                    ), "underlying data section and is also available for download via the data and methods tab."
+                  ),
                   br(),
                   p(strong("Guidance and methodology")),
                   br(),
-                  p("Further information about coverage, data sources etc. is available in the",
+                  p(
+                    "Further information about coverage, data sources etc. is available in the",
                     a("Level 2 and 3 attainment methodology",
                       href = "https://explore-education-statistics.service.gov.uk/methodology/level-2-and-3-attainment-by-young-people-aged-19-methodology",
-                      target = "_blank"), "found on the main publication page."),
+                      target = "_blank"
+                    ), "found on the main publication page."
+                  ),
                   br(),
                   p(strong("Definitons")),
                   br(),
@@ -56,11 +62,11 @@ homepage_panel <- function() {
               ),
             )
           )
-        )#,
-        
-        
+        ) # ,
+
+
         ## Right panel ------------------------------------------------------
-        
+
         # column(
         #   0,
         #   div(
@@ -92,24 +98,21 @@ homepage_panel <- function() {
         #  br(),
         #  radioButtons("bars_type2", label=NULL, c("percentage", "number"), inline = TRUE),
         #  plotOutput("l3_bar", height ="8cm")
-        #),
-        #)
-        #)
+        # ),
+        # )
+        # )
       )
     )
   )
-  
-  
-  
 }
 
 # overall_panel <- function() {
 #   tabPanel(
 #     value = "dashboard",
 #     "Overall attainment",
-#     
+#
 #     # Define UI for application that draws a histogram
-#     
+#
 #     # Sidebar with a slider input for number of bins
 #     gov_main_layout(
 #       gov_row(
@@ -155,185 +158,203 @@ dashboard_panel <- function() {
   tabPanel(
     value = "LA & FSM",
     "Dashboard",
-    
+
     # Define UI for application that draws a histogram
-    
+
     # Sidebar with a slider input for number of bins
     gov_main_layout(
       gov_row(
         column(
-          width=12,
-          tabsetPanel(id = "tabsetpanels", tabPanel(
-            "Local authority & Free School Meal Status",
-            h2("Level 2 and 3 attainment by local authority and Free School Meal (FSM) status"),
-            #new
-            column(
-              width=12,
-              h5(strong(textOutput("la_title"))),
-              textOutput("la_sum_fsm"),
-              br(),
-              #h5(strong(textOutput("region_title"))),
-              textOutput("reg_sum_fsm"),
-              br(),
-              #h5(strong("National summary")),
-              textOutput("nat_sum_fsm"),
-              hr()
-              
-            ),
-            column(
-              width=12,
-              div(
-                class = "well",
-                style = "min-height: 100%; height: 100%; overflow-y: visible",
-                fluidRow(
-                  column(
-                    width=6,
-                    selectizeInput( "select_cat",
-                                    label = "Choose a measure",
-                                    choices = list(
-                                      "Level 2" = 'Level 2', "Level 2 with English and maths" = 'Level 2 with English & maths',
-                                      "Level 3" = 'Level 3')
-                    )),
-                  column(
-                    width=6,
-                    selectizeInput("select2",
-                                   label = "Choose an area",
-                                   choices = sort(unique(la_plot_data_fsm$la_name))
+          width = 12,
+          tabsetPanel(
+            id = "tabsetpanels",
+            tabPanel(
+              gov_row(
+                "Local authority & Free School Meal Status",
+                h2("Level 2 and 3 attainment by local authority and Free School Meal (FSM) status"),
+                # new
+                column(
+                  width = 12,
+                  h5(strong(textOutput("la_title"))),
+                  textOutput("la_sum_fsm"),
+                  br(),
+                  # h5(strong(textOutput("region_title"))),
+                  textOutput("reg_sum_fsm"),
+                  br(),
+                  # h5(strong("National summary")),
+                  textOutput("nat_sum_fsm"),
+                  hr()
+                ),
+                column(
+                  width = 12,
+                  div(
+                    class = "well",
+                    style = "min-height: 100%; height: 100%; overflow-y: visible",
+                    fluidRow(
+                      column(
+                        width = 6,
+                        selectizeInput("select_cat",
+                          label = "Choose a measure",
+                          choices = list(
+                            "Level 2" = "Level 2", "Level 2 with English and maths" = "Level 2 with English & maths",
+                            "Level 3" = "Level 3"
+                          )
+                        )
+                      ),
+                      column(
+                        width = 6,
+                        selectizeInput("select2",
+                          label = "Choose an area",
+                          choices = sort(unique(la_plot_data_fsm$la_name))
+                        )
+                      )
                     )
-                  ))
-              ),
-              valueBoxOutput("boxFSM_All"),
-              valueBoxOutput("boxFSM_El"),
-              valueBoxOutput("boxFSM_NotEl")
-            ),
-            
-            column(
-              width=12,
-              tabsetPanel(id = "tabsetpanels",
-                          tabPanel(
-                            "Chart",
-                            gov_row(
-                              #column(
-                              #width=12,
-                              h2("Attainment by Local authority and FSM by age 19"),
-                              #valueBoxOutput("box", width = 6),
-                              br(),
-                              #column(5,
-                              radioButtons("plot_type", "Which measure?", c("percentage", "number"), inline = TRUE),
-                              #),
-                              plotlyOutput("t1_chart"#, width = '23cm'
-                              ),
-                              br(),
-                              
-                              #column(width=12,
-                              #tableOutput("t1_table"),
-                              br()
-                            )
-                            
-                            #valueBoxOutput("boxpcRevBal", width = 6),
-                            # box(
-                            #   width=12,
-                            # plotlyOutput("lineRevBal")))
+                  ),
+                  valueBoxOutput("boxFSM_All"),
+                  valueBoxOutput("boxFSM_El"),
+                  valueBoxOutput("boxFSM_NotEl")
+                ),
+                column(
+                  width = 12,
+                  tabsetPanel(
+                    id = "tabsetpanels",
+                    tabPanel(
+                      "Chart",
+                      gov_row(
+                        column(
+                          width = 12,
+                          h2("Attainment by Local authority and FSM by age 19"),
+                          # valueBoxOutput("box", width = 6),
+                          br(),
+                          # column(5,
+                          radioButtons("plot_type", "Which measure?", c("percentage", "number"), inline = TRUE),
+                          # ),
+                          plotlyOutput(
+                            "t1_chart" # , width = '23cm'
                           ),
-                          tabPanel("Data download",
-                                   br(),
-                                   downloadButton("downloadFSM", "Download"),
-                                   br(),
-                                   DT::dataTableOutput("fsm_la_data")
-                          ))),
-            hr(),
-            br(),
-            HTML('<div><b>If you would like to provide feedback on this tool please contact Post16.STATISTICS@education.gov.uk</b></div>
+                          br(),
+
+                          # column(width=12,
+                          # tableOutput("t1_table"),
+                          br()
+                        )
+                      )
+                    )
+                  ),
+                  tabPanel(
+                    "Data download",
+                    gov_row(
+                      br(),
+                      downloadButton("downloadFSM", "Download"),
+                      br(),
+                      DT::dataTableOutput("fsm_la_data")
+                    )
+                  )
+                ),
+                hr(),
+                br(),
+                HTML("<div><b>If you would like to provide feedback on this tool please contact Post16.STATISTICS@education.gov.uk</b></div>
                                    <br>
-                                   </br>'
+                                   </br>")
+              )
             ),
-          ),
-          tabPanel("Local authority & Special Educational Need",
-                   h2("Level 2 and 3 attainment by local authority and Special Educational Need (SEN) status"),
-                   
-                   #new
-                   column(
-                     width=12,
-                     h5(strong(textOutput("la_title2"))),
-                     textOutput("la_sum_sen"),
-                     br(),
-                     #h5(strong(textOutput("region_title2"))),
-                     textOutput("reg_sum_sen"),
-                     br(),
-                     #h5(strong("National summary")),
-                     textOutput("nat_sum_sen"),
-                     hr()
-                     
-                   ),
-                   column(
-                     width=12,
-                     div(
-                       class = "well",
-                       style = "min-height: 100%; height: 100%; overflow-y: visible",
-                       fluidRow(
-                         column(
-                           width=6,
-                           selectizeInput( "select_cat2",
-                                           label = "Choose a measure",
-                                           choices = list(
-                                             "Level 2" = 'Level 2', "Level 2 with English and maths" = 'Level 2 with English & maths',
-                                             "Level 3" = 'Level 3'
-                                           ))),
-                         column(
-                           width=6,
-                           selectizeInput(
-                             "select3",
-                             label = "Choose an area",
-                             choices = sort(unique(la_plot_data_sen$la_name))
-                           )
-                         ))
-                     ),
-                     valueBoxOutput("boxSEN_All", width = 3),
-                     valueBoxOutput("boxSEN_No", width = 3),
-                     valueBoxOutput("boxSEN_with", width = 3),
-                     valueBoxOutput("boxSEN_without", width = 3)
-                   ),
-                   
-                   column(
-                     width=12,
-                     tabsetPanel(id = "tabsetpanels",
-                                 tabPanel(
-                                   "Chart",
-                                   gov_row(
-                                     #column(
-                                     #width=12,
-                                     h2("Attainment by Local authority and SEN by age 19"),
-                                     
-                                     br(),
-                                     #column(5,
-                                     radioButtons("plot_type2", "Which measure?", c("percentage", "number"), inline = TRUE),
-                                     # )
-                                     
-                                     plotlyOutput("t2_chart"#, width = '23cm'
-                                     ),
-                                     br(),
-                                     # column(width=12,
-                                     #        tableOutput("t2_table"),
-                                     br()
-                                   )
-                                   #valueBoxOutput("boxavgRevBal", width = 6),
-                                   #valueBoxOutput("boxpcRevBal", width = 6),
-                                   # box(
-                                   #   width=12,
-                                   # plotlyOutput("lineRevBal")))
-                                 ),
-                                 tabPanel("Data download",
-                                          br(),
-                                          downloadButton("downloadSEN", "Download"),
-                                          br(),
-                                          DT::dataTableOutput("sen_la_data")
-                                 ))),
-                   hr(),
-                   HTML('<div><b>If you would like to provide feedback on this tool please contact Post16.STATISTICS@education.gov.uk</b></div>
+            tabPanel(
+              "Local authority & Special Educational Need",
+              h2("Level 2 and 3 attainment by local authority and Special Educational Need (SEN) status"),
+
+              # new
+              column(
+                width = 12,
+                h5(strong(textOutput("la_title2"))),
+                textOutput("la_sum_sen"),
+                br(),
+                # h5(strong(textOutput("region_title2"))),
+                textOutput("reg_sum_sen"),
+                br(),
+                # h5(strong("National summary")),
+                textOutput("nat_sum_sen"),
+                hr()
+              ),
+              column(
+                width = 12,
+                div(
+                  class = "well",
+                  style = "min-height: 100%; height: 100%; overflow-y: visible",
+                  fluidRow(
+                    column(
+                      width = 6,
+                      selectizeInput("select_cat2",
+                        label = "Choose a measure",
+                        choices = list(
+                          "Level 2" = "Level 2", "Level 2 with English and maths" = "Level 2 with English & maths",
+                          "Level 3" = "Level 3"
+                        )
+                      )
+                    ),
+                    column(
+                      width = 6,
+                      selectizeInput(
+                        "select3",
+                        label = "Choose an area",
+                        choices = sort(unique(la_plot_data_sen$la_name))
+                      )
+                    )
+                  )
+                ),
+                valueBoxOutput("boxSEN_All", width = 3),
+                valueBoxOutput("boxSEN_No", width = 3),
+                valueBoxOutput("boxSEN_with", width = 3),
+                valueBoxOutput("boxSEN_without", width = 3)
+              ),
+              column(
+                width = 12,
+                tabsetPanel(
+                  id = "tabsetpanels",
+                  tabPanel(
+                    "Chart",
+                    gov_row(
+                      # column(
+                      # width=12,
+                      h2("Attainment by Local authority and SEN by age 19"),
+                      br(),
+                      # column(5,
+                      radioButtons("plot_type2", "Which measure?", c("percentage", "number"), inline = TRUE),
+                      # )
+
+                      plotlyOutput(
+                        "t2_chart" # , width = '23cm'
+                      ),
+                      br(),
+                      # column(width=12,
+                      #        tableOutput("t2_table"),
+                      br()
+                    )
+                    # valueBoxOutput("boxavgRevBal", width = 6),
+                    # valueBoxOutput("boxpcRevBal", width = 6),
+                    # box(
+                    #   width=12,
+                    # plotlyOutput("lineRevBal")))
+                  ),
+                  tabPanel(
+                    "Data download",
+                    br(),
+                    downloadButton("downloadSEN", "Download"),
+                    br(),
+                    DT::dataTableOutput("sen_la_data")
+                  )
+                )
+              ),
+              hr(),
+              HTML("<div><b>If you would like to provide feedback on this tool please contact Post16.STATISTICS@education.gov.uk</b></div>
                                    <br>
-                                   </br>')))
+                                   </br>")
+            )
+          )
         )
-      )))}
+      )
+    )
+  )
+}
 # tabPanel(
 #   "Example panel 2",
 #   fluidRow(
@@ -373,94 +394,103 @@ sen_panel <- function() {
   tabPanel(
     value = "LA-SEN",
     "LA & SEN",
-    
+
     # Define UI for application that draws a histogram
-    
+
     # Sidebar with a slider input for number of bins
     gov_main_layout(
       gov_row(
         column(
-          width=12,
+          width = 12,
           h1("Level 2 and 3 attainment by local authority and Special Educational Need (SEN) status"),
         ),
-        #new
+        # new
         column(
-          width=12,
+          width = 12,
           h5(strong(textOutput("la_title2"))),
           textOutput("la_sum_sen"),
           br(),
-          #h5(strong(textOutput("region_title2"))),
+          # h5(strong(textOutput("region_title2"))),
           textOutput("reg_sum_sen"),
           br(),
-          #h5(strong("National summary")),
+          # h5(strong("National summary")),
           textOutput("nat_sum_sen"),
           hr()
-          
         ),
         column(
-          width=12,
+          width = 12,
           div(
             class = "well",
             style = "min-height: 100%; height: 100%; overflow-y: visible",
             fluidRow(
               column(
-                width=6,
-                selectizeInput( "select_cat2",
-                                label = "Choose a measure",
-                                choices = list(
-                                  "Level 2" = 'Level 2', "Level 2 with English and maths" = 'Level 2 with English & maths',
-                                  "Level 3" = 'Level 3'
-                                ))),
+                width = 6,
+                selectizeInput("select_cat2",
+                  label = "Choose a measure",
+                  choices = list(
+                    "Level 2" = "Level 2", "Level 2 with English and maths" = "Level 2 with English & maths",
+                    "Level 3" = "Level 3"
+                  )
+                )
+              ),
               column(
-                width=6,
+                width = 6,
                 selectizeInput(
                   "select3",
                   label = "Choose an area",
                   choices = sort(unique(la_plot_data_sen$la_name))
                 )
-              ))
+              )
+            )
           ),
           valueBoxOutput("boxSEN_All", width = 3),
           valueBoxOutput("boxSEN_No", width = 3),
           valueBoxOutput("boxSEN_with", width = 3),
           valueBoxOutput("boxSEN_without", width = 3)
         ),
-        
         column(
-          width=12,
-          tabsetPanel(id = "tabsetpanels",
-                      tabPanel(
-                        "Chart",
-                        gov_row(
-                          #column(
-                          #width=12,
-                          h2("Attainment by Local authority and SEN by age 19"),
-                          
-                          br(),
-                          #column(5,
-                          radioButtons("plot_type2", "Which measure?", c("percentage", "number"), inline = TRUE),
-                          # )
-                          
-                          plotlyOutput("t2_chart"#, width = '23cm'
-                          ),
-                          br(),
-                          # column(width=12,
-                          #        tableOutput("t2_table"),
-                          br()
-                        )
-                        #valueBoxOutput("boxavgRevBal", width = 6),
-                        #valueBoxOutput("boxpcRevBal", width = 6),
-                        # box(
-                        #   width=12,
-                        # plotlyOutput("lineRevBal")))
-                      ),
-                      tabPanel("Data download",
-                               br(),
-                               downloadButton("downloadSEN", "Download"),
-                               br(),
-                               DT::dataTableOutput("sen_la_data")
-                      )))),
+          width = 12,
+          tabsetPanel(
+            id = "tabsetpanels",
+            tabPanel(
+              "Chart",
+              gov_row(
+                # column(
+                # width=12,
+                h2("Attainment by Local authority and SEN by age 19"),
+                br(),
+                # column(5,
+                radioButtons("plot_type2", "Which measure?", c("percentage", "number"), inline = TRUE),
+                # )
+
+                plotlyOutput(
+                  "t2_chart" # , width = '23cm'
+                ),
+                br(),
+                # column(width=12,
+                #        tableOutput("t2_table"),
+                br()
+              )
+              # valueBoxOutput("boxavgRevBal", width = 6),
+              # valueBoxOutput("boxpcRevBal", width = 6),
+              # box(
+              #   width=12,
+              # plotlyOutput("lineRevBal")))
+            ),
+            tabPanel(
+              "Data download",
+              br(),
+              downloadButton("downloadSEN", "Download"),
+              br(),
+              DT::dataTableOutput("sen_la_data")
+            )
+          )
+        )
+      ),
       hr(),
-      HTML('<div><b>If you would like to provide feedback on this tool please contact Post16.STATISTICS@education.gov.uk</b></div>
+      HTML("<div><b>If you would like to provide feedback on this tool please contact Post16.STATISTICS@education.gov.uk</b></div>
                                    <br>
-                                   </br>')))}
+                                   </br>")
+    )
+  )
+}
