@@ -38,6 +38,7 @@ shhh(library(DT))
 shhh(library(shiny))
 shhh(library(shinyjs))
 shhh(library(dplyr))
+# shhh(library(shinya11y))
 
 # Functions ---------------------------------------------------------------------------------
 

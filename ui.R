@@ -30,6 +30,7 @@
 
 ui <- function(input, output, session) {
   fluidPage(
+    # use_tota11y(),
     title = tags$head(
       tags$title("Level 2 and 3 Attainment by Age 19 dashboard"),
       tags$link(
