@@ -125,7 +125,7 @@ homepage_panel <- function() {
 #           tabsetPanel(#id = "tabsetpanels",
 #                       tabPanel(
 #                         "Level 2",
-#                         fluidRow(
+#                         gov_row(
 #                           column(
 #                             width=12,
 #                             #h2("Level 2 attainment by age 19"),
@@ -142,7 +142,7 @@ homepage_panel <- function() {
 #                       ))),
 #                       tabPanel(
 #                         "Level 3",
-#                         fluidRow(
+#                         gov_row(
 #                           column(
 #                             width=12,
 #                             #h2("Level 2 attainment by age 19"),
@@ -169,12 +169,12 @@ dashboard_panel <- function() {
           tabsetPanel(
             id = "tabsetpanels",
             tabPanel(
+              "Local authority & Free School Meal Status",
               gov_row(
-                "Local authority & Free School Meal Status",
-                h2("Level 2 and 3 attainment by local authority and Free School Meal (FSM) status"),
                 # new
                 column(
                   width = 12,
+                  h2("Level 2 and 3 attainment by local authority and Free School Meal (FSM) status"),
                   h5(strong(textOutput("la_title"))),
                   textOutput("la_sum_fsm"),
                   br(),
@@ -190,7 +190,7 @@ dashboard_panel <- function() {
                   div(
                     class = "well",
                     style = "min-height: 100%; height: 100%; overflow-y: visible",
-                    fluidRow(
+                    gov_row(
                       column(
                         width = 6,
                         selectizeInput("select_cat",
@@ -229,9 +229,7 @@ dashboard_panel <- function() {
                           # column(5,
                           radioButtons("plot_type", "Which measure?", c("percentage", "number"), inline = TRUE),
                           # ),
-                          plotlyOutput(
-                            "t1_chart" # , width = '23cm'
-                          ),
+                          plotlyOutput("t1_chart"),
                           br(),
 
                           # column(width=12,
@@ -239,7 +237,6 @@ dashboard_panel <- function() {
                           br()
                         )
                       )
-                    )
                   ),
                   tabPanel(
                     "Data download",
@@ -250,21 +247,26 @@ dashboard_panel <- function() {
                       DT::dataTableOutput("fsm_la_data")
                     )
                   )
+                  )
                 ),
+                column(
+                  width=12,
                 hr(),
                 br(),
                 HTML("<div><b>If you would like to provide feedback on this tool please contact Post16.STATISTICS@education.gov.uk</b></div>
                                    <br>
                                    </br>")
               )
+              )
             ),
             tabPanel(
               "Local authority & Special Educational Need",
-              h2("Level 2 and 3 attainment by local authority and Special Educational Need (SEN) status"),
+              gov_row(
 
               # new
               column(
                 width = 12,
+                h2("Level 2 and 3 attainment by local authority and Special Educational Need (SEN) status"),
                 h5(strong(textOutput("la_title2"))),
                 textOutput("la_sum_sen"),
                 br(),
@@ -280,7 +282,7 @@ dashboard_panel <- function() {
                 div(
                   class = "well",
                   style = "min-height: 100%; height: 100%; overflow-y: visible",
-                  fluidRow(
+                  gov_row(
                     column(
                       width = 6,
                       selectizeInput("select_cat2",
@@ -313,8 +315,8 @@ dashboard_panel <- function() {
                   tabPanel(
                     "Chart",
                     gov_row(
-                      # column(
-                      # width=12,
+                      column(
+                      width=12,
                       h2("Attainment by Local authority and SEN by age 19"),
                       br(),
                       # column(5,
@@ -329,20 +331,22 @@ dashboard_panel <- function() {
                       #        tableOutput("t2_table"),
                       br()
                     )
-                    # valueBoxOutput("boxavgRevBal", width = 6),
-                    # valueBoxOutput("boxpcRevBal", width = 6),
-                    # box(
-                    #   width=12,
-                    # plotlyOutput("lineRevBal")))
+                  )
                   ),
                   tabPanel(
                     "Data download",
+                    gov_row(
+                      column(
+                        width=12,
                     br(),
                     downloadButton("downloadSEN", "Download"),
                     br(),
                     DT::dataTableOutput("sen_la_data")
                   )
+                  )
+                  )
                 )
+              )
               ),
               hr(),
               HTML("<div><b>If you would like to provide feedback on this tool please contact Post16.STATISTICS@education.gov.uk</b></div>
@@ -357,7 +361,7 @@ dashboard_panel <- function() {
 }
 # tabPanel(
 #   "Example panel 2",
-#   fluidRow(
+#   gov_row(
 #     column(
 #       width=12,
 #   h2("Outputs 2 (h2)"),
@@ -374,7 +378,7 @@ dashboard_panel <- function() {
 #   div(
 #     class = "well",
 #     style = "min-height: 100%; height: 100%; overflow-y: visible",
-#     fluidRow(
+#     gov_row(
 #       column(
 #         width=12,
 #         selectizeInput("selectBenchLAs",
@@ -422,7 +426,7 @@ sen_panel <- function() {
           div(
             class = "well",
             style = "min-height: 100%; height: 100%; overflow-y: visible",
-            fluidRow(
+            gov_row(
               column(
                 width = 6,
                 selectizeInput("select_cat2",

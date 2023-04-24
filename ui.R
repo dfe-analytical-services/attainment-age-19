@@ -30,10 +30,14 @@
 
 ui <- function(input, output, session) {
   fluidPage(
-    title = tags$head(tags$link(
+    title = tags$head(
+      tags$title("Level 2 and 3 Attainment by Age 19 dashboard"),
+      tags$link(
       rel = "shortcut icon",
       href = "dfefavicon.png"
     )),
+    
+    
     shinyjs::useShinyjs(),
     useShinydashboard(),
     tags$head(includeHTML(("google-analytics.html"))),
@@ -45,19 +49,18 @@ ui <- function(input, output, session) {
       )
     ),
     shinyGovstyle::header(
-      main_text = "DfE",
+      main_text = "",
       main_link = "https://www.gov.uk/government/organisations/department-for-education",
       secondary_text = "Level 2 and 3 attainment by age 19",
-      logo = "images/DfE_logo.png"
+      logo = "images/DfE_logo_landscape.png",
+      logo_width = 150,
+      logo_height = 32
     ),
     shinyGovstyle::banner(
       "beta banner",
       "beta",
       paste0(
-        "This Dashboard is in beta phase and we are still reviewing performance and reliability. ",
-        "In case of slowdown or connection issues due to high demand, we have produced two instances of this site which can be accessed at the following links: ",
-        "<a href=", site_primary, " id='link_site_1'>Site 1</a> and ",
-        "<a href=", site_overflow, " id='link_site_2'>Site 2</a>."
+        "This Dashboard is in beta phase and we are still reviewing performance and reliability. "
       )
     ),
     shiny::navlistPanel(
