@@ -330,7 +330,6 @@ dashboard_panel <- function() {
                           # column(width=12,
                           #        tableOutput("t2_table"),
                           br()
-
                         )
                       )
                     ),
