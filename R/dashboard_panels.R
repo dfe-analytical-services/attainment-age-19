@@ -167,7 +167,7 @@ dashboard_panel <- function() {
         column(
           width = 12,
           tabsetPanel(
-            id = "tabsetpanels",
+            id = "tabsetpanels_fsm",
             tabPanel(
               "Local authority & Free School Meal Status",
               gov_row(
@@ -217,7 +217,7 @@ dashboard_panel <- function() {
                 column(
                   width = 12,
                   tabsetPanel(
-                    id = "tabsetpanels",
+                    id = "tabsetpanels_fsm_sub",
                     tabPanel(
                       "Chart",
                       gov_row(
@@ -311,7 +311,7 @@ dashboard_panel <- function() {
                 column(
                   width = 12,
                   tabsetPanel(
-                    id = "tabsetpanels",
+                    id = "tabsetpanels_sen",
                     tabPanel(
                       "Chart",
                       gov_row(
@@ -456,7 +456,7 @@ sen_panel <- function() {
         column(
           width = 12,
           tabsetPanel(
-            id = "tabsetpanels",
+            id = "tabsetpanels_sen_sub",
             tabPanel(
               "Chart",
               gov_row(
