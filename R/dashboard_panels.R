@@ -175,7 +175,7 @@ dashboard_panel <- function() {
                 column(
                   width = 12,
                   h2("Level 2 and 3 attainment by local authority and Free School Meal (FSM) status"),
-                  h5(strong(textOutput("la_title"))),
+                  h3(strong(textOutput("la_title"))),
                   textOutput("la_sum_fsm"),
                   br(),
                   # h5(strong(textOutput("region_title"))),
@@ -267,7 +267,7 @@ dashboard_panel <- function() {
                 column(
                   width = 12,
                   h2("Level 2 and 3 attainment by local authority and Special Educational Need (SEN) status"),
-                  h5(strong(textOutput("la_title2"))),
+                  h3(strong(textOutput("la_title2"))),
                   textOutput("la_sum_sen"),
                   br(),
                   # h5(strong(textOutput("region_title2"))),
@@ -330,6 +330,7 @@ dashboard_panel <- function() {
                           # column(width=12,
                           #        tableOutput("t2_table"),
                           br()
+
                         )
                       )
                     ),
@@ -411,7 +412,7 @@ sen_panel <- function() {
         # new
         column(
           width = 12,
-          h5(strong(textOutput("la_title2"))),
+          h3(strong(textOutput("la_title2"))),
           textOutput("la_sum_sen"),
           br(),
           # h5(strong(textOutput("region_title2"))),
