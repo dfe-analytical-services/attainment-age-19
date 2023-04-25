@@ -95,5 +95,3 @@ appLoadingCSS <- "
 "
 site_primary <- "https://department-for-education.shinyapps.io/dfe-shiny-template/"
 site_overflow <- "https://department-for-education.shinyapps.io/dfe-shiny-template-overflow/"
-
-source("R/support_links.R")
