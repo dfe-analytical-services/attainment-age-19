@@ -34,11 +34,10 @@ ui <- function(input, output, session) {
     title = tags$head(
       tags$title("Level 2 and 3 Attainment by Age 19 dashboard"),
       tags$link(
-      rel = "shortcut icon",
-      href = "dfefavicon.png"
-    )),
-    
-    
+        rel = "shortcut icon",
+        href = "dfefavicon.png"
+      )
+    ),
     shinyjs::useShinyjs(),
     useShinydashboard(),
     tags$head(includeHTML(("google-analytics.html"))),
