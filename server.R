@@ -78,6 +78,7 @@ server <- function(input, output, session) {
   # })
   # LA trends ---- FSM
   # number and rate plot depending on what option is selected.
+
   output$t1_chart <- renderPlotly({
     if (input$plot_type == "number") {
       la_plot_num_fsm(input$select2, input$select_cat)

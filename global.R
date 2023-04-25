@@ -38,6 +38,7 @@ shhh(library(DT))
 shhh(library(shiny))
 shhh(library(shinyjs))
 shhh(library(dplyr))
+# shhh(library(shinya11y))
 
 # Functions ---------------------------------------------------------------------------------
 
@@ -58,10 +59,13 @@ tidy_code_function <- function() {
   message("App scripts")
   message("----------------------------------------")
   app_scripts <- eval(styler::style_dir(recursive = FALSE)$changed)
+  message("R scripts")
+  message("----------------------------------------")
+  r_scripts <- eval(styler::style_dir("R/", filetype = "r")$changed)
   message("Test scripts")
   message("----------------------------------------")
   test_scripts <- eval(styler::style_dir("tests/", filetype = "r")$changed)
-  script_changes <- c(app_scripts, test_scripts)
+  script_changes <- c(app_scripts, r_scripts, test_scripts)
   return(script_changes)
 }
 
@@ -91,5 +95,3 @@ appLoadingCSS <- "
 "
 site_primary <- "https://department-for-education.shinyapps.io/dfe-shiny-template/"
 site_overflow <- "https://department-for-education.shinyapps.io/dfe-shiny-template-overflow/"
-
-source("R/support_links.R")

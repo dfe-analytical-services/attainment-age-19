@@ -7,7 +7,9 @@
     "select_cat2": "Level 2",
     "select2": "Barking and Dagenham",
     "select3": "Barking and Dagenham",
-    "tabsetpanels": "Local authority & Free School Meal Status"
+    "tabsetpanels_fsm": "Local authority & Free School Meal Status",
+    "tabsetpanels_fsm_sub": "Chart",
+    "tabsetpanels_sen": "Chart"
   },
   "output": {
 
