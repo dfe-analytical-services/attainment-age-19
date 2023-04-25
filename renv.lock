@@ -1547,10 +1547,10 @@
     },
     "rgdal": {
       "Package": "rgdal",
-      "Version": "1.6-5",
+      "Version": "1.6-6",
       "Source": "Repository",
       "Repository": "CRAN",
-      "Hash": "db30ee59b46241355b2da9620f591243",
+      "Hash": "05c7c91191407d54da92816fb849ab29",
       "Requirements": [
         "sp"
       ]
@@ -1908,10 +1908,10 @@
     },
     "terra": {
       "Package": "terra",
-      "Version": "1.7-23",
+      "Version": "1.7-29",
       "Source": "Repository",
       "Repository": "CRAN",
-      "Hash": "19502c7522254190a8a93e6dffa59ed7",
+      "Hash": "89c24bf35c961e047df79dde2eb69224",
       "Requirements": [
         "Rcpp"
       ]
