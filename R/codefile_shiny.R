@@ -61,7 +61,7 @@ change_ed <- function(numA, numB) {
 ## Set year references:
 #*** Action update the latest year reference below when we have new data.
 
-latest_year <- 2021
+latest_year <- 2022
 last_year <- latest_year - 1
 first_year <- 2005
 
@@ -71,8 +71,8 @@ first_year <- 2005
 
 # la_ud <- read_csv('data/LA_UD_v3_supp.csv', col_types = cols(.default = "c"))
 # la_ud <- read_csv('data/LA_UD_draft_mockup_v4_SM.csv', col_types = cols(.default = "c"))
-la_ud <- read_csv("data/L23_Attainment_2021.csv", col_types = cols(.default = "c"))
-la_ud_VB <- read_csv("data/L23_Attainment_2021_VB_V2.csv", col_types = cols(.default = "c"))
+la_ud <- read_csv("data/LA_Dashboard_2022_without_Scilly.csv", col_types = cols(.default = "c"))
+la_ud_VB <- read_csv("data/LA_Dashboard_2022_VB_without_Scilly.csv", col_types = cols(.default = "c"))
 
 la_ud_VB$value <- round((as.numeric(la_ud_VB$value)), digits = 1)
 # 4. Overview tab
