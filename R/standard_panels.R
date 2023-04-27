@@ -93,8 +93,8 @@ a11y_panel <- function() {
       p("This statement was last updated on 25th April 2023."),
       h3("Feedback"),
       p(
-            "If you have any feedback on how we could further improve the accessibility of this application, please contact us at",
-            a(href = "mailto:post16.statistics@education.gov.uk", "post16.statistics@education.gov.uk")
+        "If you have any feedback on how we could further improve the accessibility of this application, please contact us at",
+        a(href = "mailto:post16.statistics@education.gov.uk", "post16.statistics@education.gov.uk")
       )
     )
   )
