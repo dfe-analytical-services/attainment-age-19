@@ -11,13 +11,8 @@
 # Library calls ---------------------------------------------------------------------------------
 
 shhh <- suppressPackageStartupMessages # It's a library, so shhh!
-shhh(library(leaflet))
-shhh(library(geojsonio))
-shhh(library(sp))
 shhh(library(data.table))
 shhh(library(RColorBrewer))
-# library(raster)
-# library(pander)
 shhh(library(tidyverse))
 shhh(library(shinycssloaders))
 shhh(library(DT))
