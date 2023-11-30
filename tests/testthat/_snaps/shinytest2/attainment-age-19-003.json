@@ -1,25 +1,8 @@
 {
   "input": {
-    ".clientValue-default-plotlyCrosstalkOpts": {
-      "on": "plotly_click",
-      "persistent": false,
-      "dynamic": false,
-      "selectize": false,
-      "opacityDim": 0.2,
-      "selected": {
-        "opacity": 1
-      },
-      "debounce": 0,
-      "color": [
-
-      ]
-    },
     "navlistPanel": "LA & FSM",
     "plot_type": "percentage",
     "plot_type2": "percentage",
-    "plotly_afterplot-A": "\"t2_chart\"",
-    "plotly_relayout-A": "{\"width\":1012.390625,\"height\":400}",
-    "remove": 0,
     "select2": "Barking and Dagenham",
     "select3": "Bedford",
     "select_cat": "Level 2",
@@ -1339,8 +1322,5 @@
         }
       ]
     }
-  },
-  "export": {
-
   }
 }
