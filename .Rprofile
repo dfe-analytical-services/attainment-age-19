@@ -8,15 +8,8 @@
 #
 # ---------------------------------------------------------
 
-cat("Sourcing .Rprofile.", fill = TRUE)
 
 source("renv/activate.R")
-
-# Tidy code function
-tidy_code <- function() {
-  source("global.r")
-  tidy_code_function()
-}
 
 # Function to run tests
 run_tests_locally <- function() {
@@ -29,9 +22,9 @@ run_tests_locally <- function() {
   # testthat::test_dir("tests/testthat")
   # message("")
   message("================================================================================")
-  message("== shinytest ===================================================================")
+  message("== shinytest2 ===================================================================")
   message("")
-  shinytest::testApp()
+  shinytest2::test_app()
   message("")
   message("================================================================================")
 }

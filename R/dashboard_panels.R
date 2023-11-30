@@ -1,6 +1,6 @@
 homepage_panel <- function() {
   tabPanel(
-    "Homepage",
+    "Information",
     gov_main_layout(
       gov_row(
         column(
@@ -157,7 +157,7 @@ homepage_panel <- function() {
 dashboard_panel <- function() {
   tabPanel(
     value = "LA & FSM",
-    "Dashboard",
+    "Level 2 and 3 attainment by local authority",
 
     # Define UI for application that draws a histogram
 

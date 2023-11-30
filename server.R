@@ -810,9 +810,9 @@ server <- function(input, output, session) {
 
   # Map ----
 
-  output$map <- renderLeaflet({
-    excmap(input$select_map)
-  })
+  # output$map <- renderLeaflet({
+  #   excmap(input$select_map)
+  # })
 
 
 

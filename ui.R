@@ -68,13 +68,19 @@ ui <- function(input, output, session) {
       id = "navlistPanel",
       widths = c(2, 8),
       well = FALSE,
-      homepage_panel(),
       dashboard_panel(),
+      homepage_panel(),
       # overall_panel(),
       # fsm_panel(),
       # sen_panel(),
       a11y_panel(),
-      support_links()
+      support_panel(
+        team_email = "post16.statistics@education.gov.uk",
+        repo_name = "attainment-age-19",
+        publication_name = "Level 2 and 3 attainment age 16 to 25 publication",
+        publication_stub = "level-2-and-3-attainment-by-young-people-aged-19",
+        form_url = "https://forms.office.com/Pages/ResponsePage.aspx?id=yXfS-grGoU2187O4s0qC-e0qiSlFLgZOtXP2V2ICM4NUNUFGQ09IWTg3UllJUTZUSEdYQUo4T1ZJRC4u"
+      )
     ),
     tags$script(
       src = "script.js"

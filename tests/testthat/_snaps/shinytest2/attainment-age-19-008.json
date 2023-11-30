@@ -1,0 +1,1317 @@
+{
+  "input": {
+    "navlistPanel": "Information",
+    "plot_type": "percentage",
+    "plot_type2": "percentage",
+    "select2": "Birmingham",
+    "select3": "Birmingham",
+    "select_cat": "Level 2",
+    "select_cat2": "Level 3",
+    "tabsetpanels_fsm": "Local authority & Free School Meal Status",
+    "tabsetpanels_fsm_sub": "Chart",
+    "tabsetpanels_sen": "Chart"
+  },
+  "output": {
+    "boxFSM_All": {
+      "html": "<div class=\"small-box bg-blue\">\n  <div class=\"inner\">\n    <h3>81.6%<\/h3>\n    <p>of all pupils achieved Level 2 by age 19<br/><\/p>\n  <\/div>\n<\/div>",
+      "deps": [
+
+      ]
+    },
+    "boxFSM_El": {
+      "html": "<div class=\"small-box bg-blue\">\n  <div class=\"inner\">\n    <h3>70.2%<\/h3>\n    <p>of pupils eligible for FSM achieved Level 2 by age 19<\/p>\n  <\/div>\n<\/div>",
+      "deps": [
+
+      ]
+    },
+    "boxFSM_NotEl": {
+      "html": "<div class=\"small-box bg-blue\">\n  <div class=\"inner\">\n    <h3>85.5%<\/h3>\n    <p>of pupils not eligible for FSM achieved Level 2 by age 19<\/p>\n  <\/div>\n<\/div>",
+      "deps": [
+
+      ]
+    },
+    "boxSEN_All": {
+      "html": "<div class=\"small-box bg-blue\">\n  <div class=\"inner\">\n    <h3>62.5%<\/h3>\n    <p>of all pupils achieved Level 3 by age 19<br/><br/><\/p>\n  <\/div>\n<\/div>",
+      "deps": [
+
+      ]
+    },
+    "boxSEN_No": {
+      "html": "<div class=\"small-box bg-blue\">\n  <div class=\"inner\">\n    <h3>68.1%<\/h3>\n    <p>of pupils with no identified SEN achieved Level 3 by age 19<br/><\/p>\n  <\/div>\n<\/div>",
+      "deps": [
+
+      ]
+    },
+    "boxSEN_with": {
+      "html": "<div class=\"small-box bg-blue\">\n  <div class=\"inner\">\n    <h3>10.3%<\/h3>\n    <p>of pupils with SEN with statements or EHC plans achieved Level 3 by age 19<\/p>\n  <\/div>\n<\/div>",
+      "deps": [
+
+      ]
+    },
+    "boxSEN_without": {
+      "html": "<div class=\"small-box bg-blue\">\n  <div class=\"inner\">\n    <h3>38%<\/h3>\n    <p>of pupils with SEN without statements or EHC plans achieved Level 3 by age 19<\/p>\n  <\/div>\n<\/div>",
+      "deps": [
+
+      ]
+    },
+    "la_sum_fsm": "The percentage achieving level 2 by 19 in  Birmingham   increased from  80.8 % in  2021  to  81.6 % in 2022 .",
+    "la_sum_sen": "The percentage achieving level 3 by 19 in  Birmingham   increased from  61.8 % in  2021  to  62.5 % in 2022 .",
+    "la_title": "Birmingham  summary",
+    "la_title2": "Birmingham  summary",
+    "nat_sum_fsm": "In comparison, in the  West Midlands region, 63.6 % of those with receiving free school meals achieved level 2 by 19 ( 63.4 % nationally) compared to 83.7 % of those not receiving free school meals ( 84.7 % nationally).",
+    "nat_sum_sen": "In comparison, in the  West Midlands region, 11.2 % of those with a statement of SEN or Education Health Care (EHC) plan achieved level 3 by 19 ( 14 % nationally) compared to 63.6 % of those with no identified SEN ( 65.7 % nationally).",
+    "reg_sum_fsm": "For those receiving free school meals,  70.2 % achieved level 2 by 19 in  2022  compared with   85.5 % of those not receiving free school meals.",
+    "reg_sum_sen": "For those with a statement of SEN or Education Health Care (EHC) plan,  10.3 % achieved level 3 by 19 in  2022  compared with   68.1 % of those with no identified SEN.",
+    "t1_chart": {
+      "x": {
+        "data": [
+          {
+            "x": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10,
+              11,
+              12,
+              13,
+              14,
+              15,
+              16,
+              17,
+              18
+            ],
+            "y": [
+              62.200000000000003,
+              65.400000000000006,
+              68.099999999999994,
+              72.900000000000006,
+              76.900000000000006,
+              78.799999999999997,
+              81.299999999999997,
+              84.200000000000003,
+              85.599999999999994,
+              85.799999999999997,
+              85.5,
+              85.700000000000003,
+              82.299999999999997,
+              80.700000000000003,
+              81.099999999999994,
+              81,
+              80.799999999999997,
+              81.599999999999994
+            ],
+            "text": [
+              " 2005 <br> 62.2 % <br> All",
+              " 2006 <br> 65.4 % <br> All",
+              " 2007 <br> 68.1 % <br> All",
+              " 2008 <br> 72.9 % <br> All",
+              " 2009 <br> 76.9 % <br> All",
+              " 2010 <br> 78.8 % <br> All",
+              " 2011 <br> 81.3 % <br> All",
+              " 2012 <br> 84.2 % <br> All",
+              " 2013 <br> 85.6 % <br> All",
+              " 2014 <br> 85.8 % <br> All",
+              " 2015 <br> 85.5 % <br> All",
+              " 2016 <br> 85.7 % <br> All",
+              " 2017 <br> 82.3 % <br> All",
+              " 2018 <br> 80.7 % <br> All",
+              " 2019 <br> 81.1 % <br> All",
+              " 2020 <br> 81 % <br> All",
+              " 2021 <br> 80.8 % <br> All",
+              " 2022 <br> 81.6 % <br> All"
+            ],
+            "type": "scatter",
+            "mode": "lines",
+            "line": {
+              "width": 3.7795275590551185,
+              "color": "rgba(40,161,151,1)",
+              "dash": "solid"
+            },
+            "hoveron": "points",
+            "name": "All",
+            "legendgroup": "All",
+            "showlegend": true,
+            "xaxis": "x",
+            "yaxis": "y",
+            "hoverinfo": "text",
+            "frame": null
+          },
+          {
+            "x": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10,
+              11,
+              12,
+              13,
+              14,
+              15,
+              16,
+              17,
+              18
+            ],
+            "y": [
+              47.600000000000001,
+              51.600000000000001,
+              55.200000000000003,
+              61.799999999999997,
+              66.099999999999994,
+              69.599999999999994,
+              73.099999999999994,
+              78.099999999999994,
+              79.900000000000006,
+              79.799999999999997,
+              78.900000000000006,
+              79,
+              74.200000000000003,
+              70.900000000000006,
+              71.799999999999997,
+              71.099999999999994,
+              69.599999999999994,
+              70.200000000000003
+            ],
+            "text": [
+              " 2005 <br> 47.6 % <br> Eligible for FSM",
+              " 2006 <br> 51.6 % <br> Eligible for FSM",
+              " 2007 <br> 55.2 % <br> Eligible for FSM",
+              " 2008 <br> 61.8 % <br> Eligible for FSM",
+              " 2009 <br> 66.1 % <br> Eligible for FSM",
+              " 2010 <br> 69.6 % <br> Eligible for FSM",
+              " 2011 <br> 73.1 % <br> Eligible for FSM",
+              " 2012 <br> 78.1 % <br> Eligible for FSM",
+              " 2013 <br> 79.9 % <br> Eligible for FSM",
+              " 2014 <br> 79.8 % <br> Eligible for FSM",
+              " 2015 <br> 78.9 % <br> Eligible for FSM",
+              " 2016 <br> 79 % <br> Eligible for FSM",
+              " 2017 <br> 74.2 % <br> Eligible for FSM",
+              " 2018 <br> 70.9 % <br> Eligible for FSM",
+              " 2019 <br> 71.8 % <br> Eligible for FSM",
+              " 2020 <br> 71.1 % <br> Eligible for FSM",
+              " 2021 <br> 69.6 % <br> Eligible for FSM",
+              " 2022 <br> 70.2 % <br> Eligible for FSM"
+            ],
+            "type": "scatter",
+            "mode": "lines",
+            "line": {
+              "width": 3.7795275590551185,
+              "color": "rgba(128,22,80,1)",
+              "dash": "solid"
+            },
+            "hoveron": "points",
+            "name": "Eligible for FSM",
+            "legendgroup": "Eligible for FSM",
+            "showlegend": true,
+            "xaxis": "x",
+            "yaxis": "y",
+            "hoverinfo": "text",
+            "frame": null
+          },
+          {
+            "x": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10,
+              11,
+              12,
+              13,
+              14,
+              15,
+              16,
+              17,
+              18
+            ],
+            "y": [
+              69.599999999999994,
+              72.099999999999994,
+              74.5,
+              78.200000000000003,
+              82,
+              83.299999999999997,
+              85,
+              86.900000000000006,
+              88.299999999999997,
+              88.799999999999997,
+              88.700000000000003,
+              89,
+              86.299999999999997,
+              84.799999999999997,
+              84.599999999999994,
+              84.5,
+              84.5,
+              85.5
+            ],
+            "text": [
+              " 2005 <br> 69.6 % <br> Not eligible for FSM",
+              " 2006 <br> 72.1 % <br> Not eligible for FSM",
+              " 2007 <br> 74.5 % <br> Not eligible for FSM",
+              " 2008 <br> 78.2 % <br> Not eligible for FSM",
+              " 2009 <br> 82 % <br> Not eligible for FSM",
+              " 2010 <br> 83.3 % <br> Not eligible for FSM",
+              " 2011 <br> 85 % <br> Not eligible for FSM",
+              " 2012 <br> 86.9 % <br> Not eligible for FSM",
+              " 2013 <br> 88.3 % <br> Not eligible for FSM",
+              " 2014 <br> 88.8 % <br> Not eligible for FSM",
+              " 2015 <br> 88.7 % <br> Not eligible for FSM",
+              " 2016 <br> 89 % <br> Not eligible for FSM",
+              " 2017 <br> 86.3 % <br> Not eligible for FSM",
+              " 2018 <br> 84.8 % <br> Not eligible for FSM",
+              " 2019 <br> 84.6 % <br> Not eligible for FSM",
+              " 2020 <br> 84.5 % <br> Not eligible for FSM",
+              " 2021 <br> 84.5 % <br> Not eligible for FSM",
+              " 2022 <br> 85.5 % <br> Not eligible for FSM"
+            ],
+            "type": "scatter",
+            "mode": "lines",
+            "line": {
+              "width": 3.7795275590551185,
+              "color": "rgba(18,67,109,1)",
+              "dash": "solid"
+            },
+            "hoveron": "points",
+            "name": "Not eligible for FSM",
+            "legendgroup": "Not eligible for FSM",
+            "showlegend": true,
+            "xaxis": "x",
+            "yaxis": "y",
+            "hoverinfo": "text",
+            "frame": null
+          }
+        ],
+        "layout": {
+          "margin": {
+            "t": 25.74124809741248,
+            "r": 7.3059360730593621,
+            "b": 48.058715095983757,
+            "l": 50.809464508094649
+          },
+          "plot_bgcolor": "rgba(255,255,255,1)",
+          "paper_bgcolor": "rgba(255,255,255,1)",
+          "font": {
+            "color": "rgba(0,0,0,1)",
+            "family": "",
+            "size": 14.611872146118724
+          },
+          "xaxis": {
+            "domain": [
+              0,
+              1
+            ],
+            "automargin": true,
+            "type": "linear",
+            "autorange": false,
+            "range": [
+              0.40000000000000002,
+              18.600000000000001
+            ],
+            "tickmode": "array",
+            "ticktext": [
+              "2005",
+              "2006",
+              "2007",
+              "2008",
+              "2009",
+              "2010",
+              "2011",
+              "2012",
+              "2013",
+              "2014",
+              "2015",
+              "2016",
+              "2017",
+              "2018",
+              "2019",
+              "2020",
+              "2021",
+              "2022"
+            ],
+            "tickvals": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              5.9999999999999991,
+              7,
+              8,
+              9,
+              10,
+              11,
+              12,
+              13,
+              14,
+              15,
+              16,
+              17,
+              18
+            ],
+            "categoryorder": "array",
+            "categoryarray": [
+              "2005",
+              "2006",
+              "2007",
+              "2008",
+              "2009",
+              "2010",
+              "2011",
+              "2012",
+              "2013",
+              "2014",
+              "2015",
+              "2016",
+              "2017",
+              "2018",
+              "2019",
+              "2020",
+              "2021",
+              "2022"
+            ],
+            "nticks": null,
+            "ticks": "outside",
+            "tickcolor": "rgba(51,51,51,1)",
+            "ticklen": 3.6529680365296811,
+            "tickwidth": 0.66417600664176002,
+            "showticklabels": true,
+            "tickfont": {
+              "color": "rgba(77,77,77,1)",
+              "family": "",
+              "size": 15.940224159402243
+            },
+            "tickangle": -45,
+            "showline": true,
+            "linecolor": "rgba(0,0,0,1)",
+            "linewidth": 0.66417600664176002,
+            "showgrid": false,
+            "gridcolor": null,
+            "gridwidth": 0,
+            "zeroline": false,
+            "anchor": "y",
+            "title": {
+              "text": "<b> Cohort 19 in <\/b>",
+              "font": {
+                "color": "rgba(0,0,0,1)",
+                "family": "",
+                "size": 15.940224159402243
+              }
+            },
+            "hoverformat": ".2f"
+          },
+          "yaxis": {
+            "domain": [
+              0,
+              1
+            ],
+            "automargin": true,
+            "type": "linear",
+            "autorange": false,
+            "range": [
+              -4.8950000000000005,
+              102.795
+            ],
+            "tickmode": "array",
+            "ticktext": [
+              "0",
+              "10",
+              "20",
+              "30",
+              "40",
+              "50",
+              "60",
+              "70",
+              "80",
+              "90",
+              "100"
+            ],
+            "tickvals": [
+              0,
+              10,
+              20,
+              30.000000000000004,
+              40,
+              49.999999999999993,
+              59.999999999999993,
+              70,
+              80,
+              90,
+              100
+            ],
+            "categoryorder": "array",
+            "categoryarray": [
+              "0",
+              "10",
+              "20",
+              "30",
+              "40",
+              "50",
+              "60",
+              "70",
+              "80",
+              "90",
+              "100"
+            ],
+            "nticks": null,
+            "ticks": "outside",
+            "tickcolor": "rgba(51,51,51,1)",
+            "ticklen": 3.6529680365296811,
+            "tickwidth": 0.66417600664176002,
+            "showticklabels": true,
+            "tickfont": {
+              "color": "rgba(77,77,77,1)",
+              "family": "",
+              "size": 15.940224159402243
+            },
+            "tickangle": 0,
+            "showline": true,
+            "linecolor": "rgba(0,0,0,1)",
+            "linewidth": 0.66417600664176002,
+            "showgrid": false,
+            "gridcolor": null,
+            "gridwidth": 0,
+            "zeroline": false,
+            "anchor": "x",
+            "title": {
+              "text": "<b> Level 2 by 19 percentage <\/b>",
+              "font": {
+                "color": "rgba(0,0,0,1)",
+                "family": "",
+                "size": 15.940224159402243
+              }
+            },
+            "hoverformat": ".2f"
+          },
+          "shapes": [
+            {
+              "type": "rect",
+              "fillcolor": null,
+              "line": {
+                "color": null,
+                "width": 0,
+                "linetype": [
+
+                ]
+              },
+              "yref": "paper",
+              "xref": "paper",
+              "x0": 0,
+              "x1": 1,
+              "y0": 0,
+              "y1": 1
+            }
+          ],
+          "showlegend": true,
+          "legend": {
+            "bgcolor": "rgba(255,255,255,1)",
+            "bordercolor": "transparent",
+            "borderwidth": 1.8897637795275593,
+            "font": {
+              "color": "rgba(0,0,0,1)",
+              "family": "",
+              "size": 11.68949771689498
+            },
+            "title": {
+              "text": "",
+              "font": {
+                "color": null,
+                "family": null,
+                "size": 0
+              }
+            }
+          },
+          "hovermode": "closest",
+          "barmode": "relative"
+        },
+        "config": {
+          "doubleClick": "reset",
+          "modeBarButtonsToAdd": [
+            "hoverclosest",
+            "hovercompare"
+          ],
+          "showSendToCloud": false
+        },
+        "source": "A",
+        "highlight": {
+          "on": "plotly_click",
+          "persistent": false,
+          "dynamic": false,
+          "selectize": false,
+          "opacityDim": 0.20000000000000001,
+          "selected": {
+            "opacity": 1
+          },
+          "debounce": 0
+        },
+        "shinyEvents": [
+          "plotly_hover",
+          "plotly_click",
+          "plotly_selected",
+          "plotly_relayout",
+          "plotly_brushed",
+          "plotly_brushing",
+          "plotly_clickannotation",
+          "plotly_doubleclick",
+          "plotly_deselect",
+          "plotly_afterplot",
+          "plotly_sunburstclick"
+        ],
+        "base_url": "https://plot.ly"
+      },
+      "evals": [
+
+      ],
+      "jsHooks": [
+
+      ],
+      "deps": [
+        {
+          "name": "setprototypeof",
+          "version": "0.1",
+          "src": {
+            "href": "setprototypeof-0.1"
+          },
+          "meta": null,
+          "script": "setprototypeof.js",
+          "stylesheet": null,
+          "head": null,
+          "attachment": null,
+          "all_files": false
+        },
+        {
+          "name": "typedarray",
+          "version": "0.1",
+          "src": {
+            "href": "typedarray-0.1"
+          },
+          "meta": null,
+          "script": "typedarray.min.js",
+          "stylesheet": null,
+          "head": null,
+          "attachment": null,
+          "all_files": false
+        },
+        {
+          "name": "jquery",
+          "version": "3.5.1",
+          "src": {
+            "href": "jquery-3.5.1"
+          },
+          "meta": null,
+          "script": "jquery.min.js",
+          "stylesheet": null,
+          "head": null,
+          "attachment": null,
+          "all_files": true
+        },
+        {
+          "name": "crosstalk",
+          "version": "1.2.0",
+          "src": {
+            "href": "crosstalk-1.2.0"
+          },
+          "meta": null,
+          "script": "js/crosstalk.min.js",
+          "stylesheet": "css/crosstalk.min.css",
+          "head": null,
+          "attachment": null,
+          "all_files": true
+        },
+        {
+          "name": "plotly-htmlwidgets-css",
+          "version": "2.11.1",
+          "src": {
+            "href": "plotly-htmlwidgets-css-2.11.1"
+          },
+          "meta": null,
+          "script": null,
+          "stylesheet": "plotly-htmlwidgets.css",
+          "head": null,
+          "attachment": null,
+          "all_files": false
+        },
+        {
+          "name": "plotly-main",
+          "version": "2.11.1",
+          "src": {
+            "href": "plotly-main-2.11.1"
+          },
+          "meta": null,
+          "script": "plotly-latest.min.js",
+          "stylesheet": null,
+          "head": null,
+          "attachment": null,
+          "all_files": false
+        }
+      ]
+    },
+    "t2_chart": {
+      "x": {
+        "data": [
+          {
+            "x": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10,
+              11,
+              12,
+              13,
+              14,
+              15,
+              16,
+              17
+            ],
+            "y": [
+              40.100000000000001,
+              41.100000000000001,
+              44.299999999999997,
+              47.600000000000001,
+              50.200000000000003,
+              52.299999999999997,
+              54.399999999999999,
+              56.100000000000001,
+              57.100000000000001,
+              58.700000000000003,
+              58.799999999999997,
+              58.600000000000001,
+              57.899999999999999,
+              59,
+              60.100000000000001,
+              61.799999999999997,
+              62.5
+            ],
+            "text": [
+              " 2006 <br> 40.1 % <br> All",
+              " 2007 <br> 41.1 % <br> All",
+              " 2008 <br> 44.3 % <br> All",
+              " 2009 <br> 47.6 % <br> All",
+              " 2010 <br> 50.2 % <br> All",
+              " 2011 <br> 52.3 % <br> All",
+              " 2012 <br> 54.4 % <br> All",
+              " 2013 <br> 56.1 % <br> All",
+              " 2014 <br> 57.1 % <br> All",
+              " 2015 <br> 58.7 % <br> All",
+              " 2016 <br> 58.8 % <br> All",
+              " 2017 <br> 58.6 % <br> All",
+              " 2018 <br> 57.9 % <br> All",
+              " 2019 <br> 59 % <br> All",
+              " 2020 <br> 60.1 % <br> All",
+              " 2021 <br> 61.8 % <br> All",
+              " 2022 <br> 62.5 % <br> All"
+            ],
+            "type": "scatter",
+            "mode": "lines",
+            "line": {
+              "width": 3.7795275590551185,
+              "color": "rgba(40,161,151,1)",
+              "dash": "solid"
+            },
+            "hoveron": "points",
+            "name": "All",
+            "legendgroup": "All",
+            "showlegend": true,
+            "xaxis": "x",
+            "yaxis": "y",
+            "hoverinfo": "text",
+            "frame": null
+          },
+          {
+            "x": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10,
+              11,
+              12,
+              13,
+              14,
+              15,
+              16,
+              17
+            ],
+            "y": [
+              46.700000000000003,
+              47.700000000000003,
+              52.700000000000003,
+              55.200000000000003,
+              58.600000000000001,
+              61.600000000000001,
+              63.899999999999999,
+              66.200000000000003,
+              66.900000000000006,
+              68.200000000000003,
+              67.299999999999997,
+              66.700000000000003,
+              64.5,
+              65.900000000000006,
+              66.200000000000003,
+              67.700000000000003,
+              68.099999999999994
+            ],
+            "text": [
+              " 2006 <br> 46.7 % <br> No identified SEN",
+              " 2007 <br> 47.7 % <br> No identified SEN",
+              " 2008 <br> 52.7 % <br> No identified SEN",
+              " 2009 <br> 55.2 % <br> No identified SEN",
+              " 2010 <br> 58.6 % <br> No identified SEN",
+              " 2011 <br> 61.6 % <br> No identified SEN",
+              " 2012 <br> 63.9 % <br> No identified SEN",
+              " 2013 <br> 66.2 % <br> No identified SEN",
+              " 2014 <br> 66.9 % <br> No identified SEN",
+              " 2015 <br> 68.2 % <br> No identified SEN",
+              " 2016 <br> 67.3 % <br> No identified SEN",
+              " 2017 <br> 66.7 % <br> No identified SEN",
+              " 2018 <br> 64.5 % <br> No identified SEN",
+              " 2019 <br> 65.9 % <br> No identified SEN",
+              " 2020 <br> 66.2 % <br> No identified SEN",
+              " 2021 <br> 67.7 % <br> No identified SEN",
+              " 2022 <br> 68.1 % <br> No identified SEN"
+            ],
+            "type": "scatter",
+            "mode": "lines",
+            "line": {
+              "width": 3.7795275590551185,
+              "color": "rgba(128,22,80,1)",
+              "dash": "solid"
+            },
+            "hoveron": "points",
+            "name": "No identified SEN",
+            "legendgroup": "No identified SEN",
+            "showlegend": true,
+            "xaxis": "x",
+            "yaxis": "y",
+            "hoverinfo": "text",
+            "frame": null
+          },
+          {
+            "x": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10,
+              11,
+              12,
+              13,
+              14,
+              15,
+              16,
+              17
+            ],
+            "y": [
+              5.2999999999999998,
+              6.7000000000000002,
+              6.7999999999999998,
+              6.4000000000000004,
+              9.0999999999999996,
+              8.5999999999999996,
+              9.5999999999999996,
+              13,
+              12,
+              13.9,
+              14.4,
+              11.6,
+              14.199999999999999,
+              11.5,
+              11.9,
+              12.300000000000001,
+              10.300000000000001
+            ],
+            "text": [
+              " 2006 <br> 5.3 % <br> SEN with statements or EHC plan",
+              " 2007 <br> 6.7 % <br> SEN with statements or EHC plan",
+              " 2008 <br> 6.8 % <br> SEN with statements or EHC plan",
+              " 2009 <br> 6.4 % <br> SEN with statements or EHC plan",
+              " 2010 <br> 9.1 % <br> SEN with statements or EHC plan",
+              " 2011 <br> 8.6 % <br> SEN with statements or EHC plan",
+              " 2012 <br> 9.6 % <br> SEN with statements or EHC plan",
+              " 2013 <br> 13 % <br> SEN with statements or EHC plan",
+              " 2014 <br> 12 % <br> SEN with statements or EHC plan",
+              " 2015 <br> 13.9 % <br> SEN with statements or EHC plan",
+              " 2016 <br> 14.4 % <br> SEN with statements or EHC plan",
+              " 2017 <br> 11.6 % <br> SEN with statements or EHC plan",
+              " 2018 <br> 14.2 % <br> SEN with statements or EHC plan",
+              " 2019 <br> 11.5 % <br> SEN with statements or EHC plan",
+              " 2020 <br> 11.9 % <br> SEN with statements or EHC plan",
+              " 2021 <br> 12.3 % <br> SEN with statements or EHC plan",
+              " 2022 <br> 10.3 % <br> SEN with statements or EHC plan"
+            ],
+            "type": "scatter",
+            "mode": "lines",
+            "line": {
+              "width": 3.7795275590551185,
+              "color": "rgba(18,67,109,1)",
+              "dash": "solid"
+            },
+            "hoveron": "points",
+            "name": "SEN with statements or EHC plan",
+            "legendgroup": "SEN with statements or EHC plan",
+            "showlegend": true,
+            "xaxis": "x",
+            "yaxis": "y",
+            "hoverinfo": "text",
+            "frame": null
+          },
+          {
+            "x": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10,
+              11,
+              12,
+              13,
+              14,
+              15,
+              16,
+              17
+            ],
+            "y": [
+              11.699999999999999,
+              14.4,
+              16.600000000000001,
+              17.699999999999999,
+              21.399999999999999,
+              28,
+              29.199999999999999,
+              31.199999999999999,
+              33.700000000000003,
+              33.600000000000001,
+              34.600000000000001,
+              33.5,
+              33.899999999999999,
+              29.5,
+              34.5,
+              35,
+              38
+            ],
+            "text": [
+              " 2006 <br> 11.7 % <br> SEN without statements or EHC plans",
+              " 2007 <br> 14.4 % <br> SEN without statements or EHC plans",
+              " 2008 <br> 16.6 % <br> SEN without statements or EHC plans",
+              " 2009 <br> 17.7 % <br> SEN without statements or EHC plans",
+              " 2010 <br> 21.4 % <br> SEN without statements or EHC plans",
+              " 2011 <br> 28 % <br> SEN without statements or EHC plans",
+              " 2012 <br> 29.2 % <br> SEN without statements or EHC plans",
+              " 2013 <br> 31.2 % <br> SEN without statements or EHC plans",
+              " 2014 <br> 33.7 % <br> SEN without statements or EHC plans",
+              " 2015 <br> 33.6 % <br> SEN without statements or EHC plans",
+              " 2016 <br> 34.6 % <br> SEN without statements or EHC plans",
+              " 2017 <br> 33.5 % <br> SEN without statements or EHC plans",
+              " 2018 <br> 33.9 % <br> SEN without statements or EHC plans",
+              " 2019 <br> 29.5 % <br> SEN without statements or EHC plans",
+              " 2020 <br> 34.5 % <br> SEN without statements or EHC plans",
+              " 2021 <br> 35 % <br> SEN without statements or EHC plans",
+              " 2022 <br> 38 % <br> SEN without statements or EHC plans"
+            ],
+            "type": "scatter",
+            "mode": "lines",
+            "line": {
+              "width": 3.7795275590551185,
+              "color": "rgba(244,106,37,1)",
+              "dash": "solid"
+            },
+            "hoveron": "points",
+            "name": "SEN without statements or EHC plans",
+            "legendgroup": "SEN without statements or EHC plans",
+            "showlegend": true,
+            "xaxis": "x",
+            "yaxis": "y",
+            "hoverinfo": "text",
+            "frame": null
+          }
+        ],
+        "layout": {
+          "margin": {
+            "t": 25.74124809741248,
+            "r": 7.3059360730593621,
+            "b": 48.058715095983757,
+            "l": 42.839352428393525
+          },
+          "plot_bgcolor": "rgba(255,255,255,1)",
+          "paper_bgcolor": "rgba(255,255,255,1)",
+          "font": {
+            "color": "rgba(0,0,0,1)",
+            "family": "",
+            "size": 14.611872146118724
+          },
+          "xaxis": {
+            "domain": [
+              0,
+              1
+            ],
+            "automargin": true,
+            "type": "linear",
+            "autorange": false,
+            "range": [
+              0.40000000000000002,
+              17.600000000000001
+            ],
+            "tickmode": "array",
+            "ticktext": [
+              "2006",
+              "2007",
+              "2008",
+              "2009",
+              "2010",
+              "2011",
+              "2012",
+              "2013",
+              "2014",
+              "2015",
+              "2016",
+              "2017",
+              "2018",
+              "2019",
+              "2020",
+              "2021",
+              "2022"
+            ],
+            "tickvals": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10,
+              11,
+              12,
+              13,
+              14,
+              15,
+              16,
+              17
+            ],
+            "categoryorder": "array",
+            "categoryarray": [
+              "2006",
+              "2007",
+              "2008",
+              "2009",
+              "2010",
+              "2011",
+              "2012",
+              "2013",
+              "2014",
+              "2015",
+              "2016",
+              "2017",
+              "2018",
+              "2019",
+              "2020",
+              "2021",
+              "2022"
+            ],
+            "nticks": null,
+            "ticks": "outside",
+            "tickcolor": "rgba(51,51,51,1)",
+            "ticklen": 3.6529680365296811,
+            "tickwidth": 0.66417600664176002,
+            "showticklabels": true,
+            "tickfont": {
+              "color": "rgba(77,77,77,1)",
+              "family": "",
+              "size": 15.940224159402243
+            },
+            "tickangle": -45,
+            "showline": true,
+            "linecolor": "rgba(0,0,0,1)",
+            "linewidth": 0.66417600664176002,
+            "showgrid": false,
+            "gridcolor": null,
+            "gridwidth": 0,
+            "zeroline": false,
+            "anchor": "y",
+            "title": {
+              "text": "<b> Cohort 19 in <\/b>",
+              "font": {
+                "color": "rgba(0,0,0,1)",
+                "family": "",
+                "size": 15.940224159402243
+              }
+            },
+            "hoverformat": ".2f"
+          },
+          "yaxis": {
+            "domain": [
+              0,
+              1
+            ],
+            "automargin": true,
+            "type": "linear",
+            "autorange": false,
+            "range": [
+              -3.7510000000000008,
+              78.771000000000015
+            ],
+            "tickmode": "array",
+            "ticktext": [
+              "0",
+              "10",
+              "20",
+              "30",
+              "40",
+              "50",
+              "60",
+              "70"
+            ],
+            "tickvals": [
+              4.4408920985006262e-16,
+              10,
+              20.000000000000004,
+              29.999999999999996,
+              40,
+              50,
+              60.000000000000007,
+              70
+            ],
+            "categoryorder": "array",
+            "categoryarray": [
+              "0",
+              "10",
+              "20",
+              "30",
+              "40",
+              "50",
+              "60",
+              "70"
+            ],
+            "nticks": null,
+            "ticks": "outside",
+            "tickcolor": "rgba(51,51,51,1)",
+            "ticklen": 3.6529680365296811,
+            "tickwidth": 0.66417600664176002,
+            "showticklabels": true,
+            "tickfont": {
+              "color": "rgba(77,77,77,1)",
+              "family": "",
+              "size": 15.940224159402243
+            },
+            "tickangle": 0,
+            "showline": true,
+            "linecolor": "rgba(0,0,0,1)",
+            "linewidth": 0.66417600664176002,
+            "showgrid": false,
+            "gridcolor": null,
+            "gridwidth": 0,
+            "zeroline": false,
+            "anchor": "x",
+            "title": {
+              "text": "<b> Level 3 by 19 percentage <\/b>",
+              "font": {
+                "color": "rgba(0,0,0,1)",
+                "family": "",
+                "size": 15.940224159402243
+              }
+            },
+            "hoverformat": ".2f"
+          },
+          "shapes": [
+            {
+              "type": "rect",
+              "fillcolor": null,
+              "line": {
+                "color": null,
+                "width": 0,
+                "linetype": [
+
+                ]
+              },
+              "yref": "paper",
+              "xref": "paper",
+              "x0": 0,
+              "x1": 1,
+              "y0": 0,
+              "y1": 1
+            }
+          ],
+          "showlegend": true,
+          "legend": {
+            "bgcolor": "rgba(255,255,255,1)",
+            "bordercolor": "transparent",
+            "borderwidth": 1.8897637795275593,
+            "font": {
+              "color": "rgba(0,0,0,1)",
+              "family": "",
+              "size": 11.68949771689498
+            },
+            "title": {
+              "text": "",
+              "font": {
+                "color": null,
+                "family": null,
+                "size": 0
+              }
+            }
+          },
+          "hovermode": "closest",
+          "barmode": "relative"
+        },
+        "config": {
+          "doubleClick": "reset",
+          "modeBarButtonsToAdd": [
+            "hoverclosest",
+            "hovercompare"
+          ],
+          "showSendToCloud": false
+        },
+        "source": "A",
+        "highlight": {
+          "on": "plotly_click",
+          "persistent": false,
+          "dynamic": false,
+          "selectize": false,
+          "opacityDim": 0.20000000000000001,
+          "selected": {
+            "opacity": 1
+          },
+          "debounce": 0
+        },
+        "shinyEvents": [
+          "plotly_hover",
+          "plotly_click",
+          "plotly_selected",
+          "plotly_relayout",
+          "plotly_brushed",
+          "plotly_brushing",
+          "plotly_clickannotation",
+          "plotly_doubleclick",
+          "plotly_deselect",
+          "plotly_afterplot",
+          "plotly_sunburstclick"
+        ],
+        "base_url": "https://plot.ly"
+      },
+      "evals": [
+
+      ],
+      "jsHooks": [
+
+      ],
+      "deps": [
+        {
+          "name": "setprototypeof",
+          "version": "0.1",
+          "src": {
+            "href": "setprototypeof-0.1"
+          },
+          "meta": null,
+          "script": "setprototypeof.js",
+          "stylesheet": null,
+          "head": null,
+          "attachment": null,
+          "all_files": false
+        },
+        {
+          "name": "typedarray",
+          "version": "0.1",
+          "src": {
+            "href": "typedarray-0.1"
+          },
+          "meta": null,
+          "script": "typedarray.min.js",
+          "stylesheet": null,
+          "head": null,
+          "attachment": null,
+          "all_files": false
+        },
+        {
+          "name": "jquery",
+          "version": "3.5.1",
+          "src": {
+            "href": "jquery-3.5.1"
+          },
+          "meta": null,
+          "script": "jquery.min.js",
+          "stylesheet": null,
+          "head": null,
+          "attachment": null,
+          "all_files": true
+        },
+        {
+          "name": "crosstalk",
+          "version": "1.2.0",
+          "src": {
+            "href": "crosstalk-1.2.0"
+          },
+          "meta": null,
+          "script": "js/crosstalk.min.js",
+          "stylesheet": "css/crosstalk.min.css",
+          "head": null,
+          "attachment": null,
+          "all_files": true
+        },
+        {
+          "name": "plotly-htmlwidgets-css",
+          "version": "2.11.1",
+          "src": {
+            "href": "plotly-htmlwidgets-css-2.11.1"
+          },
+          "meta": null,
+          "script": null,
+          "stylesheet": "plotly-htmlwidgets.css",
+          "head": null,
+          "attachment": null,
+          "all_files": false
+        },
+        {
+          "name": "plotly-main",
+          "version": "2.11.1",
+          "src": {
+            "href": "plotly-main-2.11.1"
+          },
+          "meta": null,
+          "script": "plotly-latest.min.js",
+          "stylesheet": null,
+          "head": null,
+          "attachment": null,
+          "all_files": false
+        }
+      ]
+    }
+  }
+}
